@@ -151,14 +151,49 @@ img.add_border {
 <p>name=Step0</p>
 <p>url=worlds/sk/step0.json</p>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/reeborg_intro_en.json&amp;name=Hurdle 1&amp;url=worlds/tutorial_en/hurdle1.json">Hurdle 1 </a></p>
-<p>https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/reeborg_intro_en.json&amp;name=Hurdle 1&amp;url=worlds/tutorial_en/hurdle1.json </p>
+<p>https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/reeborg_intro_en.json&amp;name=Hurdle 1&amp;url=worlds/tutorial_en/hurdle1.json</p>
 <p>lang=en</p>
 <p>mode=python</p>
 <p>menu=worlds/menus/reeborg_intro_en.json</p>
 <p>name=Hurdle 1</p>
 <p>url=wolds/tutorial_en/hurdle1.json</p>
-<p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a> </p>
-<p></p><br />Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework</div>
+<p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
+<p>code</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function confirm_ready_to_start() {
+    if (window.translate_python === undefined || !RUR.state.ui_ready) {
+        console.log("Not quite ready to initialize session; will try again in 100ms.");
+        window.setTimeout(confirm_ready_to_start, 100);
+    } else {
+        start_session();
+    }
+}
+confirm_ready_to_start();
+</pre>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.state.session_initialized = false;
+
+function start_session () {
+    "use strict";
+    var url;
+    set_initial_state();
+    set_editor();
+    set_library();
+    get_red_green();
+    RUR.state.session_initialized = true;    
+    url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+    if (!url || url != RUR.state.world_url) { // world not included in menu, nor in selector
+        RUR.world_selector.append_world({url: RUR.state.world_url,
+                                         shortname: RUR.state.world_name});
+    }
+    RUR.world_selector.set_url(RUR.state.world_url);
+    RUR.permalink.update_URI();
+    $("#thought").hide();
+}
+
+
+</pre>
+<p></p>
+<p></p>
+<br />Reeborg << <a href='Reeborg.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework</div>
         
     <!-- footer -->
       <div class="container">

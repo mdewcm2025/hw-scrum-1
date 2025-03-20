@@ -4,8 +4,8 @@
 <p>學員作業倉儲: <a href="https://github.com/mdewcm2025/hw-scrum-1">https://github.com/mdewcm2025/hw-scrum-1</a></p>
 <p>學員 Reeborg: <a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg">https://mdewcm2025.github.io/hw-scrum-1/reeborg</a></p>
 <p>Reeborg 倉儲: <a href="https://github.com/mdecycu/reeborg">https://github.com/mdecycu/reeborg</a></p>
-<p>Fossil SCM site: <a href="https://rocket.mde.nfu.edu.tw/wcmhw/doc/trunk/index.html">https://rocket.mde.nfu.edu.tw/wcmhw/doc/trunk/index.html</a> </p>
-<p>Fossil SCM files: <a href="https://rocket.mde.nfu.edu.tw/wcmhw/dir">https://rocket.mde.nfu.edu.tw/wcmhw/dir</a> </p>
+<p>Fossil SCM site: <a href="https://rocket.mde.nfu.edu.tw/wcmhw/doc/trunk/index.html">https://rocket.mde.nfu.edu.tw/wcmhw/doc/trunk/index.html</a></p>
+<p>Fossil SCM files: <a href="https://rocket.mde.nfu.edu.tw/wcmhw/dir">https://rocket.mde.nfu.edu.tw/wcmhw/dir</a></p>
 <hr/>
 <p>課程代號: wcm2025</p>
 <p>Teams 線上教學:</p>
@@ -30,7 +30,18 @@
 <p style="padding-left: 90px;">利用 uwsgi 配置分組學員執行 cmsimde 動態內容管理系統編輯</p>
 <p style="padding-left: 90px;">設法將 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>) 與 cmsimde 網際內容管理系統整合</p>
 <h2>list</h2>
-<p><a href="https://mdewcm2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/f19c5033f3f82c47351ae50bac01904dd35140de/list_1a.py">列出 wcm2025 學員的作業網站與倉儲</a></p><h1>Tasks</h1><h2>task1</h2>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/f19c5033f3f82c47351ae50bac01904dd35140de/list_1a.py">列出 wcm2025 學員的作業網站與倉儲</a></p>
+<p>上列程式是利用 Brython 讀取 <a href="https://mde.tw/list/1a.txt">https://mde.tw/list/1a.txt</a> 資料後, 根據各學員的作業網站與倉儲連結建立 html.</p>
+<p>若 github 尚未出現在 <a href="https://github.com/mdecycu/list">https://github.com/mdecycu/list</a> 倉儲中, 或之後改變 github 帳號, 可以利用 Pull Requests 要求加入或變更.</p>
+<p>Pull Requests (拉回請求, 或可稱為請求拉回合併) 使用時機:</p>
+<p style="padding-left: 30px;">當 Github 帳號無法直接對某一個倉儲進行改版, 但卻希望更動該倉儲的內容時, 可以透過 Pull Requests 流程要求對倉儲內容改版 (此流程稱為"正向拉回請求")</p>
+<p>所謂<span>"正向拉回請求", 是先登入 Github 帳號後, Fork 希望對其改版的倉儲後, 由於該倉儲已經被 Fork 進自己的帳號下, 因此對該 forked 倉儲擁有更改的權限.</span></p>
+<p><span>forked 倉儲更改後, 可以建立拉回請求, 要求擁有對該倉儲管理權限的用戶透過內容檢視, 自行決定是否將改版內容進行合併.</span></p>
+<p><span>至於"逆向拉回請求"則是 forked 倉儲希望從所 Fork 的倉儲擷取內容時, 只要將"正向拉回請求"的雙方帳號對調, 就可以建立本身有權限合併的 Pull Requests.</span></p>
+<p></p>
+<p></p>
+<h1>Tasks</h1>
+<h2>task1</h2>
 <h4>自行製作可攜程式系統</h4>
 <p>此作業的目的在展示如何利用既有的 Python 可攜系統建立各版本的 Python 可攜環境.</p>
 <p>以下為操作步驟:</p>
@@ -90,15 +101,53 @@
 <div class="winkVideoContainerClass"></div>
 <div class="winkVideoContainerClass">fossil ui .fossil 後, 可以透過 Web ui 介面修改 .fossil 倉儲的內容, 至於從 fossil open .fossil 取出的 trunk 版本內容, 在倉儲內容改版後, 可以利用 fossil add 與 fossil commit-m 將改版資料回存至近端 .fossil, 若 .fossil 是從遠端 fossil clone, 則只有在 fossil push 後, 近端的改版內容才會被推向遠端倉儲 .fossil 檔案.</div>
 <div class="winkVideoContainerClass"></div>
-<div class="winkVideoContainerClass">若與工作目錄對應的 .fossil 倉儲檔案內容在 fossil open 之後進行改版, 則先前已經 open 的工作目錄, 可以利用 fossil update 與近端的 .fossil 倉儲內容保持同步.</div><h3>IPv6</h3>
+<div class="winkVideoContainerClass">若與工作目錄對應的 .fossil 倉儲檔案內容在 fossil open 之後進行改版, 則先前已經 open 的工作目錄, 可以利用 fossil update 與近端的 .fossil 倉儲內容保持同步.</div>
+<h3>IPv6</h3>
 <p>根據 <a href="/downloads/1a_stud.txt">1a_stud.txt</a> 中的學員序號, 每位學員分配一個固定的 IPv6 網址:</p>
 <p>學員序號為 1的固定 IPv6 分配: 2001:288:6004:17:fff1:cc25:0000:a001</p>
 <p>IPv6 網路設定畫面如下:</p>
-<p><img alt="" height="329" src="/images/wcm_index1_ipv6_setup.png" width="400"/></p><h2>task3</h2>
+<p><img alt="" height="329" src="/images/wcm_index1_ipv6_setup.png" width="400"/></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/6YMViZXpRKQ?si=v4qo4UGzGmqWeaZx" title="YouTube video player" width="560"></iframe></p>
+<p><a href="/downloads/account_network_setup.7z">account_network_setup.7z</a></p>
+<p>固定 IPv6 與 Fossil SCM 結合使用:</p>
+<p>利用 fossil init 建立一個空白的 wcm.fossil 資料庫, fossil 會使用目前登入的使用者帳號, 然後以亂數建立該帳號的對應密碼, 且讓此帳號作為資料庫的管理者.</p>
+<p>由於 wcm.fossil 為 <a href="https://www.sqlite.org/">SQLite</a> 資料庫格式, 因此可以使用 sqlite3.exe 進入後, 利用 SQL 語法更改任何帳號的對應密碼.</p>
+<p>C:\tmp&gt;fossil init wcm.fossil</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">C:\tmp&gt;fossil init wcm.fossil
+project-id: 7a2ba6d35aa1be96a6fed38503023877a95eb2ab
+server-id:  84002c6209d73504f02af0cd280ecba424e1c298
+admin-user: yen (initial password is "3E9yhxzQtr")
+
+C:\tmp&gt;sqlite3 wcm.fossil
+SQLite version 3.49.0 2025-02-06 11:55:18
+Enter ".help" for usage hints.
+sqlite&gt; update user set pw='yen' where login='yen';
+sqlite&gt;</pre>
+<p>C:\tmp&gt;fossil ui wcm.fossil</p>
+<p>執行 fossil ui 後, 系統會自動跳出以下畫面:</p>
+<p><img alt="" height="219" src="/images/w5_fossil_ui_1.png" width="800"/></p>
+<p>之後希望將作業倉儲內容納入上列 wcm.fossil, 其操作步驟:</p>
+<p>C:\tmp&gt;git clone <a href="https://github.com/mdewcm2025/hw-scrum-1.git">https://github.com/mdewcm2025/hw-scrum-1.git</a> wcmhw</p>
+<p>可以將作業倉儲內容放入 wcmhw 目錄中.</p>
+<p>接著要求將空的 wcm.fossil 倉儲的最新版 (名稱為 trunk) 強制解開到 wcmhw 目錄</p>
+<p>C:\tmp&gt;cd wcmhw</p>
+<p>C:\tmp\wcmhw&gt;fossil open ./../wcm.fossil --force</p>
+<p>接下來只要利用 fossil add 與 commit 指令就可以將作業倉儲內容"新增提交"進入 wcm.fossil 倉儲的版本控制中.</p>
+<p><span>C:\tmp\wcmhw&gt;fossil add .</span></p>
+<p><span>C:\tmp\wcmhw&gt;fossil commit -m "add 作業倉儲內容"</span></p>
+<p><span>然後回答 "a" 表示要將上列納入的所有資料進行提交, 而該提交版本內容將會註記在 wcm.fossil 倉儲中.</span></p>
+<p><span>C:\tmp\wcmhw&gt;cd ..</span></p>
+<p><span>C:\tmp&gt;fossil ui wcm.fossil </span></p>
+<p><span>就可以利用全球資訊網介面 (<a href="http://localhost:8081">http://localhost:8081</a>) 檢查 wcm.fossil 的最新版內容</span></p>
+<p>其中若進入 Admin - Settings, 在 default-csp 欄位填入"<a href='https://fonts.googleapis.com",'>https://fonts.googleapis.com",</a> 在 ignore-glob 欄位填入 "__pycache__".</p>
+<p>default-csp 代表可以跨網站擷取 <a href="https://fonts.googleapis.com">https://fonts.googleapis.com</a> 網站中的字型資料檔案, 而 ignore-glob 表示之後若有執行 Python 程式所產生的暫存檔案, 可以忽略, 不會因為新增提交而進入倉儲資料中.</p>
+<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p>
+<h2>task3</h2>
 <h4>使用 Nginx 建立全球資訊網伺服器</h4>
 <h4>HTML 中的 CSS 與 Javascript</h4>
 <h4>Windows 環境中的 WWW server</h4>
-<h4>Ubuntu 環境中的 WWW server</h4><h2>task4</h2>
+<h4>Ubuntu 環境中的 WWW server</h4>
+<h2>task4</h2>
 <h4>配置 Reeborg 網際系統</h4>
 <h4>解析 Reeborg 系統架構</h4>
 <h4>網際內容管理中的 Reeborg</h4>
@@ -125,14 +174,49 @@
 <p>name=Step0</p>
 <p>url=worlds/sk/step0.json</p>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/reeborg_intro_en.json&amp;name=Hurdle 1&amp;url=worlds/tutorial_en/hurdle1.json">Hurdle 1 </a></p>
-<p>https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/reeborg_intro_en.json&amp;name=Hurdle 1&amp;url=worlds/tutorial_en/hurdle1.json </p>
+<p>https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/reeborg_intro_en.json&amp;name=Hurdle 1&amp;url=worlds/tutorial_en/hurdle1.json</p>
 <p>lang=en</p>
 <p>mode=python</p>
 <p>menu=worlds/menus/reeborg_intro_en.json</p>
 <p>name=Hurdle 1</p>
 <p>url=wolds/tutorial_en/hurdle1.json</p>
-<p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a> </p>
-<p></p><h1>Homework</h1>
+<p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
+<p>code</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function confirm_ready_to_start() {
+    if (window.translate_python === undefined || !RUR.state.ui_ready) {
+        console.log("Not quite ready to initialize session; will try again in 100ms.");
+        window.setTimeout(confirm_ready_to_start, 100);
+    } else {
+        start_session();
+    }
+}
+confirm_ready_to_start();
+</pre>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.state.session_initialized = false;
+
+function start_session () {
+    "use strict";
+    var url;
+    set_initial_state();
+    set_editor();
+    set_library();
+    get_red_green();
+    RUR.state.session_initialized = true;    
+    url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+    if (!url || url != RUR.state.world_url) { // world not included in menu, nor in selector
+        RUR.world_selector.append_world({url: RUR.state.world_url,
+                                         shortname: RUR.state.world_name});
+    }
+    RUR.world_selector.set_url(RUR.state.world_url);
+    RUR.permalink.update_URI();
+    $("#thought").hide();
+}
+
+
+</pre>
+<p></p>
+<p></p>
+<h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
@@ -142,7 +226,8 @@
 <p style="padding-left: 90px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p>
-<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><h2>HW1</h2>
+<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
+<h2>HW1</h2>
 <p>作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 30px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
 <p style="padding-left: 30px;">在 Ubuntu 操作系統建立一台 WWW 伺服器</p>

@@ -68,6 +68,7 @@
 <v t="leo.20250220213836.16"><vh>others</vh></v>
 </v>
 </v>
+<v t="leo.20250320123819.1"><vh>程式碼解析</vh></v>
 <v t="leo.20250219181816.1"><vh>imported files</vh>
 <v t="leo.20250219181816.2"><vh>path: ./</vh>
 <v t="leo.20250219181833.1153"><vh>path: ./rb</vh>
@@ -47142,7 +47143,6 @@ use Window - Toggle-Split-Direction</t>
       &lt;button id="kbd-redo" class="blue-gradient"&gt;REDO&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
 &lt;/body&gt;
 &lt;/html&gt;
 </t>
@@ -50057,5 +50057,13 @@ TogetherJSConfig_cloneClicks = true;
 &lt;div id="editor"&gt;
 &lt;textarea id="code" name="code"&gt;move()&lt;/textarea&gt;
 &lt;/div&gt;</t>
+<t tx="leo.20250320123819.1">自執行函式, 定義後直接執行
+這是一個 IIFE，它在定義後立即執行，用於創建一個獨立的作用域，避免污染全局命名空間。
+IIFE (Immediately Invoked Function Expression) 是一個定義完馬上就執行的 JavaScript function。
+
+(function() {
+    // 內部代碼
+})()
+</t>
 </tnodes>
 </leo_file>
