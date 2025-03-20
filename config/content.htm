@@ -149,7 +149,7 @@ sqlite&gt;</pre>
 <p></p>
 <h1>Reeborg</h1>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg">https://mdewcm2025.github.io/hw-scrum-1/reeborg</a></p>
-<p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a> </p>
+<p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a></p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
     "use strict";
     if (localStorage.getItem("editor")){
@@ -159,7 +159,41 @@ sqlite&gt;</pre>
     }
 }</pre>
 <p>決定 editor 中的內容</p>
-<p>在 index.html 中則 editor 內容由 id="code" 變數決定</p><h1>Homework</h1>
+<p>在 index.html 中則 editor 內容由 id="code" 變數決定</p>
+<p>code</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function confirm_ready_to_start() {
+    if (window.translate_python === undefined || !RUR.state.ui_ready) {
+        console.log("Not quite ready to initialize session; will try again in 100ms.");
+        window.setTimeout(confirm_ready_to_start, 100);
+    } else {
+        start_session();
+    }
+}
+confirm_ready_to_start();
+</pre>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.state.session_initialized = false;
+
+function start_session () {
+    "use strict";
+    var url;
+    set_initial_state();
+    set_editor();
+    set_library();
+    get_red_green();
+    RUR.state.session_initialized = true;    
+    url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+    if (!url || url != RUR.state.world_url) { // world not included in menu, nor in selector
+        RUR.world_selector.append_world({url: RUR.state.world_url,
+                                         shortname: RUR.state.world_name});
+    }
+    RUR.world_selector.set_url(RUR.state.world_url);
+    RUR.permalink.update_URI();
+    $("#thought").hide();
+}
+
+
+</pre>
+<p></p><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>

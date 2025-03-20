@@ -137,7 +137,8 @@ sqlite&gt;</pre>
 <p><span>C:\tmp&gt;fossil ui wcm.fossil </span></p>
 <p><span>就可以利用全球資訊網介面 (<a href="http://localhost:8081">http://localhost:8081</a>) 檢查 wcm.fossil 的最新版內容</span></p>
 <p>其中若進入 Admin - Settings, 在 default-csp 欄位填入"<a href='https://fonts.googleapis.com",'>https://fonts.googleapis.com",</a> 在 ignore-glob 欄位填入 "__pycache__".</p>
-<p>default-csp 代表可以跨網站擷取 <a href="https://fonts.googleapis.com">https://fonts.googleapis.com</a> 網站中的字型資料檔案, 而 ignore-glob 表示之後若有執行 Python 程式所產生的暫存檔案, 可以忽略, 不會因為新增提交而進入倉儲資料中.</p><h2>task3</h2>
+<p>default-csp 代表可以跨網站擷取 <a href="https://fonts.googleapis.com">https://fonts.googleapis.com</a> 網站中的字型資料檔案, 而 ignore-glob 表示之後若有執行 Python 程式所產生的暫存檔案, 可以忽略, 不會因為新增提交而進入倉儲資料中.</p>
+<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p><h2>task3</h2>
 <h4>使用 Nginx 建立全球資訊網伺服器</h4>
 <h4>HTML 中的 CSS 與 Javascript</h4>
 <h4>Windows 環境中的 WWW server</h4>
@@ -148,7 +149,7 @@ sqlite&gt;</pre>
 <p></p>
 <h1>Reeborg</h1>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg">https://mdewcm2025.github.io/hw-scrum-1/reeborg</a></p>
-<p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a> </p>
+<p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a></p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
     "use strict";
     if (localStorage.getItem("editor")){
@@ -158,7 +159,31 @@ sqlite&gt;</pre>
     }
 }</pre>
 <p>決定 editor 中的內容</p>
-<p>在 index.html 中則 editor 內容由 id="code" 變數決定</p><h1>Homework</h1>
+<p>在 index.html 中則 editor 內容由 id="code" 變數決定</p>
+<p>code</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.state.session_initialized = false;
+
+function start_session () {
+    "use strict";
+    var url;
+    set_initial_state();
+    set_editor();
+    set_library();
+    get_red_green();
+    RUR.state.session_initialized = true;    
+    url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+    if (!url || url != RUR.state.world_url) { // world not included in menu, nor in selector
+        RUR.world_selector.append_world({url: RUR.state.world_url,
+                                         shortname: RUR.state.world_name});
+    }
+    RUR.world_selector.set_url(RUR.state.world_url);
+    RUR.permalink.update_URI();
+    $("#thought").hide();
+}
+
+
+</pre>
+<p></p><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>

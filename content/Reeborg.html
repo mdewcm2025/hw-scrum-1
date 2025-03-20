@@ -144,7 +144,7 @@ img.add_border {
         </header>
     <div id="tipue_search_content">task4 << <a href='task4.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework<br /><h1>Reeborg</h1>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg">https://mdewcm2025.github.io/hw-scrum-1/reeborg</a></p>
-<p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a> </p>
+<p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a></p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
     "use strict";
     if (localStorage.getItem("editor")){
@@ -154,7 +154,41 @@ img.add_border {
     }
 }</pre>
 <p>決定 editor 中的內容</p>
-<p>在 index.html 中則 editor 內容由 id="code" 變數決定</p><br />task4 << <a href='task4.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework</div>
+<p>在 index.html 中則 editor 內容由 id="code" 變數決定</p>
+<p>code</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function confirm_ready_to_start() {
+    if (window.translate_python === undefined || !RUR.state.ui_ready) {
+        console.log("Not quite ready to initialize session; will try again in 100ms.");
+        window.setTimeout(confirm_ready_to_start, 100);
+    } else {
+        start_session();
+    }
+}
+confirm_ready_to_start();
+</pre>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.state.session_initialized = false;
+
+function start_session () {
+    "use strict";
+    var url;
+    set_initial_state();
+    set_editor();
+    set_library();
+    get_red_green();
+    RUR.state.session_initialized = true;    
+    url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+    if (!url || url != RUR.state.world_url) { // world not included in menu, nor in selector
+        RUR.world_selector.append_world({url: RUR.state.world_url,
+                                         shortname: RUR.state.world_name});
+    }
+    RUR.world_selector.set_url(RUR.state.world_url);
+    RUR.permalink.update_URI();
+    $("#thought").hide();
+}
+
+
+</pre>
+<p></p><br />task4 << <a href='task4.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework</div>
         
     <!-- footer -->
       <div class="container">
