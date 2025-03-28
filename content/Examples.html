@@ -142,20 +142,79 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">task2 << <a href='task2.html'>Previous</a> <a href='IPv6.html'>Next</a> >> IPv6<br /><h1>task2.5</h1>
-<p><a href="./../downloads/brython.txt">brython.txt</a></p>
-<p>Fossil SCM 的應用</p>
-<p><a href="https://fossil-scm.org/">https://fossil-scm.org/</a> </p>
-<p>Github 與 Fossil SCM 結合應用範例:</p>
-<div class="winkVideoContainerClass"><video autoplay="autoplay" class="winkVideoClass" controls="controls" data-dirname="/cmsimde/static" data-varname="wcmw3_fossil1" height="630" muted="true" width="1008">
-<source src="./../downloads/wink/wcmw3_fossil1.mp4" type="video/mp4"/></video></div>
-<div class="winkVideoContainerClass"></div>
-<div class="winkVideoContainerClass">.fossil 檔案為完整的 Fossil SCM 倉儲檔案, 而 fossil open 後的目錄內容則為特定版次 (內建為 trunk 版, 也就是倉儲中的最新版本) 內容.</div>
-<div class="winkVideoContainerClass"></div>
-<div class="winkVideoContainerClass">fossil ui .fossil 後, 可以透過 Web ui 介面修改 .fossil 倉儲的內容, 至於從 fossil open .fossil 取出的 trunk 版本內容, 在倉儲內容改版後, 可以利用 fossil add 與 fossil commit-m 將改版資料回存至近端 .fossil, 若 .fossil 是從遠端 fossil clone, 則只有在 fossil push 後, 近端的改版內容才會被推向遠端倉儲 .fossil 檔案.</div>
-<div class="winkVideoContainerClass"></div>
-<div class="winkVideoContainerClass">若與工作目錄對應的 .fossil 倉儲檔案內容在 fossil open 之後進行改版, 則先前已經 open 的工作目錄, 可以利用 fossil update 與近端的 .fossil 倉儲內容保持同步.</div>
-<br />task2 << <a href='task2.html'>Previous</a> <a href='IPv6.html'>Next</a> >> IPv6</div>
+    <div id="tipue_search_content">Tutorial << <a href='Tutorial.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework<br /><h1>Examples</h1>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def turn_right():
+    for i in range(3):
+        turn_left()
+
+def forward():
+    while not wall_in_front():
+        move()
+
+while(1):
+    forward()
+    if wall_in_front():
+        turn_left()
+        forward()
+    </pre>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from library import UsedRobot
+
+# Create two robot instances with different starting positions
+robot1 = UsedRobot(1, 1, 'e')  # Robot 1 starts at (1, 1) facing east
+robot2 = UsedRobot(3, 1, 'e')  # Robot 2 starts at (3, 1) facing east
+
+# Move both robots 3 steps east
+for _ in range(3):
+    robot1.move()  # Robot 1 takes a step
+    robot2.move()  # Robot 2 takes a step
+
+# Optional: Print a message to indicate completion
+print("Both robots have finished moving!")</pre>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from library import UsedRobot
+
+# Custom class to track robot position
+class TrackedRobot(UsedRobot):
+    def __init__(self, x, y, orientation):
+        super().__init__(x, y, orientation)
+        self.x = x
+        self.y = y
+        self.orientation = orientation  # 'e', 'n', 'w', 's'
+
+    def move(self):
+        # Update position based on orientation
+        if self.orientation == 'e':
+            self.x += 1
+        elif self.orientation == 'w':
+            self.x -= 1
+        elif self.orientation == 'n':
+            self.y += 1
+        elif self.orientation == 's':
+            self.y -= 1
+        super().move()  # Call the parent move method to update the world
+
+    def turn_left(self):
+        # Update orientation
+        directions = {'e': 'n', 'n': 'w', 'w': 's', 's': 'e'}
+        self.orientation = directions[self.orientation]
+        super().turn_left()
+
+    def get_position(self):
+        return (self.x, self.y)
+
+# Create two robot instances
+robot1 = TrackedRobot(1, 1, 'e')  # Robot 1 starts at (1, 1) facing east
+robot2 = TrackedRobot(3, 1, 'e')  # Robot 2 starts at (3, 1) facing east
+
+# Move both robots 3 steps east
+for _ in range(3):
+    robot1.move()  # Robot 1 takes a step
+    robot2.move()  # Robot 2 takes a step
+
+# Print their final positions
+print("Robot 1 final position:", robot1.get_position())
+print("Robot 2 final position:", robot2.get_position())</pre>
+<p></p><br />Tutorial << <a href='Tutorial.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework</div>
         
     <!-- footer -->
       <div class="container">

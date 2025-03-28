@@ -455,7 +455,79 @@ function start_session () {
 <p class="break-words" style="white-space: pre-wrap;"><a href="https://github.com/scrum-1/mathematicalpython">https://github.com/scrum-1/mathematicalpython</a></p>
 </div>
 </div>
-</div><h1>Homework</h1>
+</div><h2>Examples</h2>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def turn_right():
+    for i in range(3):
+        turn_left()
+
+def forward():
+    while not wall_in_front():
+        move()
+
+while(1):
+    forward()
+    if wall_in_front():
+        turn_left()
+        forward()
+    </pre>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from library import UsedRobot
+
+# Create two robot instances with different starting positions
+robot1 = UsedRobot(1, 1, 'e')  # Robot 1 starts at (1, 1) facing east
+robot2 = UsedRobot(3, 1, 'e')  # Robot 2 starts at (3, 1) facing east
+
+# Move both robots 3 steps east
+for _ in range(3):
+    robot1.move()  # Robot 1 takes a step
+    robot2.move()  # Robot 2 takes a step
+
+# Optional: Print a message to indicate completion
+print("Both robots have finished moving!")</pre>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from library import UsedRobot
+
+# Custom class to track robot position
+class TrackedRobot(UsedRobot):
+    def __init__(self, x, y, orientation):
+        super().__init__(x, y, orientation)
+        self.x = x
+        self.y = y
+        self.orientation = orientation  # 'e', 'n', 'w', 's'
+
+    def move(self):
+        # Update position based on orientation
+        if self.orientation == 'e':
+            self.x += 1
+        elif self.orientation == 'w':
+            self.x -= 1
+        elif self.orientation == 'n':
+            self.y += 1
+        elif self.orientation == 's':
+            self.y -= 1
+        super().move()  # Call the parent move method to update the world
+
+    def turn_left(self):
+        # Update orientation
+        directions = {'e': 'n', 'n': 'w', 'w': 's', 's': 'e'}
+        self.orientation = directions[self.orientation]
+        super().turn_left()
+
+    def get_position(self):
+        return (self.x, self.y)
+
+# Create two robot instances
+robot1 = TrackedRobot(1, 1, 'e')  # Robot 1 starts at (1, 1) facing east
+robot2 = TrackedRobot(3, 1, 'e')  # Robot 2 starts at (3, 1) facing east
+
+# Move both robots 3 steps east
+for _ in range(3):
+    robot1.move()  # Robot 1 takes a step
+    robot2.move()  # Robot 2 takes a step
+
+# Print their final positions
+print("Robot 1 final position:", robot1.get_position())
+print("Robot 2 final position:", robot2.get_position())</pre>
+<p></p><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
