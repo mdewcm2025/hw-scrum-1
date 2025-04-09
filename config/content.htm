@@ -176,8 +176,8 @@ sqlite&gt;</pre>
 <p style="padding-left: 30px;"></p>
 <p></p>
 <p></p><h3>mind-map</h3>
-<p><object data="/images/wcm.svg" height="431" type="image/svg+xml" width="900"></object></p>
-<p><a href="https://mde.tw/mind-map?fileURL=https://mdewcm2025.github.io/hw-scrum-1/downloads/wcm.smm">edit wcm.smm</a></p><h2>task4</h2>
+<p><object data="/images/wcm.svg" height="479" type="image/svg+xml" width="908"></object></p>
+<p><a href="https://mde.tw/mind-map/?fileURL=https://mdewcm2025.github.io/hw-scrum-1/downloads/wcm.smm#/">edit wcm.smm</a></p><h2>task4</h2>
 <h4>配置 Reeborg 網際系統</h4>
 <h4>解析 Reeborg 系統架構</h4>
 <h4>網際內容管理中的 Reeborg</h4>
@@ -527,7 +527,98 @@ for _ in range(3):
 # Print their final positions
 print("Robot 1 final position:", robot1.get_position())
 print("Robot 2 final position:", robot2.get_position())</pre>
-<p></p><h1>Homework</h1>
+<p></p><h2>rb</h2>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/rb/reeborg.js">rb/reeborg.js</a></p>
+<p>move() 與 turn_left() 指令程式碼:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.control = {};
+
+RUR.control.move = function (robot) {
+    "use strict";
+    var position, next_x, next_y, pushable_in_the_way,
+        x_beyond, y_beyond, next_position, current_x, current_y,
+        message;
+
+    if (RUR.control.wall_in_front(robot)) {
+        throw new RUR.WallCollisionError(RUR.translate("Ouch! I hit a wall!"));
+    }
+
+    position = RUR.get_position_in_front(robot);
+    next_x = position.x;
+    next_y = position.y;
+
+    // attempt a move, by first saving the current position
+    current_x = robot.x;
+    current_y = robot.y;
+    robot.x = next_x;
+    robot.y = next_y;
+
+    // If we move, are we going to push something else in front of us?
+    pushable_in_the_way = RUR.get_pushable(next_x, next_y);
+    if (pushable_in_the_way !== null) {
+        next_position = RUR.get_position_in_front(robot);
+        x_beyond = next_position.x;
+        y_beyond = next_position.y;
+
+        if (RUR.control.wall_in_front(robot) ||
+            RUR.get_pushable(x_beyond, y_beyond) ||
+            RUR.is_solid_obstacle(x_beyond, y_beyond) ||
+            RUR.is_robot(x_beyond, y_beyond)) {
+            // reverse the move
+            robot.x = current_x;
+            robot.y = current_y;
+            throw new RUR.ReeborgError(RUR.translate("Something is blocking the way!"));
+        } else {
+            RUR._push_pushable(pushable_in_the_way, next_x, next_y, x_beyond, y_beyond);
+            RUR.transform_tile(pushable_in_the_way, x_beyond, y_beyond);
+        }
+    }
+
+    // We can now complete the move
+    if (robot._is_leaky !== undefined &amp;&amp; !robot._is_leaky) {
+        // avoid messing the trace if and when we resume having a leaky robot
+        robot._prev_x = robot.x;
+        robot._prev_y = robot.y;
+    } else {
+        robot._prev_x = current_x;
+        robot._prev_y = current_y;
+    }
+    RUR.state.sound_id = "#move-sound";
+
+
+    // A move has been performed ... but it may have been a fatal decision
+    message = RUR.is_fatal_position(robot.x, robot.y, robot);
+    if (message) {
+        throw new RUR.ReeborgError(message);
+    }
+
+    RUR.record_frame("move", robot.__id);
+};
+
+
+// leave end of line comments below such as using += 1
+// as I (indirectly) refer to these comments in the programming tutorial
+
+RUR.control.turn_left = function(robot){
+    "use strict";
+    var random;
+    if (robot._orientation == RUR.RANDOM_ORIENTATION) {
+        random = Math.floor(Math.random() * 4);
+        robot._orientation = random;
+        robot._prev_orientation = random;
+    } else {
+        robot._prev_orientation = robot._orientation;
+        robot._orientation ++;
+        robot._orientation %= 4;
+    }
+    robot._prev_x = robot.x;
+    robot._prev_y = robot.y;
+
+    RUR.state.sound_id = "#turn-sound";
+    if (robot._is_leaky !== undefined &amp;&amp; !robot._is_leaky) {  // update to avoid drawing from previous point.
+        robot._prev_orientation = robot._orientation;
+    }
+    RUR.record_frame("turn_left", robot.__id);
+};</pre><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>

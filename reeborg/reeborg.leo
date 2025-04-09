@@ -4319,6 +4319,24 @@ RUR.control.move = function (robot) {
     RUR.record_frame("move", robot.__id);
 };
 
+function set_color(x, y, color) {
+    var canvas = document.getElementById('gridCanvas');
+    var ctx = canvas.getContext('2d');
+    var gridSize = 50; // 假設每個格子的大小為 50px
+
+    // 計算格子的位置
+    var posX = x * gridSize;
+    var posY = y * gridSize;
+
+    // 設置顏色並填充該格子
+    ctx.fillStyle = color;  // 顏色，例如 'rgb(255, 0, 0)' 或 'black'
+    ctx.fillRect(posX, posY, gridSize, gridSize);
+}
+
+RUR.control.set_color = function(x, y, color) {
+    // 通過 JavaScript 設置格子的顏色
+    set_color(x, y, color);  // 調用之前定義的 set_color() 函數
+};
 
 </t>
 <t tx="leo.20250219181834.206">// leave end of line comments below such as using += 1
