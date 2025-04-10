@@ -61,7 +61,7 @@
 <p>Task2: <span style="background-color: #ffff00;">使用 SSH 協定執行作業倉儲的推送</span></p>
 <p style="padding-left: 30px;">目的: 當多位組員在同一台電腦上執行 <a href="https://en.wikipedia.org/wiki/Pair_programming">Pair Programming</a>, 可以透過 SSH 共用協同 session, 分別透過可攜程式套件各自提交推送分組專案中的各部內容.</p>
 <p>Task2.5: 在網際內容管理協同專案進行中, <span style="background-color: #ffff00;">導入 Fossil SCM</span></p>
-<p style="padding-left: 30px;">目的: 由於免付費的 Github.com 服務, 限制使用者可上傳到倉儲中的檔案大小, 若協同專案需要管理 20MB 以上的單一檔案, 且希望保有分散式版次管理特性, 並利用網際流程管理內容, 在團隊小於 20 人的強況下, 可以使用 Fossil SCM 自行建立網際內容管理伺服器.</p>
+<p style="padding-left: 30px;">目的: 由於免付費的 Github.com 服務, 限制使用者可上傳到倉儲中的檔案大小, 若協同專案需要管理 20MB 以上的單一檔案, 且希望保有分散式版次管理特性, 並利用網際流程管理內容, 在團隊小於 20 人的情況下, 可以使用 Fossil SCM 自行建立網際內容管理伺服器.</p>
 <p>Task3: <span style="background-color: #ffff00;">導入 IPv6, Virtualbox 與 nginx (<a href="https://github.com/mdecycu/mind-map" style="background-color: #ffff00;">mind-map</a>)</span></p>
 <p style="padding-left: 30px;">目的: 可以配發每位學員一個固定 IPv6 網址, 結合 Virtualbox 與 nginx, 建立 Windows 與 Ubuntu 環境中的網際內容管理伺服器.</p>
 <p style="padding-left: 30px;">過程中可以利用 mind-map 呈現伺服器架構與設置內容</p>
@@ -177,6 +177,50 @@ sqlite&gt;</pre>
 <p>Windows:</p>
 <p style="padding-left: 30px;"><a href="https://software.nfu.edu.tw/Windows/tw/Win_10_22H2.4_64BIT_Ch.ISO">https://software.nfu.edu.tw/Windows/tw/Win_10_22H2.4_64BIT_Ch.ISO</a></p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/win10.vdi">http://229.cycu.org/win10.vdi</a> </p>
+<p style="padding-left: 30px;">利用 nssm 將 nginx.exe 設為系統服務</p>
+<p style="padding-left: 30px;">nginx.conf </p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        # a0xx 中的 xx 為上課時的學員序號
+        # https://mdewcm2025.github.io/hw-scrum-1/downloads/1a_stud.txt
+        listen [2001:288:6004:17:fff1:cc25::a0xx]:80;
+       # server_name  your-domain.com;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        error_page 404 /404.html;
+        location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+        }
+    }
+}
+</pre>
 <p>Ubuntu:</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu-24.04.2-live-server-amd64.iso">ubuntu-24.04.2-live-server-amd64.iso</a></p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu.vdi">http://229.cycu.org/ubuntu.vdi</a> </p>
@@ -236,7 +280,7 @@ turn_left()
 move()</pre>
 這段程式讓 Reeborg 向前走兩步，向左轉，再向前走一步。
 <p></p>
-<hr/>
+<hr>
 <h4>3. <strong>控制結構</strong></h4>
 <p>為了讓 Reeborg 能應對更複雜的情況，需要使用 Python 的控制結構：</p>
 <h4>(1) <strong>條件語句</strong></h4>
@@ -307,7 +351,7 @@ while not at_goal():
         move() 
     else: 
         turn_left()</pre>
-這個程式讓 Reeborg 在遇到障礙時嘗試右轉，否則左轉，形成一個簡單的路徑尋找策略。<hr/>
+這個程式讓 Reeborg 在遇到障礙時嘗試右轉，否則左轉，形成一個簡單的路徑尋找策略。<hr>
 <h4>7. <strong>設計程式的思考流程</strong></h4>
 <p>撰寫 Reeborg 程式時，可以遵循以下步驟：</p>
 <ol>
@@ -350,7 +394,7 @@ while True:
 <p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a> </p>
 <p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a> </p>
 <p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a> </p>
-</div><h2>Challenge</h2>
+</hr></hr></div><h2>Challenge</h2>
 <p><a href="https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json">Step0</a></p>
 <p>https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json</p>
 <p>lang=en</p>
