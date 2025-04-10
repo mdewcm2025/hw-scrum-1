@@ -131,6 +131,8 @@
 <h3>IPv6</h3>
 <p>根據 <a href="/downloads/1a_stud.txt">1a_stud.txt</a> 中的學員序號, 每位學員分配一個固定的 IPv6 網址:</p>
 <p>學員序號為 1的固定 IPv6 分配: 2001:288:6004:17:fff1:cc25:0000:a001</p>
+<p>註: 利用 Brython <a href="https://mde.tw/wcm2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/5299aa53dc856df47c98993e016c9c0db2c74edf/2025_spring_set_mde_dns.py">產生</a> DNS 伺服器所需的設定.</p>
+<p>完成 dns 設定之後, 序號為 1 的學員其伺服器主機符號名稱為 w1.mde.nfu.edu.tw, 序號 50 則對應 w59.</p>
 <p>IPv6 網路設定畫面如下:</p>
 <p><img alt="" height="329" src="/images/wcm_index1_ipv6_setup.png" width="400"/></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/6YMViZXpRKQ?si=v4qo4UGzGmqWeaZx" title="YouTube video player" width="560"></iframe></p>
@@ -167,8 +169,7 @@ sqlite&gt;</pre>
 <p><span>就可以利用全球資訊網介面 (<a href="http://localhost:8081">http://localhost:8081</a>) 檢查 wcm.fossil 的最新版內容</span></p>
 <p>其中若進入 Admin - Settings, 在 default-csp 欄位填入"<a href='https://fonts.googleapis.com",'>https://fonts.googleapis.com",</a> 在 ignore-glob 欄位填入 "__pycache__".</p>
 <p>default-csp 代表可以跨網站擷取 <a href="https://fonts.googleapis.com">https://fonts.googleapis.com</a> 網站中的字型資料檔案, 而 ignore-glob 表示之後若有執行 Python 程式所產生的暫存檔案, 可以忽略, 不會因為新增提交而進入倉儲資料中.</p>
-<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p>
-<h2>task3</h2>
+<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p><h2>task3</h2>
 <h4>使用 Nginx 建立全球資訊網伺服器</h4>
 <h4>HTML 中的 CSS 與 Javascript</h4>
 <h4>Windows 環境中的 WWW server</h4>
@@ -178,6 +179,7 @@ sqlite&gt;</pre>
 <p style="padding-left: 30px;"><a href="https://software.nfu.edu.tw/Windows/tw/Win_10_22H2.4_64BIT_Ch.ISO">https://software.nfu.edu.tw/Windows/tw/Win_10_22H2.4_64BIT_Ch.ISO</a></p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/win10.vdi">http://229.cycu.org/win10.vdi</a> </p>
 <p style="padding-left: 30px;">利用 nssm 將 nginx.exe 設為系統服務</p>
+<p style="padding-left: 30px;">必須使用管理者的 cmd, 然後執行 nssm install nginx, nssm edit nginx, nssm remove nginx</p>
 <p style="padding-left: 30px;">nginx.conf </p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">#user  nobody;
 worker_processes  1;
@@ -280,7 +282,7 @@ turn_left()
 move()</pre>
 這段程式讓 Reeborg 向前走兩步，向左轉，再向前走一步。
 <p></p>
-<hr>
+<hr/>
 <h4>3. <strong>控制結構</strong></h4>
 <p>為了讓 Reeborg 能應對更複雜的情況，需要使用 Python 的控制結構：</p>
 <h4>(1) <strong>條件語句</strong></h4>
@@ -351,7 +353,7 @@ while not at_goal():
         move() 
     else: 
         turn_left()</pre>
-這個程式讓 Reeborg 在遇到障礙時嘗試右轉，否則左轉，形成一個簡單的路徑尋找策略。<hr>
+這個程式讓 Reeborg 在遇到障礙時嘗試右轉，否則左轉，形成一個簡單的路徑尋找策略。<hr/>
 <h4>7. <strong>設計程式的思考流程</strong></h4>
 <p>撰寫 Reeborg 程式時，可以遵循以下步驟：</p>
 <ol>
@@ -394,7 +396,7 @@ while True:
 <p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a> </p>
 <p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a> </p>
 <p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a> </p>
-</hr></hr></div><h2>Challenge</h2>
+</div><h2>Challenge</h2>
 <p><a href="https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json">Step0</a></p>
 <p>https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json</p>
 <p>lang=en</p>

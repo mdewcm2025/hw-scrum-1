@@ -131,6 +131,8 @@
 <h3>IPv6</h3>
 <p>根據 <a href="/downloads/1a_stud.txt">1a_stud.txt</a> 中的學員序號, 每位學員分配一個固定的 IPv6 網址:</p>
 <p>學員序號為 1的固定 IPv6 分配: 2001:288:6004:17:fff1:cc25:0000:a001</p>
+<p>註: 利用 Brython <a href="https://mde.tw/wcm2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/5299aa53dc856df47c98993e016c9c0db2c74edf/2025_spring_set_mde_dns.py">產生</a> DNS 伺服器所需的設定.</p>
+<p>完成 dns 設定之後, 序號為 1 的學員其伺服器主機符號名稱為 w1.mde.nfu.edu.tw, 序號 50 則對應 w50.</p>
 <p>IPv6 網路設定畫面如下:</p>
 <p><img alt="" height="329" src="/images/wcm_index1_ipv6_setup.png" width="400"/></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/6YMViZXpRKQ?si=v4qo4UGzGmqWeaZx" title="YouTube video player" width="560"></iframe></p>
@@ -167,8 +169,7 @@ sqlite&gt;</pre>
 <p><span>就可以利用全球資訊網介面 (<a href="http://localhost:8081">http://localhost:8081</a>) 檢查 wcm.fossil 的最新版內容</span></p>
 <p>其中若進入 Admin - Settings, 在 default-csp 欄位填入"<a href='https://fonts.googleapis.com",'>https://fonts.googleapis.com",</a> 在 ignore-glob 欄位填入 "__pycache__".</p>
 <p>default-csp 代表可以跨網站擷取 <a href="https://fonts.googleapis.com">https://fonts.googleapis.com</a> 網站中的字型資料檔案, 而 ignore-glob 表示之後若有執行 Python 程式所產生的暫存檔案, 可以忽略, 不會因為新增提交而進入倉儲資料中.</p>
-<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p>
-<h2>task3</h2>
+<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p><h2>task3</h2>
 <h4>使用 Nginx 建立全球資訊網伺服器</h4>
 <h4>HTML 中的 CSS 與 Javascript</h4>
 <h4>Windows 環境中的 WWW server</h4>
