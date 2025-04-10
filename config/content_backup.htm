@@ -55,7 +55,21 @@
 <p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil commit -m "commited message"</p>
 <p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil push <a href="https://pj2022@rocket_server/wcmhw">https://pj2022@rocket_server/wcmhw</a> </p>
 <p style="padding-left: 30px;"></p>
-<p></p><h1>Tasks</h1><h2>task1</h2>
+<p></p><h1>Tasks</h1>
+<p>Task1: <span style="background-color: #ffff00;">自行製作可攜程式系統</span></p>
+<p style="padding-left: 30px;">目的: 利用網際環境進行協同的成員, 在任一台 Windows 64 位元電腦上都擁有相同版本的網際內容管理工具.</p>
+<p>Task2: <span style="background-color: #ffff00;">使用 SSH 協定執行作業倉儲的推送</span></p>
+<p style="padding-left: 30px;">目的: 當多位組員在同一台電腦上執行 <a href="https://en.wikipedia.org/wiki/Pair_programming">Pair Programming</a>, 可以透過 SSH 共用協同 session, 分別透過可攜程式套件各自提交推送分組專案中的各部內容.</p>
+<p>Task2.5: 在網際內容管理協同專案進行中, <span style="background-color: #ffff00;">導入 Fossil SCM</span></p>
+<p style="padding-left: 30px;">目的: 由於免付費的 Github.com 服務, 限制使用者可上傳到倉儲中的檔案大小, 若協同專案需要管理 20MB 以上的單一檔案, 且希望保有分散式版次管理特性, 並利用網際流程管理內容, 在團隊小於 20 人的強況下, 可以使用 Fossil SCM 自行建立網際內容管理伺服器.</p>
+<p>Task3: <span style="background-color: #ffff00;">導入 IPv6, Virtualbox 與 nginx (<a href="https://github.com/mdecycu/mind-map" style="background-color: #ffff00;">mind-map</a>)</span></p>
+<p style="padding-left: 30px;">目的: 可以配發每位學員一個固定 IPv6 網址, 結合 Virtualbox 與 nginx, 建立 Windows 與 Ubuntu 環境中的網際內容管理伺服器.</p>
+<p style="padding-left: 30px;">過程中可以利用 mind-map 呈現伺服器架構與設置內容</p>
+<p>Task4: <span style="background-color: #ffff00;">導入 Reeborg 網際機器人程式環境</span></p>
+<p style="padding-left: 30px;">目的: 利用 2D Reeborg 的網際機器人程式套件, 說明網際協同設計的發展, 可以透過 WWW 同步設計, 建立更多虛擬整合 (Cyber-Physical Integration) 應用.</p>
+<p style="padding-left: 30px;"></p>
+<h4></h4>
+<h4></h4><h2>task1</h2>
 <h4>自行製作可攜程式系統</h4>
 <p>此作業的目的在展示如何利用既有的 Python 可攜系統建立各版本的 Python 可攜環境.</p>
 <p>以下為操作步驟:</p>
@@ -528,7 +542,7 @@ for _ in range(3):
 print("Robot 1 final position:", robot1.get_position())
 print("Robot 2 final position:", robot2.get_position())</pre>
 <p></p><h2>rb</h2>
-<p>rb/reeborg.js</p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/rb/reeborg.js">rb/reeborg.js</a></p>
 <p>move() 與 turn_left() 指令程式碼:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.control = {};
 
@@ -618,8 +632,7 @@ RUR.control.turn_left = function(robot){
         robot._prev_orientation = robot._orientation;
     }
     RUR.record_frame("turn_left", robot.__id);
-};</pre>
-<h1>Homework</h1>
+};</pre><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
