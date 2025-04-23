@@ -3901,22 +3901,45 @@ function set_editor() {
 }
 */
 
+//starts new set_editor
+
 function set_editor() {
     "use strict";
     const urlParams = new URLSearchParams(window.location.search);
-    const editorCodeFromURL = urlParams.get("editor");
+    const editorFilePath = urlParams.get("editor");
 
-    if (editorCodeFromURL) {
-        // Set editor content from the URL parameter "editor"
-        editor.setValue(editorCodeFromURL);
-    } else if (localStorage.getItem("editor")) {
-        // Fallback to local storage if URL parameter is not provided
-        editor.setValue(localStorage.getItem("editor"));
+    if (editorFilePath) {
+        // Fetch the content of the file specified in the `editor` parameter
+        fetch(editorFilePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to load file: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(fileContent => {
+                editor.setValue(fileContent);
+            })
+            .catch(error => {
+                console.error(error);
+                // Fallback to localStorage or default value if file fetch fails
+                loadFromLocalStorageOrDefault();
+            });
     } else {
-        // Default content if neither URL parameter nor local storage is available
-        editor.setValue(RUR.translate("move") + "()");
+        // Fallback to loading from localStorage or default value
+        loadFromLocalStorageOrDefault();
+    }
+
+    function loadFromLocalStorageOrDefault() {
+        if (localStorage.getItem("editor")) {
+            editor.setValue(localStorage.getItem("editor"));
+        } else {
+            editor.setValue(RUR.translate("move") + "()");
+        }
     }
 }
+
+// ends new set_editor
 
 function set_library() {
     if (localStorage.getItem("library")){
