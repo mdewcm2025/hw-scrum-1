@@ -153,17 +153,36 @@ img.add_border {
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
     "use strict";
     const urlParams = new URLSearchParams(window.location.search);
-    const editorCodeFromURL = urlParams.get("editor");
+    const editorFilePath = urlParams.get("editor");
 
-    if (editorCodeFromURL) {
-        // Set editor content from the URL parameter "editor"
-        editor.setValue(editorCodeFromURL);
-    } else if (localStorage.getItem("editor")) {
-        // Fallback to local storage if URL parameter is not provided
-        editor.setValue(localStorage.getItem("editor"));
+    if (editorFilePath) {
+        // Fetch the content of the file specified in the `editor` parameter
+        fetch(editorFilePath)
+            .then(response =&gt; {
+                if (!response.ok) {
+                    throw new Error("Failed to load file: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(fileContent =&gt; {
+                editor.setValue(fileContent);
+            })
+            .catch(error =&gt; {
+                console.error(error);
+                // Fallback to localStorage or default value if file fetch fails
+                loadFromLocalStorageOrDefault();
+            });
     } else {
-        // Default content if neither URL parameter nor local storage is available
-        editor.setValue(RUR.translate("move") + "()");
+        // Fallback to loading from localStorage or default value
+        loadFromLocalStorageOrDefault();
+    }
+
+    function loadFromLocalStorageOrDefault() {
+        if (localStorage.getItem("editor")) {
+            editor.setValue(localStorage.getItem("editor"));
+        } else {
+            editor.setValue(RUR.translate("move") + "()");
+        }
     }
 }</pre>
 <p></p><br />URL << <a href='URL.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework</div>

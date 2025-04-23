@@ -1063,12 +1063,49 @@ function _restore_blockly () {
 <li><strong>更新 URL</strong>：<code node="[object Object]">RUR.permalink.update_URI</code> 根據應用狀態生成新的 URL，並更新瀏覽器地址欄。</li>
 </ol>
 <h3>Parameters</h3>
-<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</a> </p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</a></p>
 <p>lang=en</p>
 <p>mode=python</p>
 <p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
 <p>name=Alone</p>
-<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p><h1>Homework</h1>
+<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
+<p>add editor=</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
+    "use strict";
+    const urlParams = new URLSearchParams(window.location.search);
+    const editorFilePath = urlParams.get("editor");
+
+    if (editorFilePath) {
+        // Fetch the content of the file specified in the `editor` parameter
+        fetch(editorFilePath)
+            .then(response =&gt; {
+                if (!response.ok) {
+                    throw new Error("Failed to load file: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(fileContent =&gt; {
+                editor.setValue(fileContent);
+            })
+            .catch(error =&gt; {
+                console.error(error);
+                // Fallback to localStorage or default value if file fetch fails
+                loadFromLocalStorageOrDefault();
+            });
+    } else {
+        // Fallback to loading from localStorage or default value
+        loadFromLocalStorageOrDefault();
+    }
+
+    function loadFromLocalStorageOrDefault() {
+        if (localStorage.getItem("editor")) {
+            editor.setValue(localStorage.getItem("editor"));
+        } else {
+            editor.setValue(RUR.translate("move") + "()");
+        }
+    }
+}</pre>
+<p></p><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>

@@ -527,6 +527,14 @@ function start_session () {
 </div>
 </div>
 <h2>Examples</h2>
+<p><img caption="false" height="203" src="/images/harvest1.png" width="200"/></p>
+<p>對應 harvest1.py: <a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py</a></p>
+<p>lang=en</p>
+<p>mode=python</p>
+<p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
+<p>name=Alone</p>
+<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
+<p>editor=/hw-scrum-1/reeborg/python/harvest1.py</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def turn_right():
     for i in range(3):
         turn_left()
@@ -598,8 +606,7 @@ for _ in range(3):
 # Print their final positions
 print("Robot 1 final position:", robot1.get_position())
 print("Robot 2 final position:", robot2.get_position())</pre>
-<p></p>
-<h2>rb</h2>
+<p></p><h2>rb</h2>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/rb/reeborg.js">rb/reeborg.js</a></p>
 <p>move() 與 turn_left() 指令程式碼:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.control = {};
@@ -1073,17 +1080,36 @@ function _restore_blockly () {
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
     "use strict";
     const urlParams = new URLSearchParams(window.location.search);
-    const editorCodeFromURL = urlParams.get("editor");
+    const editorFilePath = urlParams.get("editor");
 
-    if (editorCodeFromURL) {
-        // Set editor content from the URL parameter "editor"
-        editor.setValue(editorCodeFromURL);
-    } else if (localStorage.getItem("editor")) {
-        // Fallback to local storage if URL parameter is not provided
-        editor.setValue(localStorage.getItem("editor"));
+    if (editorFilePath) {
+        // Fetch the content of the file specified in the `editor` parameter
+        fetch(editorFilePath)
+            .then(response =&gt; {
+                if (!response.ok) {
+                    throw new Error("Failed to load file: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(fileContent =&gt; {
+                editor.setValue(fileContent);
+            })
+            .catch(error =&gt; {
+                console.error(error);
+                // Fallback to localStorage or default value if file fetch fails
+                loadFromLocalStorageOrDefault();
+            });
     } else {
-        // Default content if neither URL parameter nor local storage is available
-        editor.setValue(RUR.translate("move") + "()");
+        // Fallback to loading from localStorage or default value
+        loadFromLocalStorageOrDefault();
+    }
+
+    function loadFromLocalStorageOrDefault() {
+        if (localStorage.getItem("editor")) {
+            editor.setValue(localStorage.getItem("editor"));
+        } else {
+            editor.setValue(RUR.translate("move") + "()");
+        }
     }
 }</pre>
 <p></p><h1>Homework</h1>
