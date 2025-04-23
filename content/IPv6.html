@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li class='has-children'><a href='About.html'>About</a><ul class='dropdown'><li><a href='list.html'>list</a><li><a href='Fossil.html'>Fossil</a></li></ul><li class='has-children'><a href='Tasks.html'>Tasks</a><ul class='dropdown'><li><a href='task1.html'>task1</a><li><a href='task2.html'>task2</a><li class='has-children'><a href='task2.5.html'>task2.5</a><ul class='dropdown'><li><a href='IPv6.html'>IPv6</a></li></ul><li class='has-children'><a href='task3.html'>task3</a><ul class='dropdown'><li><a href='mind-map.html'>mind-map</a></li></ul><li><a href='task4.html'>task4</a></li></ul><li class='has-children'><a href='Reeborg.html'>Reeborg</a><ul class='dropdown'><li><a href='Challenge.html'>Challenge</a><li><a href='Tutorial.html'>Tutorial</a><li><a href='Examples.html'>Examples</a><li><a href='rb.html'>rb</a></li></ul><li class='has-children'><a href='Homework.html'>Homework</a><ul class='dropdown'><li><a href='HW1.html'>HW1</a><li><a href='HW2.html'>HW2</a></li></ul><li><a href='Midterm.html'>Midterm</a><li><a href='Final.html'>Final</a><li><a href='Brython.html'>Brython</a></li>
+                     <li class='has-children'><a href='About.html'>About</a><ul class='dropdown'><li><a href='list.html'>list</a><li><a href='Fossil.html'>Fossil</a></li></ul><li class='has-children'><a href='Tasks.html'>Tasks</a><ul class='dropdown'><li><a href='task1.html'>task1</a><li><a href='task2.html'>task2</a><li class='has-children'><a href='task2.5.html'>task2.5</a><ul class='dropdown'><li><a href='IPv6.html'>IPv6</a></li></ul><li class='has-children'><a href='task3.html'>task3</a><ul class='dropdown'><li><a href='mind-map.html'>mind-map</a></li></ul><li><a href='task4.html'>task4</a></li></ul><li class='has-children'><a href='Reeborg.html'>Reeborg</a><ul class='dropdown'><li><a href='Challenge.html'>Challenge</a><li><a href='Tutorial.html'>Tutorial</a><li><a href='Examples.html'>Examples</a><li><a href='rb.html'>rb</a><li><a href='Packages.html'>Packages</a><li><a href='URL.html'>URL</a></li></ul><li class='has-children'><a href='Homework.html'>Homework</a><ul class='dropdown'><li><a href='HW1.html'>HW1</a><li><a href='HW2.html'>HW2</a></li></ul><li><a href='Midterm.html'>Midterm</a><li><a href='Final.html'>Final</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -148,6 +148,10 @@ img.add_border {
 <p>學員序號為 1的固定 IPv6 分配: 2001:288:6004:17:fff1:cc25:0000:a001</p>
 <p>註: 利用 Brython <a href="https://mde.tw/wcm2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/5299aa53dc856df47c98993e016c9c0db2c74edf/2025_spring_set_mde_dns.py">產生</a> DNS 伺服器所需的設定.</p>
 <p>完成 dns 設定之後, 序號為 1 的學員其伺服器主機符號名稱為 w1.mde.nfu.edu.tw, 序號 50 則對應 w50.</p>
+<p>利用 hinet dns 伺服器查詢 w1.mde.nfu.edu.tw 以及 w50.nfu.edu.tw 的畫面:</p>
+<p><img alt="" height="339" src="./../images/nslookup_for_w1_w50_mde_nfu_edu_tw.png" width="300"/></p>
+<p>各學員在虛擬主機設定所分配的 IPv6 網址之後, 可以使用對應的符號名稱設定 nginx, cmsimde 作業網站以及 fossil 伺服器.</p>
+<hr/>
 <p>IPv6 網路設定畫面如下:</p>
 <p><img alt="" height="329" src="./../images/wcm_index1_ipv6_setup.png" width="400"/></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/6YMViZXpRKQ?si=v4qo4UGzGmqWeaZx" title="YouTube video player" width="560"></iframe></p>
