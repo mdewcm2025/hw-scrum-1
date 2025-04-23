@@ -1,34 +1,31 @@
-def move_and_pick():
+def turn(int):
+    for i in range(int):
+        turn_left()
+        
+def new_move(int):
+    for i in range(int):
+        move()
+        
+def harvest_one_row():
     while object_here():
         take()
-    move()
-
-def harvest_row():
-    for _ in range(5):
-        move_and_pick()
-
-def turn_right():
-    turn_left()
-    turn_left()
-    turn_left()
-
-def turn_around():
-    turn_left()
-    turn_left()
-
-def move_to_next_row():
-    if right_is_clear():
-        turn_right()
+    else:
         move()
-        turn_right()
-    elif left_is_clear():
-        turn_left()
-        move()
-        turn_left()
+# move to the field
+new_move(2)
+turn_left()
+new_move(2)
 
-# Main program
-for _ in range(3):  # There are 3 rows to harvest
-    harvest_row()
-    move_to_next_row()
-
-harvest_row()  # Harvest the last row
+for i in range(3):
+    while is_facing_north():
+        for i in range(6):
+            harvest_one_row()
+        for i in range(2):
+            turn(3)
+            move() 
+    else:
+        for i in range(6):
+            harvest_one_row()
+        for i in range(2):
+            turn_left()
+            move()
