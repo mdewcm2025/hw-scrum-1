@@ -2,7 +2,7 @@
         <head>
         <title>wcm-scrum-1</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,99 +142,31 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Examples << <a href='Examples.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages<br /><h1>rb</h1>
-<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/rb/reeborg.js">rb/reeborg.js</a></p>
-<p>move() 與 turn_left() 指令程式碼:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.control = {};
-
-RUR.control.move = function (robot) {
+    <div id="tipue_search_content">URL << <a href='URL.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework<br /><h1>Parameters</h1>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</a></p>
+<p>lang=en</p>
+<p>mode=python</p>
+<p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
+<p>name=Alone</p>
+<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
+<p>add editor=</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
     "use strict";
-    var position, next_x, next_y, pushable_in_the_way,
-        x_beyond, y_beyond, next_position, current_x, current_y,
-        message;
+    const urlParams = new URLSearchParams(window.location.search);
+    const editorCodeFromURL = urlParams.get("editor");
 
-    if (RUR.control.wall_in_front(robot)) {
-        throw new RUR.WallCollisionError(RUR.translate("Ouch! I hit a wall!"));
-    }
-
-    position = RUR.get_position_in_front(robot);
-    next_x = position.x;
-    next_y = position.y;
-
-    // attempt a move, by first saving the current position
-    current_x = robot.x;
-    current_y = robot.y;
-    robot.x = next_x;
-    robot.y = next_y;
-
-    // If we move, are we going to push something else in front of us?
-    pushable_in_the_way = RUR.get_pushable(next_x, next_y);
-    if (pushable_in_the_way !== null) {
-        next_position = RUR.get_position_in_front(robot);
-        x_beyond = next_position.x;
-        y_beyond = next_position.y;
-
-        if (RUR.control.wall_in_front(robot) ||
-            RUR.get_pushable(x_beyond, y_beyond) ||
-            RUR.is_solid_obstacle(x_beyond, y_beyond) ||
-            RUR.is_robot(x_beyond, y_beyond)) {
-            // reverse the move
-            robot.x = current_x;
-            robot.y = current_y;
-            throw new RUR.ReeborgError(RUR.translate("Something is blocking the way!"));
-        } else {
-            RUR._push_pushable(pushable_in_the_way, next_x, next_y, x_beyond, y_beyond);
-            RUR.transform_tile(pushable_in_the_way, x_beyond, y_beyond);
-        }
-    }
-
-    // We can now complete the move
-    if (robot._is_leaky !== undefined &amp;&amp; !robot._is_leaky) {
-        // avoid messing the trace if and when we resume having a leaky robot
-        robot._prev_x = robot.x;
-        robot._prev_y = robot.y;
+    if (editorCodeFromURL) {
+        // Set editor content from the URL parameter "editor"
+        editor.setValue(editorCodeFromURL);
+    } else if (localStorage.getItem("editor")) {
+        // Fallback to local storage if URL parameter is not provided
+        editor.setValue(localStorage.getItem("editor"));
     } else {
-        robot._prev_x = current_x;
-        robot._prev_y = current_y;
+        // Default content if neither URL parameter nor local storage is available
+        editor.setValue(RUR.translate("move") + "()");
     }
-    RUR.state.sound_id = "#move-sound";
-
-
-    // A move has been performed ... but it may have been a fatal decision
-    message = RUR.is_fatal_position(robot.x, robot.y, robot);
-    if (message) {
-        throw new RUR.ReeborgError(message);
-    }
-
-    RUR.record_frame("move", robot.__id);
-};
-
-
-// leave end of line comments below such as using += 1
-// as I (indirectly) refer to these comments in the programming tutorial
-
-RUR.control.turn_left = function(robot){
-    "use strict";
-    var random;
-    if (robot._orientation == RUR.RANDOM_ORIENTATION) {
-        random = Math.floor(Math.random() * 4);
-        robot._orientation = random;
-        robot._prev_orientation = random;
-    } else {
-        robot._prev_orientation = robot._orientation;
-        robot._orientation ++;
-        robot._orientation %= 4;
-    }
-    robot._prev_x = robot.x;
-    robot._prev_y = robot.y;
-
-    RUR.state.sound_id = "#turn-sound";
-    if (robot._is_leaky !== undefined &amp;&amp; !robot._is_leaky) {  // update to avoid drawing from previous point.
-        robot._prev_orientation = robot._orientation;
-    }
-    RUR.record_frame("turn_left", robot.__id);
-};</pre>
-<br />Examples << <a href='Examples.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages</div>
+}</pre>
+<p></p><br />URL << <a href='URL.html'>Previous</a> <a href='Homework.html'>Next</a> >> Homework</div>
         
     <!-- footer -->
       <div class="container">

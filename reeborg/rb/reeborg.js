@@ -3890,12 +3890,30 @@ function _restore_blockly () {
     }
 }
 
-
+/* original set_editor
 function set_editor() {
     "use strict";
     if (localStorage.getItem("editor")){
         editor.setValue(localStorage.getItem("editor"));
     } else {
+        editor.setValue(RUR.translate("move") + "()");
+    }
+}
+*/
+
+function set_editor() {
+    "use strict";
+    const urlParams = new URLSearchParams(window.location.search);
+    const editorCodeFromURL = urlParams.get("editor");
+
+    if (editorCodeFromURL) {
+        // Set editor content from the URL parameter "editor"
+        editor.setValue(editorCodeFromURL);
+    } else if (localStorage.getItem("editor")) {
+        // Fallback to local storage if URL parameter is not provided
+        editor.setValue(localStorage.getItem("editor"));
+    } else {
+        // Default content if neither URL parameter nor local storage is available
         editor.setValue(RUR.translate("move") + "()");
     }
 }

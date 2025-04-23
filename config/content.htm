@@ -53,9 +53,10 @@
 <p style="padding-left: 30px;">fossil add, commit, push and update:</p>
 <p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil add .</p>
 <p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil commit -m "commited message"</p>
-<p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil push <a href="https://pj2022@rocket_server/wcmhw">https://pj2022@rocket_server/wcmhw</a> </p>
+<p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil push <a href="https://pj2022@rocket_server/wcmhw">https://pj2022@rocket_server/wcmhw</a></p>
 <p style="padding-left: 30px;"></p>
-<p></p><h1>Tasks</h1>
+<p></p>
+<h1>Tasks</h1>
 <p>Task1: <span style="background-color: #ffff00;">自行製作可攜程式系統</span></p>
 <p style="padding-left: 30px;">目的: 利用網際環境進行協同的成員, 在任一台 Windows 64 位元電腦上都擁有相同版本的網際內容管理工具.</p>
 <p>Task2: <span style="background-color: #ffff00;">使用 SSH 協定執行作業倉儲的推送</span></p>
@@ -67,7 +68,8 @@
 <p style="padding-left: 30px;">過程中可以利用 mind-map 呈現伺服器架構與設置內容</p>
 <p>Task4: <span style="background-color: #ffff00;">導入 Reeborg 網際機器人程式環境</span></p>
 <p style="padding-left: 30px;">目的: 利用 2D Reeborg 的網際機器人程式套件, 說明網際協同設計的發展, 可以透過 WWW 同步設計, 建立更多虛擬整合 (Cyber-Physical Integration) 應用.</p>
-<p style="padding-left: 30px;"></p><h2>task1</h2>
+<p style="padding-left: 30px;"></p>
+<h2>task1</h2>
 <h4>自行製作可攜程式系統</h4>
 <p>此作業的目的在展示如何利用既有的 Python 可攜系統建立各版本的 Python 可攜環境.</p>
 <p>以下為操作步驟:</p>
@@ -174,7 +176,8 @@ sqlite&gt;</pre>
 <p><span>就可以利用全球資訊網介面 (<a href="http://localhost:8081">http://localhost:8081</a>) 檢查 wcm.fossil 的最新版內容</span></p>
 <p>其中若進入 Admin - Settings, 在 default-csp 欄位填入"<a href='https://fonts.googleapis.com",'>https://fonts.googleapis.com",</a> 在 ignore-glob 欄位填入 "__pycache__".</p>
 <p>default-csp 代表可以跨網站擷取 <a href="https://fonts.googleapis.com">https://fonts.googleapis.com</a> 網站中的字型資料檔案, 而 ignore-glob 表示之後若有執行 Python 程式所產生的暫存檔案, 可以忽略, 不會因為新增提交而進入倉儲資料中.</p>
-<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p><h2>task3</h2>
+<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p>
+<h2>task3</h2>
 <h4>使用 Nginx 建立全球資訊網伺服器</h4>
 <h4>HTML 中的 CSS 與 Javascript</h4>
 <h4>Windows 環境中的 WWW server</h4>
@@ -238,13 +241,16 @@ http {
 <p>"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid c:\users\yen\downloads\win10.vdi</p>
 <p style="padding-left: 30px;"></p>
 <p></p>
-<p></p><h3>mind-map</h3>
+<p></p>
+<h3>mind-map</h3>
 <p><object data="/images/wcm.svg" height="479" type="image/svg+xml" width="908"></object></p>
-<p><a href="https://mde.tw/mind-map/?fileURL=https://mdewcm2025.github.io/hw-scrum-1/downloads/wcm.smm#/">edit wcm.smm</a></p><h2>task4</h2>
+<p><a href="https://mde.tw/mind-map/?fileURL=https://mdewcm2025.github.io/hw-scrum-1/downloads/wcm.smm#/">edit wcm.smm</a></p>
+<h2>task4</h2>
 <h4>配置 Reeborg 網際系統</h4>
 <h4>解析 Reeborg 系統架構</h4>
 <h4>網際內容管理中的 Reeborg</h4>
-<p></p><h1>Reeborg</h1>
+<p></p>
+<h1>Reeborg</h1>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg">https://mdewcm2025.github.io/hw-scrum-1/reeborg</a></p>
 <p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a></p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
@@ -398,10 +404,11 @@ while True:
         # do something else; perhaps a single line of code
     else:
         # do something else; perhaps a single line of code</pre>
-<p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a> </p>
-<p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a> </p>
-<p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a> </p>
-</div><h2>Challenge</h2>
+<p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
+<p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a></p>
+<p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a></p>
+</div>
+<h2>Challenge</h2>
 <p><a href="https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json">Step0</a></p>
 <p>https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json</p>
 <p>lang=en</p>
@@ -518,7 +525,8 @@ function start_session () {
 <p class="break-words" style="white-space: pre-wrap;"><a href="https://github.com/scrum-1/mathematicalpython">https://github.com/scrum-1/mathematicalpython</a></p>
 </div>
 </div>
-</div><h2>Examples</h2>
+</div>
+<h2>Examples</h2>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def turn_right():
     for i in range(3):
         turn_left()
@@ -590,7 +598,8 @@ for _ in range(3):
 # Print their final positions
 print("Robot 1 final position:", robot1.get_position())
 print("Robot 2 final position:", robot2.get_position())</pre>
-<p></p><h2>rb</h2>
+<p></p>
+<h2>rb</h2>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/rb/reeborg.js">rb/reeborg.js</a></p>
 <p>move() 與 turn_left() 指令程式碼:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.control = {};
@@ -681,7 +690,8 @@ RUR.control.turn_left = function(robot){
         robot._prev_orientation = robot._orientation;
     }
     RUR.record_frame("turn_left", robot.__id);
-};</pre><h2>Packages</h2>
+};</pre>
+<h2>Packages</h2>
 <p>Reeborg Javascript 程式碼的工具打包設定: package.json</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
   "scripts": {
@@ -846,7 +856,8 @@ function _restore_blockly () {
 </li>
 </ol>
 <p>References:</p>
-<p style="padding-left: 30px;"><a href="https://link.springer.com/book/10.1007/978-1-4842-3039-8">Practical Node.js</a> (2018)</p><h2>URL</h2>
+<p style="padding-left: 30px;"><a href="https://link.springer.com/book/10.1007/978-1-4842-3039-8">Practical Node.js</a> (2018)</p>
+<h2>URL</h2>
 <h4>URL 參數解析過程</h4>
 <ol>
 <li>
@@ -1051,6 +1062,30 @@ function _restore_blockly () {
 <li><strong>設置應用狀態</strong>：這些參數被用於初始化語言、編程模式、菜單和世界。</li>
 <li><strong>更新 URL</strong>：<code node="[object Object]">RUR.permalink.update_URI</code> 根據應用狀態生成新的 URL，並更新瀏覽器地址欄。</li>
 </ol>
+<h3>Parameters</h3>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</a></p>
+<p>lang=en</p>
+<p>mode=python</p>
+<p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
+<p>name=Alone</p>
+<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
+<p>add editor=</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
+    "use strict";
+    const urlParams = new URLSearchParams(window.location.search);
+    const editorCodeFromURL = urlParams.get("editor");
+
+    if (editorCodeFromURL) {
+        // Set editor content from the URL parameter "editor"
+        editor.setValue(editorCodeFromURL);
+    } else if (localStorage.getItem("editor")) {
+        // Fallback to local storage if URL parameter is not provided
+        editor.setValue(localStorage.getItem("editor"));
+    } else {
+        // Default content if neither URL parameter nor local storage is available
+        editor.setValue(RUR.translate("move") + "()");
+    }
+}</pre>
 <p></p><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
@@ -1061,7 +1096,8 @@ function _restore_blockly () {
 <p style="padding-left: 90px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p>
-<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><h2>HW1</h2>
+<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
+<h2>HW1</h2>
 <p>作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 30px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
 <p style="padding-left: 30px;">在 Ubuntu 操作系統建立一台 WWW 伺服器</p>
