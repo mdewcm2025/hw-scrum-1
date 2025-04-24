@@ -1070,13 +1070,15 @@ function _restore_blockly () {
 <li><strong>更新 URL</strong>：<code node="[object Object]">RUR.permalink.update_URI</code> 根據應用狀態生成新的 URL，並更新瀏覽器地址欄。</li>
 </ol>
 <h3>Parameters</h3>
-<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</a></p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Harvest1&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Harvest1&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/python/harvest1.py</a></p>
 <p>lang=en</p>
 <p>mode=python</p>
 <p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
-<p>name=Alone</p>
+<p>name=Harvest1</p>
 <p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
-<p>add editor=</p>
+<p>add editor=/python/harvest1.json</p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Harvest2&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest2.json&amp;editor=/python/harvest2.py">Harvest2</a></p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Harvest3&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest3.json&amp;editor=/python/harvest3.py">Harvest3</a></p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
     "use strict";
     const urlParams = new URLSearchParams(window.location.search);
@@ -1112,6 +1114,79 @@ function _restore_blockly () {
         }
     }
 }</pre>
+<p>在近端靜態網站測試上列 set_editor:</p>
+<p>editor 內容取自 reeborg/python/harvest1.py</p>
+<p><a href="https://127.0.0.1:8444/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://127.0.0.1:8444/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a> </p>
+<p>editor 內容取自 Gist URL</p>
+<p><a href="https://127.0.0.1:8444/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://gist.githubusercontent.com/mdecycu/71eea94e7cc0def9b3620fc8374d2e8b/raw/44a73f0b397ae67927306f602779c9b5c5e25df0/w10_reeborg1.py">https://127.0.0.1:8444/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://gist.githubusercontent.com/mdecycu/71eea94e7cc0def9b3620fc8374d2e8b/raw/44a73f0b397ae67927306f602779c9b5c5e25df0/w10_reeborg1.py</a> </p>
+<p>若希望可以從 Gist 中的 url 取得 python 程式碼, 可以將 function set_editor 修改如下:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
+    "use strict";
+    const urlParams = new URLSearchParams(window.location.search);
+    const editorFilePath = urlParams.get("editor");
+
+    if (editorFilePath) {
+        // Check if the URL is a Gist URL
+        if (editorFilePath.includes('gist.github.com')) {
+            // Extract Gist ID from the URL
+            const gistId = editorFilePath.split('/')[4]; // Gist URL is like "https://gist.github.com/user/gistId"
+            const gistApiUrl = `https://api.github.com/gists/${gistId}`;
+
+            // Fetch content from Gist
+            fetch(gistApiUrl)
+                .then(response =&gt; {
+                    if (!response.ok) {
+                        throw new Error("Failed to load Gist: " + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(gistData =&gt; {
+                    const fileName = Object.keys(gistData.files)[0]; // Get the first file in the Gist
+                    const fileContent = gistData.files[fileName].content;
+
+                    // Set the content into the editor
+                    editor.setValue(fileContent);
+
+                    // Set the Gist URL into fm_m4 input field
+                    document.getElementById('fm_m4').value = `Gist URL: ${gistData.html_url}`;
+                })
+                .catch(error =&gt; {
+                    console.error(error);
+                    loadFromLocalStorageOrDefault();
+                });
+        } else {
+            // If it's not a Gist, treat it as a file URL
+            fetch(editorFilePath)
+                .then(response =&gt; {
+                    if (!response.ok) {
+                        throw new Error("Failed to load file: " + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(fileContent =&gt; {
+                    editor.setValue(fileContent);
+                })
+                .catch(error =&gt; {
+                    console.error(error);
+                    loadFromLocalStorageOrDefault();
+                });
+        }
+    } else {
+        // Fallback to loading from localStorage or default value
+        loadFromLocalStorageOrDefault();
+    }
+
+    function loadFromLocalStorageOrDefault() {
+        if (localStorage.getItem("editor")) {
+            editor.setValue(localStorage.getItem("editor"));
+        } else {
+            editor.setValue(RUR.translate("move") + "()");
+        }
+    }
+}</pre>
+<p>將程式在 <a href="https://github.com/mdecycu/reeborg">https://github.com/mdecycu/reeborg</a> 倉儲進行修改後, 可以利用下列 URL 進行驗證:</p>
+<p><a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Other%20worlds&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Other%20worlds&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
+<p></p>
 <p></p><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
