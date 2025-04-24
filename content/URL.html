@@ -142,99 +142,212 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Examples << <a href='Examples.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages<br /><h1>rb</h1>
-<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/rb/reeborg.js">rb/reeborg.js</a></p>
-<p>move() 與 turn_left() 指令程式碼:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.control = {};
+    <div id="tipue_search_content">Packages << <a href='Packages.html'>Previous</a> <a href='Parameters.html'>Next</a> >> Parameters<br /><h1>URL</h1>
+<h4>URL 參數解析過程</h4>
+<ol>
+<li>
+<p><strong>URL 解析函數</strong>： 程式中使用 <code node="[object Object]">RUR.permalink.parseUri(window.location.href)</code> 來解析 URL。這個函數會將 URL 的查詢參數提取出來並存儲在 <code node="[object Object]">url_query.queryKey</code></p>
+</li>
+</ol>
+<p><strong>解析的例子</strong>： 如果 URL 為：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">?lang=en&amp;mode=python&amp;menu=%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Freeborg%2Fworlds%2Ftutorial_en%2Falone.json</pre>
+<p>解析後的結果可能類似於：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">url_query.queryKey = {
+  lang: "en",
+  mode: "python",
+  menu: "/reeborg/worlds/menus/select_collection_en.json",
+  name: "Alone",
+  url: "/reeborg/worlds/tutorial_en/alone.json"
+};</pre>
+<p></p>
+<ul>
+<li>
+<p><strong>設置初始狀態</strong>： <code node="[object Object]">set_initial_state()</code> 函數使用這些解析結果來設置應用的初始狀態：</p>
+<ul>
+<li><code node="[object Object]">set_initial_language(url_query)</code>：設置語言，例如 <code node="[object Object]">en</code>。</li>
+<li><code node="[object Object]">set_initial_input_method(url_query)</code>：設置編程模式，例如 <code node="[object Object]">python</code>。</li>
+<li><code node="[object Object]">set_initial_menu(url_query)</code>：設置菜單，例如 <code node="[object Object]">/reeborg/worlds/menus/select_collection_en.json</code>。</li>
+<li><code node="[object Object]">RUR.state.world_url</code> 和 <code node="[object Object]">RUR.state.world_name</code>：
+<ul>
+<li><code node="[object Object]">url_query.queryKey.url</code>：設置世界的 URL（例如 <code node="[object Object]">/reeborg/worlds/tutorial_en/alone.json</code>）。</li>
+<li><code node="[object Object]">url_query.queryKey.name</code>：設置世界的名稱（例如 <code node="[object Object]">Alone</code>）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>處理內定值</strong>： 如果 <code node="[object Object]">lang</code>、<code node="[object Object]">mode</code>、<code node="[object Object]">menu</code>、<code node="[object Object]">url</code> 或 <code node="[object Object]">name</code> 並未指定，程式會使用預設值（例如通過 <code node="[object Object]">RUR.initial_defaults</code>）來填補。</p>
+</li>
+</ul>
+<h4>相關函數</h4>
+<p>以下是部分相關的函數：</p>
+<h4>語言設置</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_initial_language(url_query) {
+    var last_lang;
+    RUR.state.human_language = decodeURIComponent(url_query.queryKey.lang);
+    last_lang = localStorage.getItem("human_language");
 
-RUR.control.move = function (robot) {
-    "use strict";
-    var position, next_x, next_y, pushable_in_the_way,
-        x_beyond, y_beyond, next_position, current_x, current_y,
-        message;
-
-    if (RUR.control.wall_in_front(robot)) {
-        throw new RUR.WallCollisionError(RUR.translate("Ouch! I hit a wall!"));
-    }
-
-    position = RUR.get_position_in_front(robot);
-    next_x = position.x;
-    next_y = position.y;
-
-    // attempt a move, by first saving the current position
-    current_x = robot.x;
-    current_y = robot.y;
-    robot.x = next_x;
-    robot.y = next_y;
-
-    // If we move, are we going to push something else in front of us?
-    pushable_in_the_way = RUR.get_pushable(next_x, next_y);
-    if (pushable_in_the_way !== null) {
-        next_position = RUR.get_position_in_front(robot);
-        x_beyond = next_position.x;
-        y_beyond = next_position.y;
-
-        if (RUR.control.wall_in_front(robot) ||
-            RUR.get_pushable(x_beyond, y_beyond) ||
-            RUR.is_solid_obstacle(x_beyond, y_beyond) ||
-            RUR.is_robot(x_beyond, y_beyond)) {
-            // reverse the move
-            robot.x = current_x;
-            robot.y = current_y;
-            throw new RUR.ReeborgError(RUR.translate("Something is blocking the way!"));
+    if (probably_invalid(RUR.state.human_language)) {
+        if (!probably_invalid(last_lang)) {
+            RUR.state.human_language = last_lang;
         } else {
-            RUR._push_pushable(pushable_in_the_way, next_x, next_y, x_beyond, y_beyond);
-            RUR.transform_tile(pushable_in_the_way, x_beyond, y_beyond);
+            RUR.state.human_language = RUR.initial_defaults.human_language;
+        }
+    }
+    document.getElementById('human-language').value = RUR.state.human_language;
+    $("#human-language").change(); // triggers the require UI changes
+}</pre>
+<h4>編程模式設置</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_initial_input_method(url_query) {
+    var last_mode;
+    RUR.state.input_method = decodeURIComponent(url_query.queryKey.mode); 
+    last_mode = localStorage.getItem("input_method");
+
+    if (probably_invalid(RUR.state.input_method)) {
+        if (!probably_invalid(last_mode)) {
+            RUR.state.input_method = last_mode;
+        } else {
+            RUR.state.input_method = RUR.initial_defaults.input_method;
+        }
+    }
+    document.getElementById("programming-mode").value = RUR.state.input_method;
+    $("#programming-mode").change(); // triggers the require UI changes
+
+    if (RUR.state.input_method === "blockly-py" || RUR.state.input_method === "blockly-js") {
+        restore_blockly();
+    }
+}</pre>
+<h4>世界菜單設置</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_initial_menu(url_query) {
+    var last_menu;
+    var last_lang;
+
+    last_lang = localStorage.getItem("human_language");
+    if (last_lang !== RUR.state.human_language) {
+        RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+    } else {
+        RUR.state.current_menu = decodeURIComponent(url_query.queryKey.menu);
+        last_menu = localStorage.getItem("world_menu");
+
+        if (probably_invalid(RUR.state.current_menu)) {
+            if (!probably_invalid(last_menu)) {
+                RUR.state.current_menu = last_menu;
+            } else {
+                RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+            }
         }
     }
 
-    // We can now complete the move
-    if (robot._is_leaky !== undefined &amp;&amp; !robot._is_leaky) {
-        // avoid messing the trace if and when we resume having a leaky robot
-        robot._prev_x = robot.x;
-        robot._prev_y = robot.y;
-    } else {
-        robot._prev_x = current_x;
-        robot._prev_y = current_y;
-    }
-    RUR.state.sound_id = "#move-sound";
-
-
-    // A move has been performed ... but it may have been a fatal decision
-    message = RUR.is_fatal_position(robot.x, robot.y, robot);
-    if (message) {
-        throw new RUR.ReeborgError(message);
+    RUR.state.creating_menu = true;
+    RUR.load_world_file(RUR.state.current_menu);
+    if (RUR.file_io_status == "no link") {
+        RUR.make_default_menu(RUR.state.human_language);
     }
 
-    RUR.record_frame("move", robot.__id);
-};
+    RUR.state.creating_menu = false;
+}</pre>
+<h4>結論</h4>
+<ol>
+<li>URL 中的每個參數（如 <code node="[object Object]">lang</code>、<code node="[object Object]">mode</code>、<code node="[object Object]">menu</code>、<code node="[object Object]">name</code>、<code node="[object Object]">url</code>）都由 <code node="[object Object]">RUR.permalink.parseUri</code> 解析後存儲在 <code node="[object Object]">url_query.queryKey</code> 中。</li>
+<li>解析結果被用於設置應用的初始狀態，如語言、編程模式、菜單和世界。</li>
+<li>未設定對應值的參數會使用默認值自動補全。</li>
+</ol>
+<p>以下是 <code node="[object Object]">parseUri</code> 函數和其相關上下文的詳細解析，來回答 URL 中的變數是如何被讀取和處理的：</p>
+<h4><code node="[object Object]">parseUri</code> 函數的作用</h4>
+<p><code node="[object Object]">parseUri</code> 是一個函數，用於解析 URL 並將其分解為多個部分，包括協議、主機、路徑、查詢參數等。這是 Reeborg 應用中處理 URL 的核心工具。</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function parseUri (str) {
+    var o = parseUri.options,
+        m = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+        uri = {},
+        i = 14;
 
+    while (i--) uri[o.key[i]] = m[i] || "";
 
-// leave end of line comments below such as using += 1
-// as I (indirectly) refer to these comments in the programming tutorial
+    uri[o.q.name] = {};
+    uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
+        if ($1) uri[o.q.name][$1] = $2;
+    });
 
-RUR.control.turn_left = function(robot){
+    return uri;
+}</pre>
+<h4>解析過程：</h4>
+<ol>
+<li>
+<p><strong>定義解析選項</strong>： <code node="[object Object]">parseUri.options</code> 包含解析 URL 的鍵、解析器及其他設置。</p>
+</li>
+<li>
+<p><strong>匹配 URL 結構</strong>： 使用正則表達式（<code node="[object Object]">o.parser</code>）將 URL 分解為多個部分，例如協議、主機、查詢參數等。</p>
+</li>
+<li>
+<p><strong>提取查詢參數</strong>： 查詢部分（URL 中的 <code node="[object Object]">?</code> 後部分）會進一步解析為鍵值對，並存儲在 <code node="[object Object]">uri.queryKey</code> 中。</p>
+</li>
+<li>
+<p><strong>返回結果</strong>： 返回一個包含多個屬性的對象，這些屬性對應於 URL 的各個部分，例如：</p>
+</li>
+</ol>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
+    protocol: "http",
+    host: "example.com",
+    path: "/some/path",
+    queryKey: {
+        lang: "en",
+        mode: "python",
+        menu: "/reeborg/worlds/menus/select_collection_en.json",
+        name: "Alone",
+        url: "/reeborg/worlds/tutorial_en/alone.json"
+    }
+}</pre>
+<h4>URL 變數的處理</h4>
+<p>在 Reeborg 的應用中，<code node="[object Object]">parseUri</code> 的結果被用於設定應用的初始狀態，具體在 <code node="[object Object]">set_initial_state()</code> 及相關函數中使用。</p>
+<h4>鍵值對映射：</h4>
+<ul>
+<li><code node="[object Object]">lang</code>：設定語言（<code node="[object Object]">set_initial_language</code> 裡處理）。</li>
+<li><code node="[object Object]">mode</code>：設定編程模式（<code node="[object Object]">set_initial_input_method</code> 裡處理）。</li>
+<li><code node="[object Object]">menu</code>：設定世界菜單（<code node="[object Object]">set_initial_menu</code> 裡處理）。</li>
+<li><code node="[object Object]">name</code>：設定世界名稱（<code node="[object Object]">RUR.state.world_name</code>）。</li>
+<li><code node="[object Object]">url</code>：設定世界的 URL（<code node="[object Object]">RUR.state.world_url</code>）。</li>
+</ul>
+<h4>URL 更新的功能</h4>
+<p><code node="[object Object]">RUR.permalink.update_URI</code> 用於在應用的狀態改變時更新瀏覽器的 URL：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.permalink.update_URI = function() {
     "use strict";
-    var random;
-    if (robot._orientation == RUR.RANDOM_ORIENTATION) {
-        random = Math.floor(Math.random() * 4);
-        robot._orientation = random;
-        robot._prev_orientation = random;
-    } else {
-        robot._prev_orientation = robot._orientation;
-        robot._orientation ++;
-        robot._orientation %= 4;
-    }
-    robot._prev_x = robot.x;
-    robot._prev_y = robot.y;
+    var url_query, permalink;
 
-    RUR.state.sound_id = "#turn-sound";
-    if (robot._is_leaky !== undefined &amp;&amp; !robot._is_leaky) {  // update to avoid drawing from previous point.
-        robot._prev_orientation = robot._orientation;
+    if (!RUR.state.session_initialized) {
+        return;
     }
-    RUR.record_frame("turn_left", robot.__id);
+    if (window.location.href.indexOf("#&amp;togetherjs") != -1) {
+        return;
+    }
+
+    url_query = parseUri(window.location.href);
+    permalink = url_query.protocol + "://" + url_query.host;
+    if (url_query.port){
+        permalink += ":" + url_query.port;
+    }
+    permalink += url_query.path;
+
+    permalink += "?lang=" + encodeURIComponent(RUR.state.human_language) +
+                 "&amp;mode=" + encodeURIComponent(RUR.state.input_method) +
+                 "&amp;menu=" + encodeURIComponent(RUR.state.current_menu) +                 
+                 "&amp;name=" + encodeURIComponent(RUR.state.world_name) +
+                 "&amp;url=" + encodeURIComponent(RUR.state.world_url);
+    window.history.pushState("dummy", "dummy", permalink);
 };</pre>
-<br />Examples << <a href='Examples.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages</div>
+<h4>更新過程：</h4>
+<ol>
+<li>確保當前會話已初始化並且不在 TogetherJS 協作模式下。</li>
+<li>生成新的 URL，依據當前的應用狀態（如語言、模式、菜單、世界名稱和 URL）。</li>
+<li>使用 <code node="[object Object]">window.history.pushState</code> 更新瀏覽器的 URL，而不刷新頁面。</li>
+</ol>
+<hr/>
+<h4>總結</h4>
+<ol>
+<li><strong>讀取 URL</strong>：<code node="[object Object]">parseUri</code> 函數解析 URL，並將查詢參數存儲為鍵值對。</li>
+<li><strong>設置應用狀態</strong>：這些參數被用於初始化語言、編程模式、菜單和世界。</li>
+<li><strong>更新 URL</strong>：<code node="[object Object]">RUR.permalink.update_URI</code> 根據應用狀態生成新的 URL，並更新瀏覽器地址欄。</li>
+</ol>
+<br />Packages << <a href='Packages.html'>Previous</a> <a href='Parameters.html'>Next</a> >> Parameters</div>
         
     <!-- footer -->
       <div class="container">

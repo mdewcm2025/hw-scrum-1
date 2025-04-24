@@ -3890,7 +3890,7 @@ function _restore_blockly () {
     }
 }
 
-
+/* original set_editor
 function set_editor() {
     "use strict";
     if (localStorage.getItem("editor")){
@@ -3899,6 +3899,47 @@ function set_editor() {
         editor.setValue(RUR.translate("move") + "()");
     }
 }
+*/
+
+//starts new set_editor
+
+function set_editor() {
+    "use strict";
+    const urlParams = new URLSearchParams(window.location.search);
+    const editorFilePath = urlParams.get("editor");
+
+    if (editorFilePath) {
+        // Fetch the content of the file specified in the `editor` parameter
+        fetch(editorFilePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to load file: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(fileContent => {
+                editor.setValue(fileContent);
+            })
+            .catch(error => {
+                console.error(error);
+                // Fallback to localStorage or default value if file fetch fails
+                loadFromLocalStorageOrDefault();
+            });
+    } else {
+        // Fallback to loading from localStorage or default value
+        loadFromLocalStorageOrDefault();
+    }
+
+    function loadFromLocalStorageOrDefault() {
+        if (localStorage.getItem("editor")) {
+            editor.setValue(localStorage.getItem("editor"));
+        } else {
+            editor.setValue(RUR.translate("move") + "()");
+        }
+    }
+}
+
+// ends new set_editor
 
 function set_library() {
     if (localStorage.getItem("library")){

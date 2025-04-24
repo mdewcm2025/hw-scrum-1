@@ -53,9 +53,10 @@
 <p style="padding-left: 30px;">fossil add, commit, push and update:</p>
 <p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil add .</p>
 <p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil commit -m "commited message"</p>
-<p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil push <a href="https://pj2022@rocket_server/wcmhw">https://pj2022@rocket_server/wcmhw</a> </p>
+<p style="padding-left: 60px;">Y:\tmp\wd\wcmhw&gt;fossil push <a href="https://pj2022@rocket_server/wcmhw">https://pj2022@rocket_server/wcmhw</a></p>
 <p style="padding-left: 30px;"></p>
-<p></p><h1>Tasks</h1>
+<p></p>
+<h1>Tasks</h1>
 <p>Task1: <span style="background-color: #ffff00;">自行製作可攜程式系統</span></p>
 <p style="padding-left: 30px;">目的: 利用網際環境進行協同的成員, 在任一台 Windows 64 位元電腦上都擁有相同版本的網際內容管理工具.</p>
 <p>Task2: <span style="background-color: #ffff00;">使用 SSH 協定執行作業倉儲的推送</span></p>
@@ -67,7 +68,8 @@
 <p style="padding-left: 30px;">過程中可以利用 mind-map 呈現伺服器架構與設置內容</p>
 <p>Task4: <span style="background-color: #ffff00;">導入 Reeborg 網際機器人程式環境</span></p>
 <p style="padding-left: 30px;">目的: 利用 2D Reeborg 的網際機器人程式套件, 說明網際協同設計的發展, 可以透過 WWW 同步設計, 建立更多虛擬整合 (Cyber-Physical Integration) 應用.</p>
-<p style="padding-left: 30px;"></p><h2>task1</h2>
+<p style="padding-left: 30px;"></p>
+<h2>task1</h2>
 <h4>自行製作可攜程式系統</h4>
 <p>此作業的目的在展示如何利用既有的 Python 可攜系統建立各版本的 Python 可攜環境.</p>
 <p>以下為操作步驟:</p>
@@ -129,8 +131,15 @@
 <div class="winkVideoContainerClass"></div>
 <div class="winkVideoContainerClass">若與工作目錄對應的 .fossil 倉儲檔案內容在 fossil open 之後進行改版, 則先前已經 open 的工作目錄, 可以利用 fossil update 與近端的 .fossil 倉儲內容保持同步.</div>
 <h3>IPv6</h3>
+<p>已知 w4 之前的學員作業倉儲版本, 無法在 IPv6 位址設定時正確運作, 各學員必須下載 <a href="http://229.cycu.org/cmsimde_w4.7z">cmsimde_w4.7z</a>, 解開壓縮檔案後, 替換倉儲中的 cmsimde 目錄.</p>
 <p>根據 <a href="/downloads/1a_stud.txt">1a_stud.txt</a> 中的學員序號, 每位學員分配一個固定的 IPv6 網址:</p>
 <p>學員序號為 1的固定 IPv6 分配: 2001:288:6004:17:fff1:cc25:0000:a001</p>
+<p>註: 利用 Brython <a href="https://mde.tw/wcm2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/5299aa53dc856df47c98993e016c9c0db2c74edf/2025_spring_set_mde_dns.py">產生</a> DNS 伺服器所需的設定.</p>
+<p>完成 dns 設定之後, 序號為 1 的學員其伺服器主機符號名稱為 w1.mde.nfu.edu.tw, 序號 50 則對應 w50.</p>
+<p>利用 hinet dns 伺服器查詢 w1.mde.nfu.edu.tw 以及 w50.nfu.edu.tw 的畫面:</p>
+<p><img alt="" height="339" src="/images/nslookup_for_w1_w50_mde_nfu_edu_tw.png" width="300"/></p>
+<p>各學員在虛擬主機設定所分配的 IPv6 網址之後, 可以使用對應的符號名稱設定 nginx, cmsimde 作業網站以及 fossil 伺服器.</p>
+<hr/>
 <p>IPv6 網路設定畫面如下:</p>
 <p><img alt="" height="329" src="/images/wcm_index1_ipv6_setup.png" width="400"/></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/6YMViZXpRKQ?si=v4qo4UGzGmqWeaZx" title="YouTube video player" width="560"></iframe></p>
@@ -232,13 +241,16 @@ http {
 <p>"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid c:\users\yen\downloads\win10.vdi</p>
 <p style="padding-left: 30px;"></p>
 <p></p>
-<p></p><h3>mind-map</h3>
+<p></p>
+<h3>mind-map</h3>
 <p><object data="/images/wcm.svg" height="479" type="image/svg+xml" width="908"></object></p>
-<p><a href="https://mde.tw/mind-map/?fileURL=https://mdewcm2025.github.io/hw-scrum-1/downloads/wcm.smm#/">edit wcm.smm</a></p><h2>task4</h2>
+<p><a href="https://mde.tw/mind-map/?fileURL=https://mdewcm2025.github.io/hw-scrum-1/downloads/wcm.smm#/">edit wcm.smm</a></p>
+<h2>task4</h2>
 <h4>配置 Reeborg 網際系統</h4>
 <h4>解析 Reeborg 系統架構</h4>
 <h4>網際內容管理中的 Reeborg</h4>
-<p></p><h1>Reeborg</h1>
+<p></p>
+<h1>Reeborg</h1>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg">https://mdewcm2025.github.io/hw-scrum-1/reeborg</a></p>
 <p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a></p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
@@ -392,10 +404,11 @@ while True:
         # do something else; perhaps a single line of code
     else:
         # do something else; perhaps a single line of code</pre>
-<p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a> </p>
-<p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a> </p>
-<p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a> </p>
-</div><h2>Challenge</h2>
+<p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
+<p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a></p>
+<p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a></p>
+</div>
+<h2>Challenge</h2>
 <p><a href="https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json">Step0</a></p>
 <p>https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json</p>
 <p>lang=en</p>
@@ -512,7 +525,16 @@ function start_session () {
 <p class="break-words" style="white-space: pre-wrap;"><a href="https://github.com/scrum-1/mathematicalpython">https://github.com/scrum-1/mathematicalpython</a></p>
 </div>
 </div>
-</div><h2>Examples</h2>
+</div>
+<h2>Examples</h2>
+<p><img caption="false" height="203" src="/images/harvest1.png" width="200"/></p>
+<p>對應 harvest1.py: <a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py</a></p>
+<p>lang=en</p>
+<p>mode=python</p>
+<p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
+<p>name=Alone</p>
+<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
+<p>editor=/hw-scrum-1/reeborg/python/harvest1.py</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def turn_right():
     for i in range(3):
         turn_left()
@@ -675,7 +697,422 @@ RUR.control.turn_left = function(robot){
         robot._prev_orientation = robot._orientation;
     }
     RUR.record_frame("turn_left", robot.__id);
-};</pre><h1>Homework</h1>
+};</pre>
+<h2>Packages</h2>
+<p>Reeborg Javascript 程式碼的工具打包設定: package.json</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
+  "scripts": {
+    "build": "tape tests/unit_tests/**/*.js | faucet &amp;&amp; browserify ./src/js/index.js -o ./build/reeborg.js",
+    "only-build": "browserify ./src/js/index.js -o ./build/reeborg.js"
+  },
+  "dependencies": {
+    "browserify": "^17.0.0"
+  }
+}</pre>
+<p><a href="https://browserify.org/">browserify</a>：是一個模組打包工具，它將 Node.js 模組（<a href="https://javascript.ruanyifeng.com/nodejs/module.html">CommonJS 格式</a>）打包為可以在瀏覽器中執行的單一文件。<br/>scripts：<br/>    build 腳本首先執行測試，然後使用 browserify 將 ./src/js/index.js 打包為 ./build/reeborg.js。<br/>    only-build 腳本僅執行打包步驟。</p>
+<h4>詳細打包過程</h4>
+<p>根據 <code node="[object Object]">package.json</code> 的內容，Reeborg 專案的打包過程如下：</p>
+<ol>
+<li>
+<p><strong>依賴管理</strong>：</p>
+<ul>
+<li>使用 <code node="[object Object]">browserify</code> 作為打包工具，用於將多個模組和依賴打包成單一的 JavaScript 文件。</li>
+<li><code node="[object Object]">browserify</code> 將處理 <code node="[object Object]">require()</code> 語句，解析依賴並將它們嵌入到打包的文件中。</li>
+</ul>
+</li>
+<li>
+<p><strong>打包執行</strong>：</p>
+<ul>
+<li>運行 <code node="[object Object]">npm run build</code> 或 <code node="[object Object]">npm run only-build</code>：
+<ul>
+<li><code node="[object Object]">npm run build</code>：執行單元測試，然後進行模組打包。</li>
+<li><code node="[object Object]">npm run only-build</code>：僅進行模組打包。</li>
+</ul>
+</li>
+<li>這將把 <code node="[object Object]">./src/js/index.js</code> 中的代碼，以及所有的依賴模組，打包成一個名為 <code node="[object Object]">./build/reeborg.js</code> 的文件。</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<p><code node="[object Object]">./src/js/index.js</code> 的主要功能和結構：</p>
+<h4>簡介</h4>
+<p>這個文件是 Reeborg 應用程序的入口點，用於初始化整個應用並引入相關的模組。</p>
+<hr/>
+<h4>主要功能</h4>
+<ol>
+<li>
+<p><strong>引入模組</strong>：</p>
+<ul>
+<li>使用 <code node="[object Object]">require()</code> 引入各種模組，這些模組負責實現特定功能。例如：
+<ul>
+<li><code node="[object Object]">./utils/cors.js</code>：處理跨域問題。</li>
+<li><code node="[object Object]">./rur.js</code>：定義全局命名空間 <code node="[object Object]">RUR</code> 和基本功能。</li>
+<li><code node="[object Object]">./file_io/file_io.js</code>、<code node="[object Object]">./storage/storage.js</code> 等：處理文件 IO 和存儲功能。</li>
+<li><code node="[object Object]">./gui_tools/world_editor.js</code>：提供基於菜單的世界編輯器。</li>
+<li><code node="[object Object]">./listeners/memorize_world.js</code>、<code node="[object Object]">./listeners/onclick.js</code> 等：為界面添加交互功能。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>初始化 Brython</strong>：</p>
+<ul>
+<li>使用 <code node="[object Object]">brython()</code> 函數啟動 Brython，並設置 Python 路徑為 <code node="[object Object]">RUR.BASE_URL + '/src/python'</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>初始化全局狀態</strong>：</p>
+<ul>
+<li>定義和初始化應用的全局狀態，例如 <code node="[object Object]">RUR.state.session_initialized</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>啟動會話</strong>：</p>
+<ul>
+<li><code node="[object Object]">start_session()</code>：設置應用的初始狀態，包括編輯器、語言、世界菜單等。</li>
+</ul>
+</li>
+<li>
+<p><strong>設置應用的初始狀態</strong>：</p>
+<ul>
+<li><code node="[object Object]">set_initial_state()</code>：根據 URL 或本地存儲的數據，設定輸入方式、人類語言、世界菜單等。</li>
+</ul>
+</li>
+<li>
+<p><strong>恢復 Blockly 狀態</strong>：</p>
+<ul>
+<li><code node="[object Object]">restore_blockly()</code>：從本地存儲中加載 Blockly 的配置，並恢復到工作區。</li>
+</ul>
+</li>
+<li>
+<p><strong>處理本地存儲</strong>：</p>
+<ul>
+<li>恢復編輯器和庫的內容（<code node="[object Object]">set_editor()</code> 和 <code node="[object Object]">set_library()</code>）。</li>
+<li>恢復自定義的顏色設置（<code node="[object Object]">get_red_green()</code>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>確認應用準備就緒</strong>：</p>
+<ul>
+<li><code node="[object Object]">confirm_ready_to_start()</code>：檢查是否所有資源和模組已準備好，然後啟動應用。</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<h4>關鍵代碼摘錄</h4>
+<p>以下是一些關鍵代碼片段：</p>
+<h4>Brython 初始化</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">brython({debug:1, pythonpath:[RUR.BASE_URL + '/src/python']});</pre>
+<p>啟動 Brython 並設置 Python 路徑。</p>
+<h4>初始化應用狀態</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    var url_query;
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {
+        url_query.queryKey = {};
+    }
+    set_initial_input_method(url_query);
+    set_initial_language(url_query);
+    set_initial_menu(url_query);
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);
+    // 若 world_url 和 world_name 無效，則設置默認世界
+    if (probably_invalid(RUR.state.world_url)) {
+        set_default_world();
+    }
+}</pre>
+<p>根據 URL 或本地存儲的數據，設定應用的初始狀態。</p>
+<h4>恢復 Blockly 狀態</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function restore_blockly () {
+    try {
+        _restore_blockly();
+    } catch (e) {
+        console.log("Could not restore blockly; will try once more in 500 ms.");
+        setTimeout(_restore_blockly, 500);
+    }
+}
+
+function _restore_blockly () {
+    var xml, xml_text;
+    xml_text = localStorage.getItem("blockly");
+    if (xml_text) {
+        xml = Blockly.Xml.textToDom(xml_text);
+        Blockly.Xml.domToWorkspace(xml, RUR.blockly.workspace);
+    }
+}</pre>
+<p>恢復 Blockly 的工作區配置。</p>
+<h4>文件的作用</h4>
+<ol>
+<li>
+<p><strong>作為應用程序的入口點</strong>：</p>
+<ul>
+<li>負責將所有模組組裝在一起，並啟動應用。</li>
+</ul>
+</li>
+<li>
+<p><strong>初始化應用的全局狀態</strong>：</p>
+<ul>
+<li>確保應用的各種功能能夠根據用戶的需求進行初始化。</li>
+</ul>
+</li>
+<li>
+<p><strong>加載和配置模組</strong>：</p>
+<ul>
+<li>根據應用的需求，動態加載模組並配置功能。</li>
+</ul>
+</li>
+</ol>
+<p>References:</p>
+<p style="padding-left: 30px;"><a href="https://link.springer.com/book/10.1007/978-1-4842-3039-8">Practical Node.js</a> (2018)</p>
+<h2>URL</h2>
+<h4>URL 參數解析過程</h4>
+<ol>
+<li>
+<p><strong>URL 解析函數</strong>： 程式中使用 <code node="[object Object]">RUR.permalink.parseUri(window.location.href)</code> 來解析 URL。這個函數會將 URL 的查詢參數提取出來並存儲在 <code node="[object Object]">url_query.queryKey</code></p>
+</li>
+</ol>
+<p><strong>解析的例子</strong>： 如果 URL 為：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">?lang=en&amp;mode=python&amp;menu=%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Freeborg%2Fworlds%2Ftutorial_en%2Falone.json</pre>
+<p>解析後的結果可能類似於：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">url_query.queryKey = {
+  lang: "en",
+  mode: "python",
+  menu: "/reeborg/worlds/menus/select_collection_en.json",
+  name: "Alone",
+  url: "/reeborg/worlds/tutorial_en/alone.json"
+};</pre>
+<p></p>
+<ul>
+<li>
+<p><strong>設置初始狀態</strong>： <code node="[object Object]">set_initial_state()</code> 函數使用這些解析結果來設置應用的初始狀態：</p>
+<ul>
+<li><code node="[object Object]">set_initial_language(url_query)</code>：設置語言，例如 <code node="[object Object]">en</code>。</li>
+<li><code node="[object Object]">set_initial_input_method(url_query)</code>：設置編程模式，例如 <code node="[object Object]">python</code>。</li>
+<li><code node="[object Object]">set_initial_menu(url_query)</code>：設置菜單，例如 <code node="[object Object]">/reeborg/worlds/menus/select_collection_en.json</code>。</li>
+<li><code node="[object Object]">RUR.state.world_url</code> 和 <code node="[object Object]">RUR.state.world_name</code>：
+<ul>
+<li><code node="[object Object]">url_query.queryKey.url</code>：設置世界的 URL（例如 <code node="[object Object]">/reeborg/worlds/tutorial_en/alone.json</code>）。</li>
+<li><code node="[object Object]">url_query.queryKey.name</code>：設置世界的名稱（例如 <code node="[object Object]">Alone</code>）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>處理內定值</strong>： 如果 <code node="[object Object]">lang</code>、<code node="[object Object]">mode</code>、<code node="[object Object]">menu</code>、<code node="[object Object]">url</code> 或 <code node="[object Object]">name</code> 並未指定，程式會使用預設值（例如通過 <code node="[object Object]">RUR.initial_defaults</code>）來填補。</p>
+</li>
+</ul>
+<h4>相關函數</h4>
+<p>以下是部分相關的函數：</p>
+<h4>語言設置</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_initial_language(url_query) {
+    var last_lang;
+    RUR.state.human_language = decodeURIComponent(url_query.queryKey.lang);
+    last_lang = localStorage.getItem("human_language");
+
+    if (probably_invalid(RUR.state.human_language)) {
+        if (!probably_invalid(last_lang)) {
+            RUR.state.human_language = last_lang;
+        } else {
+            RUR.state.human_language = RUR.initial_defaults.human_language;
+        }
+    }
+    document.getElementById('human-language').value = RUR.state.human_language;
+    $("#human-language").change(); // triggers the require UI changes
+}</pre>
+<h4>編程模式設置</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_initial_input_method(url_query) {
+    var last_mode;
+    RUR.state.input_method = decodeURIComponent(url_query.queryKey.mode); 
+    last_mode = localStorage.getItem("input_method");
+
+    if (probably_invalid(RUR.state.input_method)) {
+        if (!probably_invalid(last_mode)) {
+            RUR.state.input_method = last_mode;
+        } else {
+            RUR.state.input_method = RUR.initial_defaults.input_method;
+        }
+    }
+    document.getElementById("programming-mode").value = RUR.state.input_method;
+    $("#programming-mode").change(); // triggers the require UI changes
+
+    if (RUR.state.input_method === "blockly-py" || RUR.state.input_method === "blockly-js") {
+        restore_blockly();
+    }
+}</pre>
+<h4>世界菜單設置</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_initial_menu(url_query) {
+    var last_menu;
+    var last_lang;
+
+    last_lang = localStorage.getItem("human_language");
+    if (last_lang !== RUR.state.human_language) {
+        RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+    } else {
+        RUR.state.current_menu = decodeURIComponent(url_query.queryKey.menu);
+        last_menu = localStorage.getItem("world_menu");
+
+        if (probably_invalid(RUR.state.current_menu)) {
+            if (!probably_invalid(last_menu)) {
+                RUR.state.current_menu = last_menu;
+            } else {
+                RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+            }
+        }
+    }
+
+    RUR.state.creating_menu = true;
+    RUR.load_world_file(RUR.state.current_menu);
+    if (RUR.file_io_status == "no link") {
+        RUR.make_default_menu(RUR.state.human_language);
+    }
+
+    RUR.state.creating_menu = false;
+}</pre>
+<h4>結論</h4>
+<ol>
+<li>URL 中的每個參數（如 <code node="[object Object]">lang</code>、<code node="[object Object]">mode</code>、<code node="[object Object]">menu</code>、<code node="[object Object]">name</code>、<code node="[object Object]">url</code>）都由 <code node="[object Object]">RUR.permalink.parseUri</code> 解析後存儲在 <code node="[object Object]">url_query.queryKey</code> 中。</li>
+<li>解析結果被用於設置應用的初始狀態，如語言、編程模式、菜單和世界。</li>
+<li>未設定對應值的參數會使用默認值自動補全。</li>
+</ol>
+<p>以下是 <code node="[object Object]">parseUri</code> 函數和其相關上下文的詳細解析，來回答 URL 中的變數是如何被讀取和處理的：</p>
+<h4><code node="[object Object]">parseUri</code> 函數的作用</h4>
+<p><code node="[object Object]">parseUri</code> 是一個函數，用於解析 URL 並將其分解為多個部分，包括協議、主機、路徑、查詢參數等。這是 Reeborg 應用中處理 URL 的核心工具。</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function parseUri (str) {
+    var o = parseUri.options,
+        m = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+        uri = {},
+        i = 14;
+
+    while (i--) uri[o.key[i]] = m[i] || "";
+
+    uri[o.q.name] = {};
+    uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
+        if ($1) uri[o.q.name][$1] = $2;
+    });
+
+    return uri;
+}</pre>
+<h4>解析過程：</h4>
+<ol>
+<li>
+<p><strong>定義解析選項</strong>： <code node="[object Object]">parseUri.options</code> 包含解析 URL 的鍵、解析器及其他設置。</p>
+</li>
+<li>
+<p><strong>匹配 URL 結構</strong>： 使用正則表達式（<code node="[object Object]">o.parser</code>）將 URL 分解為多個部分，例如協議、主機、查詢參數等。</p>
+</li>
+<li>
+<p><strong>提取查詢參數</strong>： 查詢部分（URL 中的 <code node="[object Object]">?</code> 後部分）會進一步解析為鍵值對，並存儲在 <code node="[object Object]">uri.queryKey</code> 中。</p>
+</li>
+<li>
+<p><strong>返回結果</strong>： 返回一個包含多個屬性的對象，這些屬性對應於 URL 的各個部分，例如：</p>
+</li>
+</ol>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
+    protocol: "http",
+    host: "example.com",
+    path: "/some/path",
+    queryKey: {
+        lang: "en",
+        mode: "python",
+        menu: "/reeborg/worlds/menus/select_collection_en.json",
+        name: "Alone",
+        url: "/reeborg/worlds/tutorial_en/alone.json"
+    }
+}</pre>
+<h4>URL 變數的處理</h4>
+<p>在 Reeborg 的應用中，<code node="[object Object]">parseUri</code> 的結果被用於設定應用的初始狀態，具體在 <code node="[object Object]">set_initial_state()</code> 及相關函數中使用。</p>
+<h4>鍵值對映射：</h4>
+<ul>
+<li><code node="[object Object]">lang</code>：設定語言（<code node="[object Object]">set_initial_language</code> 裡處理）。</li>
+<li><code node="[object Object]">mode</code>：設定編程模式（<code node="[object Object]">set_initial_input_method</code> 裡處理）。</li>
+<li><code node="[object Object]">menu</code>：設定世界菜單（<code node="[object Object]">set_initial_menu</code> 裡處理）。</li>
+<li><code node="[object Object]">name</code>：設定世界名稱（<code node="[object Object]">RUR.state.world_name</code>）。</li>
+<li><code node="[object Object]">url</code>：設定世界的 URL（<code node="[object Object]">RUR.state.world_url</code>）。</li>
+</ul>
+<h4>URL 更新的功能</h4>
+<p><code node="[object Object]">RUR.permalink.update_URI</code> 用於在應用的狀態改變時更新瀏覽器的 URL：</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.permalink.update_URI = function() {
+    "use strict";
+    var url_query, permalink;
+
+    if (!RUR.state.session_initialized) {
+        return;
+    }
+    if (window.location.href.indexOf("#&amp;togetherjs") != -1) {
+        return;
+    }
+
+    url_query = parseUri(window.location.href);
+    permalink = url_query.protocol + "://" + url_query.host;
+    if (url_query.port){
+        permalink += ":" + url_query.port;
+    }
+    permalink += url_query.path;
+
+    permalink += "?lang=" + encodeURIComponent(RUR.state.human_language) +
+                 "&amp;mode=" + encodeURIComponent(RUR.state.input_method) +
+                 "&amp;menu=" + encodeURIComponent(RUR.state.current_menu) +                 
+                 "&amp;name=" + encodeURIComponent(RUR.state.world_name) +
+                 "&amp;url=" + encodeURIComponent(RUR.state.world_url);
+    window.history.pushState("dummy", "dummy", permalink);
+};</pre>
+<h4>更新過程：</h4>
+<ol>
+<li>確保當前會話已初始化並且不在 TogetherJS 協作模式下。</li>
+<li>生成新的 URL，依據當前的應用狀態（如語言、模式、菜單、世界名稱和 URL）。</li>
+<li>使用 <code node="[object Object]">window.history.pushState</code> 更新瀏覽器的 URL，而不刷新頁面。</li>
+</ol>
+<hr/>
+<h4>總結</h4>
+<ol>
+<li><strong>讀取 URL</strong>：<code node="[object Object]">parseUri</code> 函數解析 URL，並將查詢參數存儲為鍵值對。</li>
+<li><strong>設置應用狀態</strong>：這些參數被用於初始化語言、編程模式、菜單和世界。</li>
+<li><strong>更新 URL</strong>：<code node="[object Object]">RUR.permalink.update_URI</code> 根據應用狀態生成新的 URL，並更新瀏覽器地址欄。</li>
+</ol>
+<h3>Parameters</h3>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</a></p>
+<p>lang=en</p>
+<p>mode=python</p>
+<p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
+<p>name=Alone</p>
+<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
+<p>add editor=</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
+    "use strict";
+    const urlParams = new URLSearchParams(window.location.search);
+    const editorFilePath = urlParams.get("editor");
+
+    if (editorFilePath) {
+        // Fetch the content of the file specified in the `editor` parameter
+        fetch(editorFilePath)
+            .then(response =&gt; {
+                if (!response.ok) {
+                    throw new Error("Failed to load file: " + response.statusText);
+                }
+                return response.text();
+            })
+            .then(fileContent =&gt; {
+                editor.setValue(fileContent);
+            })
+            .catch(error =&gt; {
+                console.error(error);
+                // Fallback to localStorage or default value if file fetch fails
+                loadFromLocalStorageOrDefault();
+            });
+    } else {
+        // Fallback to loading from localStorage or default value
+        loadFromLocalStorageOrDefault();
+    }
+
+    function loadFromLocalStorageOrDefault() {
+        if (localStorage.getItem("editor")) {
+            editor.setValue(localStorage.getItem("editor"));
+        } else {
+            editor.setValue(RUR.translate("move") + "()");
+        }
+    }
+}</pre>
+<p></p><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
@@ -685,7 +1122,8 @@ RUR.control.turn_left = function(robot){
 <p style="padding-left: 90px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p>
-<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><h2>HW1</h2>
+<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
+<h2>HW1</h2>
 <p>作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 30px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
 <p style="padding-left: 30px;">在 Ubuntu 操作系統建立一台 WWW 伺服器</p>
@@ -698,8 +1136,7 @@ RUR.control.turn_left = function(robot){
 <p>作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
 <h1>Midterm</h1>
 <p>2. 期中協同專案執行、簡報與報告 (三人一組) (30%)</p>
-<p style="padding-left: 30px;">專案題目: 利用 Copilot 解析 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
-<h1>Final</h1>
+<p style="padding-left: 30px;">專案題目: 利用 Copilot 解析 <a href="https://mde.tw/reeborg">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><h1>Final</h1>
 <p>3. 期末協同專案執行、簡報與報告 (三人一組) (30%)</p>
 <p style="padding-left: 30px;"><span>專案題目: 網際內容管理架構下的 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)<br/></span></p>
 <p style="padding-left: 60px;">利用 uwsgi 配置分組學員執行 cmsimde 動態內容管理系統編輯</p>

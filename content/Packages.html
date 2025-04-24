@@ -142,99 +142,173 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Examples << <a href='Examples.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages<br /><h1>rb</h1>
-<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/rb/reeborg.js">rb/reeborg.js</a></p>
-<p>move() 與 turn_left() 指令程式碼:</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">RUR.control = {};
-
-RUR.control.move = function (robot) {
-    "use strict";
-    var position, next_x, next_y, pushable_in_the_way,
-        x_beyond, y_beyond, next_position, current_x, current_y,
-        message;
-
-    if (RUR.control.wall_in_front(robot)) {
-        throw new RUR.WallCollisionError(RUR.translate("Ouch! I hit a wall!"));
+    <div id="tipue_search_content">rb << <a href='rb.html'>Previous</a> <a href='URL.html'>Next</a> >> URL<br /><h1>Packages</h1>
+<p>Reeborg Javascript 程式碼的工具打包設定: package.json</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
+  "scripts": {
+    "build": "tape tests/unit_tests/**/*.js | faucet &amp;&amp; browserify ./src/js/index.js -o ./build/reeborg.js",
+    "only-build": "browserify ./src/js/index.js -o ./build/reeborg.js"
+  },
+  "dependencies": {
+    "browserify": "^17.0.0"
+  }
+}</pre>
+<p><a href="https://browserify.org/">browserify</a>：是一個模組打包工具，它將 Node.js 模組（<a href="https://javascript.ruanyifeng.com/nodejs/module.html">CommonJS 格式</a>）打包為可以在瀏覽器中執行的單一文件。<br/>scripts：<br/>    build 腳本首先執行測試，然後使用 browserify 將 ./src/js/index.js 打包為 ./build/reeborg.js。<br/>    only-build 腳本僅執行打包步驟。</p>
+<h4>詳細打包過程</h4>
+<p>根據 <code node="[object Object]">package.json</code> 的內容，Reeborg 專案的打包過程如下：</p>
+<ol>
+<li>
+<p><strong>依賴管理</strong>：</p>
+<ul>
+<li>使用 <code node="[object Object]">browserify</code> 作為打包工具，用於將多個模組和依賴打包成單一的 JavaScript 文件。</li>
+<li><code node="[object Object]">browserify</code> 將處理 <code node="[object Object]">require()</code> 語句，解析依賴並將它們嵌入到打包的文件中。</li>
+</ul>
+</li>
+<li>
+<p><strong>打包執行</strong>：</p>
+<ul>
+<li>運行 <code node="[object Object]">npm run build</code> 或 <code node="[object Object]">npm run only-build</code>：
+<ul>
+<li><code node="[object Object]">npm run build</code>：執行單元測試，然後進行模組打包。</li>
+<li><code node="[object Object]">npm run only-build</code>：僅進行模組打包。</li>
+</ul>
+</li>
+<li>這將把 <code node="[object Object]">./src/js/index.js</code> 中的代碼，以及所有的依賴模組，打包成一個名為 <code node="[object Object]">./build/reeborg.js</code> 的文件。</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<p><code node="[object Object]">./src/js/index.js</code> 的主要功能和結構：</p>
+<h4>簡介</h4>
+<p>這個文件是 Reeborg 應用程序的入口點，用於初始化整個應用並引入相關的模組。</p>
+<hr/>
+<h4>主要功能</h4>
+<ol>
+<li>
+<p><strong>引入模組</strong>：</p>
+<ul>
+<li>使用 <code node="[object Object]">require()</code> 引入各種模組，這些模組負責實現特定功能。例如：
+<ul>
+<li><code node="[object Object]">./utils/cors.js</code>：處理跨域問題。</li>
+<li><code node="[object Object]">./rur.js</code>：定義全局命名空間 <code node="[object Object]">RUR</code> 和基本功能。</li>
+<li><code node="[object Object]">./file_io/file_io.js</code>、<code node="[object Object]">./storage/storage.js</code> 等：處理文件 IO 和存儲功能。</li>
+<li><code node="[object Object]">./gui_tools/world_editor.js</code>：提供基於菜單的世界編輯器。</li>
+<li><code node="[object Object]">./listeners/memorize_world.js</code>、<code node="[object Object]">./listeners/onclick.js</code> 等：為界面添加交互功能。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>初始化 Brython</strong>：</p>
+<ul>
+<li>使用 <code node="[object Object]">brython()</code> 函數啟動 Brython，並設置 Python 路徑為 <code node="[object Object]">RUR.BASE_URL + '/src/python'</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>初始化全局狀態</strong>：</p>
+<ul>
+<li>定義和初始化應用的全局狀態，例如 <code node="[object Object]">RUR.state.session_initialized</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>啟動會話</strong>：</p>
+<ul>
+<li><code node="[object Object]">start_session()</code>：設置應用的初始狀態，包括編輯器、語言、世界菜單等。</li>
+</ul>
+</li>
+<li>
+<p><strong>設置應用的初始狀態</strong>：</p>
+<ul>
+<li><code node="[object Object]">set_initial_state()</code>：根據 URL 或本地存儲的數據，設定輸入方式、人類語言、世界菜單等。</li>
+</ul>
+</li>
+<li>
+<p><strong>恢復 Blockly 狀態</strong>：</p>
+<ul>
+<li><code node="[object Object]">restore_blockly()</code>：從本地存儲中加載 Blockly 的配置，並恢復到工作區。</li>
+</ul>
+</li>
+<li>
+<p><strong>處理本地存儲</strong>：</p>
+<ul>
+<li>恢復編輯器和庫的內容（<code node="[object Object]">set_editor()</code> 和 <code node="[object Object]">set_library()</code>）。</li>
+<li>恢復自定義的顏色設置（<code node="[object Object]">get_red_green()</code>）。</li>
+</ul>
+</li>
+<li>
+<p><strong>確認應用準備就緒</strong>：</p>
+<ul>
+<li><code node="[object Object]">confirm_ready_to_start()</code>：檢查是否所有資源和模組已準備好，然後啟動應用。</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<h4>關鍵代碼摘錄</h4>
+<p>以下是一些關鍵代碼片段：</p>
+<h4>Brython 初始化</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">brython({debug:1, pythonpath:[RUR.BASE_URL + '/src/python']});</pre>
+<p>啟動 Brython 並設置 Python 路徑。</p>
+<h4>初始化應用狀態</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    var url_query;
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {
+        url_query.queryKey = {};
     }
-
-    position = RUR.get_position_in_front(robot);
-    next_x = position.x;
-    next_y = position.y;
-
-    // attempt a move, by first saving the current position
-    current_x = robot.x;
-    current_y = robot.y;
-    robot.x = next_x;
-    robot.y = next_y;
-
-    // If we move, are we going to push something else in front of us?
-    pushable_in_the_way = RUR.get_pushable(next_x, next_y);
-    if (pushable_in_the_way !== null) {
-        next_position = RUR.get_position_in_front(robot);
-        x_beyond = next_position.x;
-        y_beyond = next_position.y;
-
-        if (RUR.control.wall_in_front(robot) ||
-            RUR.get_pushable(x_beyond, y_beyond) ||
-            RUR.is_solid_obstacle(x_beyond, y_beyond) ||
-            RUR.is_robot(x_beyond, y_beyond)) {
-            // reverse the move
-            robot.x = current_x;
-            robot.y = current_y;
-            throw new RUR.ReeborgError(RUR.translate("Something is blocking the way!"));
-        } else {
-            RUR._push_pushable(pushable_in_the_way, next_x, next_y, x_beyond, y_beyond);
-            RUR.transform_tile(pushable_in_the_way, x_beyond, y_beyond);
-        }
+    set_initial_input_method(url_query);
+    set_initial_language(url_query);
+    set_initial_menu(url_query);
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);
+    // 若 world_url 和 world_name 無效，則設置默認世界
+    if (probably_invalid(RUR.state.world_url)) {
+        set_default_world();
     }
-
-    // We can now complete the move
-    if (robot._is_leaky !== undefined &amp;&amp; !robot._is_leaky) {
-        // avoid messing the trace if and when we resume having a leaky robot
-        robot._prev_x = robot.x;
-        robot._prev_y = robot.y;
-    } else {
-        robot._prev_x = current_x;
-        robot._prev_y = current_y;
+}</pre>
+<p>根據 URL 或本地存儲的數據，設定應用的初始狀態。</p>
+<h4>恢復 Blockly 狀態</h4>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function restore_blockly () {
+    try {
+        _restore_blockly();
+    } catch (e) {
+        console.log("Could not restore blockly; will try once more in 500 ms.");
+        setTimeout(_restore_blockly, 500);
     }
-    RUR.state.sound_id = "#move-sound";
+}
 
-
-    // A move has been performed ... but it may have been a fatal decision
-    message = RUR.is_fatal_position(robot.x, robot.y, robot);
-    if (message) {
-        throw new RUR.ReeborgError(message);
+function _restore_blockly () {
+    var xml, xml_text;
+    xml_text = localStorage.getItem("blockly");
+    if (xml_text) {
+        xml = Blockly.Xml.textToDom(xml_text);
+        Blockly.Xml.domToWorkspace(xml, RUR.blockly.workspace);
     }
-
-    RUR.record_frame("move", robot.__id);
-};
-
-
-// leave end of line comments below such as using += 1
-// as I (indirectly) refer to these comments in the programming tutorial
-
-RUR.control.turn_left = function(robot){
-    "use strict";
-    var random;
-    if (robot._orientation == RUR.RANDOM_ORIENTATION) {
-        random = Math.floor(Math.random() * 4);
-        robot._orientation = random;
-        robot._prev_orientation = random;
-    } else {
-        robot._prev_orientation = robot._orientation;
-        robot._orientation ++;
-        robot._orientation %= 4;
-    }
-    robot._prev_x = robot.x;
-    robot._prev_y = robot.y;
-
-    RUR.state.sound_id = "#turn-sound";
-    if (robot._is_leaky !== undefined &amp;&amp; !robot._is_leaky) {  // update to avoid drawing from previous point.
-        robot._prev_orientation = robot._orientation;
-    }
-    RUR.record_frame("turn_left", robot.__id);
-};</pre>
-<br />Examples << <a href='Examples.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages</div>
+}</pre>
+<p>恢復 Blockly 的工作區配置。</p>
+<h4>文件的作用</h4>
+<ol>
+<li>
+<p><strong>作為應用程序的入口點</strong>：</p>
+<ul>
+<li>負責將所有模組組裝在一起，並啟動應用。</li>
+</ul>
+</li>
+<li>
+<p><strong>初始化應用的全局狀態</strong>：</p>
+<ul>
+<li>確保應用的各種功能能夠根據用戶的需求進行初始化。</li>
+</ul>
+</li>
+<li>
+<p><strong>加載和配置模組</strong>：</p>
+<ul>
+<li>根據應用的需求，動態加載模組並配置功能。</li>
+</ul>
+</li>
+</ol>
+<p>References:</p>
+<p style="padding-left: 30px;"><a href="https://link.springer.com/book/10.1007/978-1-4842-3039-8">Practical Node.js</a> (2018)</p>
+<br />rb << <a href='rb.html'>Previous</a> <a href='URL.html'>Next</a> >> URL</div>
         
     <!-- footer -->
       <div class="container">

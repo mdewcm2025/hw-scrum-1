@@ -1929,6 +1929,7 @@
 </vnodes>
 <tnodes>
 <t tx="leo.20250219181426.2">@language python
+# ctrl + b 執行
 c.recursiveImport(
     dir_ = './',
     kind = '@clean',        # or '@file' or '@auto'
