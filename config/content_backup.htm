@@ -527,6 +527,26 @@ function start_session () {
 </div>
 </div>
 <h2>Examples</h2>
+<p>Alone with <a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/alone.json&amp;editor=https://gist.githubusercontent.com/mdecycu/71eea94e7cc0def9b3620fc8374d2e8b/raw/d583a7d37dc6b988c07675ad9139d91530c3d681/w10_reeborg1.py">the following programs</a>:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># use turn_left() to define turn_right() function
+def turn_right():
+    for i in range(3):
+        turn_left()
+
+# setup the world by using api functions: https://aroberge.github.io/reeborg-api/
+RUR.set_world_size(3, 3)
+RUR.add_final_position("house", 3, 1)
+RUR.add_wall("east", 1, 1)
+
+# start to go home
+turn_left()
+move()
+turn_right()
+move()
+turn_right()
+move()
+turn_left()
+move()</pre>
 <p><img caption="false" height="203" src="/images/harvest1.png" width="200"/></p>
 <p>對應 harvest1.py: <a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py</a></p>
 <p>lang=en</p>
@@ -1186,7 +1206,6 @@ function _restore_blockly () {
 }</pre>
 <p>將程式在 <a href="https://github.com/mdecycu/reeborg">https://github.com/mdecycu/reeborg</a> 倉儲進行修改後, 可以利用下列 URL 進行驗證:</p>
 <p><a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Other%20worlds&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Other%20worlds&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
-<p></p>
 <p></p><h1>Homework</h1>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
