@@ -231,6 +231,72 @@ http {
     }
 }
 </pre>
+<p>Windows 利用 <a href="https://letsencrypt.org/">Letsencrypt</a> 設定 https WWW 伺服器的套件工具: <a href="http://229.cycu.org/certbot.7z">certbot.7z</a></p>
+<p>安裝 certbot 之後關閉 WWW 伺服器, 然後利用管理者啟動的 cmd 執行的:</p>
+<p><span>certbot certonly </span><span class="hljs-comment">--standalone</span></p>
+<p><span class="hljs-comment">就可以取得 privkey.pem 與 fullchain.pem 等兩個網站的 https 數位簽章.</span></p>
+<p><span class="hljs-comment">與 nginx 結合設定的 nginx.conf 如下:</span></p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    # Redirect HTTP to HTTPS
+    server {
+        listen [2001:288:6004:17:fff1:cc25::a099]:80;
+        server_name  w99.mde.nfu.edu.tw;
+
+        return 301 https://$host$request_uri;
+    }
+
+    # HTTPS server
+    server {
+        listen [2001:288:6004:17:fff1:cc25::a099]:443 ssl;
+        server_name w99.mde.nfu.edu.tw;
+
+        ssl_certificate      C:/Certbot/live/w99.mde.nfu.edu.tw/fullchain.pem;
+        ssl_certificate_key  C:/Certbot/live/w99.mde.nfu.edu.tw/privkey.pem;
+
+        ssl_protocols        TLSv1.2 TLSv1.3;
+        ssl_ciphers          HIGH:!aNULL:!MD5;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        error_page 404 /404.html;
+        location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+        }
+    }
+}</pre>
+<p>在 Windows 利用 nssm 將 nginx 的啟動設為系統服務:</p>
+<p>在管理者權限下執行 cmd (nssm 必須提供位於實體目錄下的 nssm.exe):</p>
+<p style="padding-left: 30px;">nssm install nginx</p>
+<p>編輯 nginx 服務:</p>
+<p style="padding-left: 30px;">nssm edit nginx</p>
+<p>檢視或管理系統服務:</p>
+<p style="padding-left: 30px;">以滑鼠右鍵點選"開始"後, 選擇"電腦管理", 即可開啟系統的"服務與應用程式".</p>
+<hr/>
 <p>Ubuntu:</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu-24.04.2-live-server-amd64.iso">ubuntu-24.04.2-live-server-amd64.iso</a></p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu.vdi">http://229.cycu.org/ubuntu.vdi</a> </p>
@@ -241,8 +307,7 @@ http {
 <p>"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid c:\users\yen\downloads\win10.vdi</p>
 <p style="padding-left: 30px;"></p>
 <p></p>
-<p></p>
-<h3>mind-map</h3>
+<p></p><h3>mind-map</h3>
 <p><object data="/images/wcm.svg" height="479" type="image/svg+xml" width="908"></object></p>
 <p><a href="https://mde.tw/mind-map/?fileURL=https://mdewcm2025.github.io/hw-scrum-1/downloads/wcm.smm#/">edit wcm.smm</a></p>
 <h2>task4</h2>
@@ -348,7 +413,7 @@ while not at_goal():
 <li><strong>多目標任務</strong>：需要結合多個條件，例如撿起所有物品並到達終點。</li>
 <li><strong>除錯工具</strong>：Reeborg's World 提供步進執行和視覺化介面，幫助理解程式如何運作。</li>
 </ul>
-<hr/>
+<hr>
 <h4>6. <strong>範例：繞過障礙物</strong></h4>
 <p>假設 Reeborg 需要繞過一個方形障礙物到達目標：</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def turn_right(): 
@@ -364,7 +429,7 @@ while not at_goal():
         move() 
     else: 
         turn_left()</pre>
-這個程式讓 Reeborg 在遇到障礙時嘗試右轉，否則左轉，形成一個簡單的路徑尋找策略。<hr/>
+這個程式讓 Reeborg 在遇到障礙時嘗試右轉，否則左轉，形成一個簡單的路徑尋找策略。<hr>
 <h4>7. <strong>設計程式的思考流程</strong></h4>
 <p>撰寫 Reeborg 程式時，可以遵循以下步驟：</p>
 <ol>
@@ -407,7 +472,7 @@ while True:
 <p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
 <p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a></p>
 <p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a></p>
-</div>
+</hr></hr></div>
 <h2>Challenge</h2>
 <p><a href="https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json">Step0</a></p>
 <p>https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json</p>
@@ -549,13 +614,17 @@ turn_left()
 move()</pre>
 <p>Reference: <a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
 <p><img caption="false" height="406" src="/images/harvest1.png" width="400"/></p>
-<p>對應 harvest1.py: <a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py</a></p>
-<p>lang=en</p>
-<p>mode=python</p>
-<p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
-<p>name=Alone</p>
-<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
-<p>editor=/hw-scrum-1/reeborg/python/harvest1.py</p>
+<p>呼叫伺服器 python 目錄中的 harvest1.py:</p>
+<p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
+<p>呼叫外部伺服器中的 harvest1.py:</p>
+<p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py</a> </p>
+<p>URL 網址中的變數設定:</p>
+<p style="padding-left: 30px;">lang=en</p>
+<p style="padding-left: 30px;">mode=python</p>
+<p style="padding-left: 30px;">menu=/reeborg/worlds/menus/select_collection_en.json</p>
+<p style="padding-left: 30px;">name=Alone</p>
+<p style="padding-left: 30px;">url=/reeborg/worlds/tutorial_en/harvest1.json</p>
+<p style="padding-left: 30px;">editor=/reeborg/python/harvest1.py</p>
 <p>在近端靜態網站中的 reeborg url 變數:</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py
 

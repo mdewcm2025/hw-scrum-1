@@ -231,6 +231,77 @@ http {
     }
 }
 </pre>
+<p>Windows 利用 <a href="https://letsencrypt.org/">Letsencrypt</a> 設定 https WWW 伺服器的套件工具: <a href="http://229.cycu.org/certbot.7z">certbot.7z</a></p>
+<p>安裝 certbot 之後關閉 WWW 伺服器, 然後利用管理者啟動的 cmd 執行的:</p>
+<p><span>certbot certonly </span><span class="hljs-comment">--standalone</span></p>
+<p><span class="hljs-comment">就可以取得 privkey.pem 與 fullchain.pem 等兩個網站的 https 數位簽章.</span></p>
+<p><span class="hljs-comment">與 nginx 結合設定的 nginx.conf 如下:</span></p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    # Redirect HTTP to HTTPS
+    server {
+        listen [2001:288:6004:17:fff1:cc25::a099]:80;
+        server_name  w99.mde.nfu.edu.tw;
+
+        return 301 https://$host$request_uri;
+    }
+
+    # HTTPS server
+    server {
+        listen [2001:288:6004:17:fff1:cc25::a099]:443 ssl;
+        server_name w99.mde.nfu.edu.tw;
+
+        ssl_certificate      C:/Certbot/live/w99.mde.nfu.edu.tw/fullchain.pem;
+        ssl_certificate_key  C:/Certbot/live/w99.mde.nfu.edu.tw/privkey.pem;
+
+        ssl_protocols        TLSv1.2 TLSv1.3;
+        ssl_ciphers          HIGH:!aNULL:!MD5;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        error_page 404 /404.html;
+        location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+        }
+    }
+}</pre>
+<p>在 Windows 利用 nssm 將 nginx 的啟動設為系統服務:</p>
+<p>在管理者權限下執行 cmd (nssm 必須提供位於實體目錄下的 nssm.exe):</p>
+<p style="padding-left: 30px;">nssm install nginx</p>
+<p>編輯 nginx 服務:</p>
+<p style="padding-left: 30px;">nssm edit nginx</p>
+<p>檢視或管理系統服務:</p>
+<p style="padding-left: 30px;">以滑鼠右鍵點選"開始"後, 選擇"電腦管理", 即可開啟系統的"服務與應用程式".</p>
+<hr/>
+<p>將 <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 設為作業倉儲的 submodule (子模組) 的指令:</p>
+<p>cd wcmhw (確定執行目錄為作業倉儲)</p>
+<p>git submodule add <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> reeborg</p>
+<p>表示要將 <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 設為子模組, 且命名為 reeborg</p>
+<hr/>
 <p>Ubuntu:</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu-24.04.2-live-server-amd64.iso">ubuntu-24.04.2-live-server-amd64.iso</a></p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu.vdi">http://229.cycu.org/ubuntu.vdi</a> </p>
@@ -241,8 +312,7 @@ http {
 <p>"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid c:\users\yen\downloads\win10.vdi</p>
 <p style="padding-left: 30px;"></p>
 <p></p>
-<p></p>
-<h3>mind-map</h3>
+<p></p><h3>mind-map</h3>
 <p><object data="/images/wcm.svg" height="479" type="image/svg+xml" width="908"></object></p>
 <p><a href="https://mde.tw/mind-map/?fileURL=https://mdewcm2025.github.io/hw-scrum-1/downloads/wcm.smm#/">edit wcm.smm</a></p>
 <h2>task4</h2>
