@@ -297,6 +297,11 @@ http {
 <p>檢視或管理系統服務:</p>
 <p style="padding-left: 30px;">以滑鼠右鍵點選"開始"後, 選擇"電腦管理", 即可開啟系統的"服務與應用程式".</p>
 <hr/>
+<p>將 <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 設為作業倉儲的 submodule (子模組) 的指令:</p>
+<p>cd wcmhw (確定執行目錄為作業倉儲)</p>
+<p>git submodule add <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> reeborg</p>
+<p>表示要將 <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 設為子模組, 且命名為 reeborg</p>
+<hr/>
 <p>Ubuntu:</p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu-24.04.2-live-server-amd64.iso">ubuntu-24.04.2-live-server-amd64.iso</a></p>
 <p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu.vdi">http://229.cycu.org/ubuntu.vdi</a> </p>
@@ -413,7 +418,7 @@ while not at_goal():
 <li><strong>多目標任務</strong>：需要結合多個條件，例如撿起所有物品並到達終點。</li>
 <li><strong>除錯工具</strong>：Reeborg's World 提供步進執行和視覺化介面，幫助理解程式如何運作。</li>
 </ul>
-<hr>
+<hr/>
 <h4>6. <strong>範例：繞過障礙物</strong></h4>
 <p>假設 Reeborg 需要繞過一個方形障礙物到達目標：</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def turn_right(): 
@@ -429,7 +434,7 @@ while not at_goal():
         move() 
     else: 
         turn_left()</pre>
-這個程式讓 Reeborg 在遇到障礙時嘗試右轉，否則左轉，形成一個簡單的路徑尋找策略。<hr>
+這個程式讓 Reeborg 在遇到障礙時嘗試右轉，否則左轉，形成一個簡單的路徑尋找策略。<hr/>
 <h4>7. <strong>設計程式的思考流程</strong></h4>
 <p>撰寫 Reeborg 程式時，可以遵循以下步驟：</p>
 <ol>
@@ -472,7 +477,7 @@ while True:
 <p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
 <p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a></p>
 <p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a></p>
-</hr></hr></div>
+</div>
 <h2>Challenge</h2>
 <p><a href="https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json">Step0</a></p>
 <p>https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json</p>
