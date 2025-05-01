@@ -165,13 +165,23 @@ turn_left()
 move()</pre>
 <p>Reference: <a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
 <p><img caption="false" height="406" src="./../images/harvest1.png" width="400"/></p>
-<p>對應 harvest1.py: <a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/hw-scrum-1/reeborg/python/harvest1.py</a></p>
-<p>lang=en</p>
-<p>mode=python</p>
-<p>menu=/reeborg/worlds/menus/select_collection_en.json</p>
-<p>name=Alone</p>
-<p>url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json</p>
-<p>editor=/hw-scrum-1/reeborg/python/harvest1.py</p>
+<p>呼叫伺服器 python 目錄中的 harvest1.py:</p>
+<p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
+<p>呼叫外部伺服器中的 harvest1.py:</p>
+<p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py</a> </p>
+<p>URL 網址中的變數設定:</p>
+<p style="padding-left: 30px;">lang=en</p>
+<p style="padding-left: 30px;">mode=python</p>
+<p style="padding-left: 30px;">menu=/reeborg/worlds/menus/select_collection_en.json</p>
+<p style="padding-left: 30px;">name=Alone</p>
+<p style="padding-left: 30px;">url=/reeborg/worlds/tutorial_en/harvest1.json</p>
+<p style="padding-left: 30px;">editor=/reeborg/python/harvest1.py</p>
+<p>在近端靜態網站中的 reeborg url 變數:</p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py
+
+or
+
+?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/python/harvest1.py</pre>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def turn_right():
     for i in range(3):
         turn_left()
