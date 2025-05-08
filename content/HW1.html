@@ -148,10 +148,36 @@ img.add_border {
 <p style="padding-left: 30px;">在 Ubuntu 操作系統建立一台 WWW 伺服器</p>
 <p style="padding-left: 30px;">在 虛擬主機上建立一台 WWW 伺服器 (Windows and Ubuntu)</p>
 <p style="padding-left: 60px;">Virtualbox</p>
+<p style="padding-left: 30px;">利用 <a href="https://mde.tw/wcm2025/content/IPv6.html">https://mde.tw/wcm2025/content/IPv6.html</a> 中所分配的 IPv6 網址建立 Windows 與 Ubuntu 主機, 配置 nginx 伺服器.</p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/win10.vdi">http://229.cycu.org/win10.vdi</a> </p>
+<p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu.vdi">http://229.cycu.org/ubuntu.vdi</a>  </p>
+<p style="padding-left: 30px;"><span style="background-color: #ccffcc;">操作步驟 (Windows)</span>:</p>
+<ol>
+<li>下載 <a href="http://229.cycu.org/win10.vdi">http://229.cycu.org/win10.vdi</a>, 在電腦中啟動 Virtualbox 後新增虛擬主機.</li>
+<li>採用 win10.vdi 建立虛擬主機後, 將網路設為橋接後啟動.</li>
+<li>登入後進入控制台利用個人的 IPv6 網址設定網路連線後, 在虛擬主機中下載安裝 <a href="https://nginx.org/en/download.html">nginx</a> 後測試是否可以正常從實體主機中連線.</li>
+</ol>
+<p style="padding-left: 30px;"><span style="background-color: #ccffcc;">操作步驟 (Ubuntu)</span>:</p>
+<ol>
+<li>下載 <a href="http://229.cycu.org/ubuntu.vdi">http://229.cycu.org/ubuntu.vdi</a>, 在電腦中啟動 Virtualbox 後新增虛擬主機.</li>
+<li>採用 Ubuntu.vdi 建立虛擬主機後, 將網路設為橋接後啟動.</li>
+<li>登入後進入控制台利用個人的 IPv6 網址設定網路連線後, 在虛擬主機中下載安裝 <a href="https://nginx.org/en/download.html">nginx</a> 後測試是否可以正常從實體主機中連線. (例如: <a href="http://stud.cycu.org/">http://stud.cycu.org/</a>)</li>
+<li>Ubuntu 網路設定位於 /etc/netplan/<a href="./../downloads/net.yaml">net.yaml</a>, 利用 vi 編輯器設定完成後, 以 sudo netplan apply 讓設定生效.</li>
+<li>安裝 nginx, sudo apt install nginx, 之後設定檔案位於 /etc/nginx/sites-available/<a href="./../downloads/default">default</a></li>
+<li>修改 nginx 設定後, 以 sudo service nginx restart 重新啟動. (測試是否可以連線至: http://wxx.mde.nfu.edu.tw 或 https://wxx.mde.nfu.edu.tw)</li>
+</ol>
+<p style="padding-left: 30px;"><span style="background-color: #ccffcc;">建立 github_帳號.github.io 倉儲與網站</span>:</p>
+<ol>
+<li>在 Github 中建立以帳號為名的 github.io, 將自動啟動 Github Pages 設定 (自動設定為與倉儲同名的網站)</li>
+<li>登入 Github 後, 連線至 <a href="https://github.com/mdecycu/cmsimde_site,">https://github.com/mdecycu/cmsimde_site,</a> Use this template 建立名稱為 github_帳號.github.io 倉儲.</li>
+<li>在 Codespaces 或近端維護 github_帳號.github.io (例如: scrum-1.github.io).</li>
+<li>在個人網站中建立 About, Courses, Certificates, Licenses, Contests, Misc 等 H1 頁面, 其中 About 可以放入個人簡介, Courses 則放入個人所修過課程的簡介與心得 (或成績), Certificates 放入各式英檢的內容, Licenses 則放入專業證照與實習項目介紹. Contests 則放入個人或團隊參賽紀錄. Misc 則放入尚未整理的瑣碎資料.</li>
+<li>個人網頁中的 Blog 可以詳細記錄個人參與的事件過程, Reveal.js 則放入個人的線上簡報內容</li>
+</ol>
+<hr/>
 <p style="padding-left: 60px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
-<p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p>
-<br />Homework << <a href='Homework.html'>Previous</a> <a href='HW2.html'>Next</a> >> HW2</div>
+<p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><br />Homework << <a href='Homework.html'>Previous</a> <a href='HW2.html'>Next</a> >> HW2</div>
         
     <!-- footer -->
       <div class="container">
