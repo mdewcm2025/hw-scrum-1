@@ -321,6 +321,16 @@ http {
 <h4>網際內容管理中的 Reeborg</h4>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/python/harvest1.py</a> </p>
 <p></p><h1>Reeborg</h1>
+<p>假如利用相對路徑呼叫 URL 變數值:</p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1.py</a> </p>
+<p>表示:</p>
+<p style="padding-left: 30px;">lang=en</p>
+<p style="padding-left: 30px;">mode=python</p>
+<p style="padding-left: 30px;">menu=worlds/menus/select_collection_en.json</p>
+<p style="padding-left: 30px;">name=Alone</p>
+<p style="padding-left: 30px;">url=worlds/tutorial_en/harvest1.json</p>
+<p style="padding-left: 30px;">editor=python/harvest1.py</p>
+<hr/>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg">https://mdewcm2025.github.io/hw-scrum-1/reeborg</a></p>
 <p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a></p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
@@ -477,8 +487,7 @@ while True:
 <p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
 <p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a></p>
 <p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a></p>
-</div>
-<h2>Challenge</h2>
+</div><h2>Challenge</h2>
 <p><a href="https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json">Step0</a></p>
 <p>https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json</p>
 <p>lang=en</p>
@@ -599,6 +608,7 @@ function start_session () {
 <h2>Examples</h2>
 <p>針對 <a href="https://mde.tw/reeborg/">https://mde.tw/reeborg/</a> 伺服器 world 與 python 解題程式的對應呼叫, 必須從根目錄指向 /reeborg/ 之後再接 world 與 python 程式所在路徑, 如下所示:</p>
 <p><a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
+<p>接下來希望能選擇性操縱是否列出 menu 超文件頁面.</p>
 <hr/>
 <p>Alone with <a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/alone.json&amp;editor=https://gist.githubusercontent.com/mdecycu/71eea94e7cc0def9b3620fc8374d2e8b/raw/d583a7d37dc6b988c07675ad9139d91530c3d681/w10_reeborg1.py">the following programs</a>:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># use turn_left() to define turn_right() function
@@ -1416,7 +1426,7 @@ function _restore_blockly () {
 <li>生成新的 URL，依據當前的應用狀態（如語言、模式、菜單、世界名稱和 URL）。</li>
 <li>使用 <code node="[object Object]">window.history.pushState</code> 更新瀏覽器的 URL，而不刷新頁面。</li>
 </ol>
-<hr>
+<hr/>
 <h4>總結</h4>
 <ol>
 <li><strong>讀取 URL</strong>：<code node="[object Object]">parseUri</code> 函數解析 URL，並將查詢參數存儲為鍵值對。</li>
@@ -1839,4 +1849,4 @@ doc["aitetris"].bind("click", aitetris.do)
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
 <!-- editor2 結束 --><hr/>
-<p></p></hr>
+<p></p>
