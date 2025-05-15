@@ -871,7 +871,7 @@ RUR.control.turn_left = function(robot){
         set_default_world();
     }
 }</pre>
-<p>set_initial_input_method</p>
+<p>set_initial_input_method, 例如: <span style="background-color: #ffff00;">mode=python</span></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_input_method(url_query) {
     var last_mode;
     RUR.state.input_method = decodeURIComponent(url_query.queryKey.mode); 
@@ -891,7 +891,7 @@ RUR.control.turn_left = function(robot){
         restore_blockly();
     }
 }</pre>
-<p>set_initial_language</p>
+<p>set_initial_language, 例如: <span style="background-color: #ffff00;">lang=en</span></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_language(url_query) {
     var last_lang;
     RUR.state.human_language = decodeURIComponent(url_query.queryKey.lang);
@@ -907,7 +907,7 @@ RUR.control.turn_left = function(robot){
     document.getElementById('human-language').value = RUR.state.human_language;
     $("#human-language").change(); // triggers the require UI changes
 }</pre>
-<p>set_initial_menu</p>
+<p>set_initial_menu, 例如: <span style="background-color: #ffff00;">menu=/reeborg/worlds/menus/select_collection_en.json</span> (假設以 server_domain/reeborg/ 呼叫執行)</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_menu(url_query) {
     var last_menu;
     var last_lang;
@@ -937,7 +937,116 @@ RUR.control.turn_left = function(robot){
     RUR.state.creating_menu = false;
 
 }</pre>
-<p></p><h2>Packages</h2>
+<p>為了讓呼叫 Reeborg 的 URL 連結可以納入原先程式並沒有的 editor 變數, 必須修改兩個地方:</p>
+<p>也就是 RUR.permalink.update_URI 函式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">RUR.permalink.update_URI = function() {
+    "use strict";
+    var url_query, permalink;
+
+    // Do not mess up with URI during initialization 
+    if (!RUR.state.session_initialized) {
+        return;
+    }
+    // Permalinks shared to collaborate using Mozilla's TogetherJS should also
+    // be left unchanged
+    if (window.location.href.indexOf("#&amp;togetherjs") != -1) {
+        return;
+    }
+
+    url_query = parseUri(window.location.href);
+    permalink = url_query.protocol + "://" + url_query.host;
+    if (url_query.port){
+        permalink += ":" + url_query.port;
+    }
+    permalink += url_query.path;
+    // Kmolab add RUR.state.world_editor starting from set_initial_state function
+    permalink += "?lang=" + encodeURIComponent(RUR.state.human_language) +
+                 "&amp;mode=" + encodeURIComponent(RUR.state.input_method) +
+                 "&amp;menu=" + encodeURIComponent(RUR.state.current_menu) +                 
+                 "&amp;name=" + encodeURIComponent(RUR.state.world_name) +
+                 "&amp;url=" + encodeURIComponent(RUR.state.world_url) +
+                 "&amp;editor=" + encodeURIComponent(RUR.state.world_editor);
+    window.history.pushState("dummy", "dummy", permalink);
+};
+</pre>
+<p>以及 set_initial_state 函式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    /* This function sets the initial state which includes
+        * The input method (python, py-repl, etc.)
+        * The human language
+        * The world menu to be used
+        * The world to be initially displayed
+            * its name
+            * its url
+
+       The priority is determined by:
+           1. information encoded in the URL;
+           2. any previously saved state;
+           3. site defaults.
+            
+    */
+    var url_query;
+
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {  // should be set but just in case...
+        url_query.queryKey = {};
+    }
+    
+    // Changing the input_method / programming mode does not affect anything else
+    // so do first. Note that, if using Blockly, we will retrieve the last
+    // state here. However, if a world (loaded below) has some Blockly
+    // content, it will replace the restored content, as desired.
+    set_initial_input_method(url_query);
+
+    // Changing the human language will trigger a restart of the Python repl
+    // if it is the mode selected, to ensure that the proper reeborg_xx module
+    // is used; so it has to be done after the programming mode has been set.
+    set_initial_language(url_query);
+
+    // Next, we create the appropriate world menu, using the default if needed
+    set_initial_menu(url_query);
+
+    // A hand-written url may not include all required parts;
+    // this does not matter for the previous three settings, but it
+    // may matter if there is some inconsistency with the indicated url and name
+    // parts. In this case, we have to make sure that we do not
+    // retrieve the last saved values by mistake
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);
+    // Kmolab add the editor variable
+    RUR.state.world_editor = decodeURIComponent(url_query.queryKey.editor);
+
+    // correct potentially faulty values
+    if (probably_invalid(RUR.state.world_url)) {
+        RUR.state.world_url = undefined;
+    }
+    if (probably_invalid(RUR.state.world_name)) {
+        RUR.state.world_name = undefined;
+    }
+
+    if (RUR.state.world_url !== undefined) {
+        if (RUR.state.world_name === undefined) {
+            RUR.state.world_name = RUR.state.world_url;
+        }
+        try {
+            RUR.load_world_file(RUR.state.world_url, RUR.state.world_name);
+        } catch (e) {
+            set_default_world();
+        }
+    } else if (RUR.state.world_name !== undefined) {
+        RUR.state.world_url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+        if (RUR.state.world_url === undefined) { // Name does not in the current menu
+            set_default_world();
+        }
+    } else {
+        set_default_world();
+    }
+}</pre>
+<p>之後, menu, url 與 editor 可以利用 URL 變數中的絕對路徑執行:</p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Fhw-scrum-1%2Freeborg%2Fpython%2Fharvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Fhw-scrum-1%2Freeborg%2Fpython%2Fharvest1.py</a></p>
+<p>且在網站目錄中自帶 url 變數的 .json 以及 editor 變數所需的 .py 檔案.</p>
+<p>之後看是否可以簡化路徑中的變數設定.</p>
+<p>其中也可以設法讓 url 變數與 editor 變數相同, 可以自 Gist 或 http 取值.</p><h2>Packages</h2>
 <p>Reeborg Javascript 程式碼的工具打包設定: package.json</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
   "scripts": {

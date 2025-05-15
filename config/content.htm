@@ -871,7 +871,7 @@ RUR.control.turn_left = function(robot){
         set_default_world();
     }
 }</pre>
-<p>set_initial_input_method</p>
+<p>set_initial_input_method, 例如: <span style="background-color: #ffff00;">mode=python</span></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_input_method(url_query) {
     var last_mode;
     RUR.state.input_method = decodeURIComponent(url_query.queryKey.mode); 
@@ -891,7 +891,7 @@ RUR.control.turn_left = function(robot){
         restore_blockly();
     }
 }</pre>
-<p>set_initial_language</p>
+<p>set_initial_language, 例如: <span style="background-color: #ffff00;">lang=en</span></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_language(url_query) {
     var last_lang;
     RUR.state.human_language = decodeURIComponent(url_query.queryKey.lang);
@@ -907,7 +907,7 @@ RUR.control.turn_left = function(robot){
     document.getElementById('human-language').value = RUR.state.human_language;
     $("#human-language").change(); // triggers the require UI changes
 }</pre>
-<p>set_initial_menu</p>
+<p>set_initial_menu, 例如: <span style="background-color: #ffff00;">menu=/reeborg/worlds/menus/select_collection_en.json</span> (假設以 server_domain/reeborg/ 呼叫執行)</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_menu(url_query) {
     var last_menu;
     var last_lang;
@@ -969,7 +969,10 @@ RUR.control.turn_left = function(robot){
     window.history.pushState("dummy", "dummy", permalink);
 };
 </pre>
-<p>以及 set_initial_state 函式:</p>
+<p>以及 set_initial_state 函式: 除上列 URL 變數外還有 name, url 以及 editor, 例如: </p>
+<p><span style="background-color: #ffff00;">name=Alone</span></p>
+<p><span style="background-color: #ffff00;">url=/reeborg/worlds/tutorial_en/harvest1.json</span></p>
+<p><span style="background-color: #ffff00;">editor=/reeborg/python/harvest1.py</span></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
     /* This function sets the initial state which includes
         * The input method (python, py-repl, etc.)
@@ -1042,7 +1045,11 @@ RUR.control.turn_left = function(robot){
         set_default_world();
     }
 }</pre>
-<p></p><h2>Packages</h2>
+<p>之後, menu, url 與 editor 可以利用 URL 變數中的絕對路徑執行:</p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Fhw-scrum-1%2Freeborg%2Fpython%2Fharvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Fhw-scrum-1%2Freeborg%2Fpython%2Fharvest1.py</a></p>
+<p>且在網站目錄中自帶 url 變數的 .json 以及 editor 變數所需的 .py 檔案.</p>
+<p>之後看是否可以簡化路徑中的變數設定.</p>
+<p>其中也可以設法讓 url 變數與 editor 變數相同, 可以自 Gist 或 http 取值.</p><h2>Packages</h2>
 <p>Reeborg Javascript 程式碼的工具打包設定: package.json</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
   "scripts": {
