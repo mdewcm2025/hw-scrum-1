@@ -597,6 +597,9 @@ function start_session () {
 </div>
 </div>
 <h2>Examples</h2>
+<p>針對 <a href="https://mde.tw/reeborg/">https://mde.tw/reeborg/</a> 伺服器 world 與 python 解題程式的對應呼叫, 必須從根目錄指向 /reeborg/ 之後再接 world 與 python 程式所在路徑, 如下所示:</p>
+<p><a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
+<hr/>
 <p>Alone with <a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/alone.json&amp;editor=https://gist.githubusercontent.com/mdecycu/71eea94e7cc0def9b3620fc8374d2e8b/raw/d583a7d37dc6b988c07675ad9139d91530c3d681/w10_reeborg1.py">the following programs</a>:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># use turn_left() to define turn_right() function
 def turn_right():
@@ -622,7 +625,7 @@ move()</pre>
 <p>呼叫伺服器 python 目錄中的 harvest1.py:</p>
 <p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
 <p>呼叫外部伺服器中的 harvest1.py:</p>
-<p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py</a> </p>
+<p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py</a></p>
 <p>URL 網址中的變數設定:</p>
 <p style="padding-left: 30px;">lang=en</p>
 <p style="padding-left: 30px;">mode=python</p>
@@ -969,7 +972,10 @@ RUR.control.turn_left = function(robot){
     window.history.pushState("dummy", "dummy", permalink);
 };
 </pre>
-<p>以及 set_initial_state 函式:</p>
+<p>以及 set_initial_state 函式: 除上列 URL 變數外還有 name, url 以及 editor, 例如: </p>
+<p><span style="background-color: #ffff00;">name=Alone</span></p>
+<p><span style="background-color: #ffff00;">url=/reeborg/worlds/tutorial_en/harvest1.json</span></p>
+<p><span style="background-color: #ffff00;">editor=/reeborg/python/harvest1.py</span></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
     /* This function sets the initial state which includes
         * The input method (python, py-repl, etc.)
@@ -1410,7 +1416,7 @@ function _restore_blockly () {
 <li>生成新的 URL，依據當前的應用狀態（如語言、模式、菜單、世界名稱和 URL）。</li>
 <li>使用 <code node="[object Object]">window.history.pushState</code> 更新瀏覽器的 URL，而不刷新頁面。</li>
 </ol>
-<hr/>
+<hr>
 <h4>總結</h4>
 <ol>
 <li><strong>讀取 URL</strong>：<code node="[object Object]">parseUri</code> 函數解析 URL，並將查詢參數存儲為鍵值對。</li>
@@ -1833,4 +1839,4 @@ doc["aitetris"].bind("click", aitetris.do)
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
 <!-- editor2 結束 --><hr/>
-<p></p>
+<p></p></hr>
