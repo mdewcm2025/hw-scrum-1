@@ -142,54 +142,250 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">task2.5 << <a href='task2.5.html'>Previous</a> <a href='task3.html'>Next</a> >> task3<br /><h1>IPv6</h1>
-<p>已知 w4 之前的學員作業倉儲版本, 無法在 IPv6 位址設定時正確運作, 各學員必須下載 <a href="http://229.cycu.org/cmsimde_w4.7z">cmsimde_w4.7z</a>, 解開壓縮檔案後, 替換倉儲中的 cmsimde 目錄.</p>
-<p>根據 <a href="./../downloads/1a_stud.txt">1a_stud.txt</a> 中的學員序號, 每位學員分配一個固定的 IPv6 網址:</p>
-<p>學員序號為 1的固定 IPv6 分配: 2001:288:6004:17:fff1:cc25:0000:a001</p>
-<p>註: 利用 Brython <a href="https://mde.tw/wcm2025/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/9f3df9d865a7ceca8e799ee9b1a31602/raw/5299aa53dc856df47c98993e016c9c0db2c74edf/2025_spring_set_mde_dns.py">產生</a> DNS 伺服器所需的設定.</p>
-<p>完成 dns 設定之後, 序號為 1 的學員其伺服器主機符號名稱為 w1.mde.nfu.edu.tw, 序號 50 則對應 w50.</p>
-<p>利用 hinet dns 伺服器查詢 w1.mde.nfu.edu.tw 以及 w50.nfu.edu.tw 的畫面:</p>
-<p><img alt="" height="339" src="./../images/nslookup_for_w1_w50_mde_nfu_edu_tw.png" width="300"/></p>
-<p>各學員在虛擬主機設定所分配的 IPv6 網址之後, 可以使用對應的符號名稱設定 nginx, cmsimde 作業網站以及 fossil 伺服器.</p>
-<hr/>
-<p>IPv6 網路設定畫面如下:</p>
-<p><img alt="" height="329" src="./../images/wcm_index1_ipv6_setup.png" width="400"/></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/6YMViZXpRKQ?si=v4qo4UGzGmqWeaZx" title="YouTube video player" width="560"></iframe></p>
-<p><a href="./../downloads/account_network_setup.7z">account_network_setup.7z</a></p>
-<p>固定 IPv6 與 Fossil SCM 結合使用:</p>
-<p>利用 fossil init 建立一個空白的 wcm.fossil 資料庫, fossil 會使用目前登入的使用者帳號, 然後以亂數建立該帳號的對應密碼, 且讓此帳號作為資料庫的管理者.</p>
-<p>由於 wcm.fossil 為 <a href="https://www.sqlite.org/">SQLite</a> 資料庫格式, 因此可以使用 sqlite3.exe 進入後, 利用 SQL 語法更改任何帳號的對應密碼.</p>
-<p>C:\tmp&gt;fossil init wcm.fossil</p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">C:\tmp&gt;fossil init wcm.fossil
-project-id: 7a2ba6d35aa1be96a6fed38503023877a95eb2ab
-server-id:  84002c6209d73504f02af0cd280ecba424e1c298
-admin-user: yen (initial password is "3E9yhxzQtr")
+    <div id="tipue_search_content">rb << <a href='rb.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages<br /><h1>Program</h1>
+<p>set_initial_state</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    /* This function sets the initial state which includes
+        * The input method (python, py-repl, etc.)
+        * The human language
+        * The world menu to be used
+        * The world to be initially displayed
+            * its name
+            * its url
 
-C:\tmp&gt;sqlite3 wcm.fossil
-SQLite version 3.49.0 2025-02-06 11:55:18
-Enter ".help" for usage hints.
-sqlite&gt; update user set pw='yen' where login='yen';
-sqlite&gt;</pre>
-<p>C:\tmp&gt;fossil ui wcm.fossil</p>
-<p>執行 fossil ui 後, 系統會自動跳出以下畫面:</p>
-<p><img alt="" height="219" src="./../images/w5_fossil_ui_1.png" width="800"/></p>
-<p>之後希望將作業倉儲內容納入上列 wcm.fossil, 其操作步驟:</p>
-<p>C:\tmp&gt;git clone <a href="https://github.com/mdewcm2025/hw-scrum-1.git">https://github.com/mdewcm2025/hw-scrum-1.git</a> wcmhw</p>
-<p>可以將作業倉儲內容放入 wcmhw 目錄中.</p>
-<p>接著要求將空的 wcm.fossil 倉儲的最新版 (名稱為 trunk) 強制解開到 wcmhw 目錄</p>
-<p>C:\tmp&gt;cd wcmhw</p>
-<p>C:\tmp\wcmhw&gt;fossil open ./../wcm.fossil --force</p>
-<p>接下來只要利用 fossil add 與 commit 指令就可以將作業倉儲內容"新增提交"進入 wcm.fossil 倉儲的版本控制中.</p>
-<p><span>C:\tmp\wcmhw&gt;fossil add .</span></p>
-<p><span>C:\tmp\wcmhw&gt;fossil commit -m "add 作業倉儲內容"</span></p>
-<p><span>然後回答 "a" 表示要將上列納入的所有資料進行提交, 而該提交版本內容將會註記在 wcm.fossil 倉儲中.</span></p>
-<p><span>C:\tmp\wcmhw&gt;cd ..</span></p>
-<p><span>C:\tmp&gt;fossil ui wcm.fossil </span></p>
-<p><span>就可以利用全球資訊網介面 (<a href="http://localhost:8081">http://localhost:8081</a>) 檢查 wcm.fossil 的最新版內容</span></p>
-<p>其中若進入 Admin - Settings, 在 default-csp 欄位填入"<a href='https://fonts.googleapis.com",'>https://fonts.googleapis.com",</a> 在 ignore-glob 欄位填入 "__pycache__".</p>
-<p>default-csp 代表可以跨網站擷取 <a href="https://fonts.googleapis.com">https://fonts.googleapis.com</a> 網站中的字型資料檔案, 而 ignore-glob 表示之後若有執行 Python 程式所產生的暫存檔案, 可以忽略, 不會因為新增提交而進入倉儲資料中.</p>
-<p>至於作業倉儲的ˋ靜態網站, 可以從 <a href="http://localhost:8081/">http://localhost:8081</a>/doc/trunk/index.html 進行檢視, 其中的 trunk 表示是該倉儲的最新版本.</p>
-<br />task2.5 << <a href='task2.5.html'>Previous</a> <a href='task3.html'>Next</a> >> task3</div>
+       The priority is determined by:
+           1. information encoded in the URL;
+           2. any previously saved state;
+           3. site defaults.
+            
+    */
+    var url_query;
+
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {  // should be set but just in case...
+        url_query.queryKey = {};
+    }
+    
+    // Changing the input_method / programming mode does not affect anything else
+    // so do first. Note that, if using Blockly, we will retrieve the last
+    // state here. However, if a world (loaded below) has some Blockly
+    // content, it will replace the restored content, as desired.
+    set_initial_input_method(url_query);
+
+    // Changing the human language will trigger a restart of the Python repl
+    // if it is the mode selected, to ensure that the proper reeborg_xx module
+    // is used; so it has to be done after the programming mode has been set.
+    set_initial_language(url_query);
+
+    // Next, we create the appropriate world menu, using the default if needed
+    set_initial_menu(url_query);
+
+    // A hand-written url may not include all required parts;
+    // this does not matter for the previous three settings, but it
+    // may matter if there is some inconsistency with the indicated url and name
+    // parts. In this case, we have to make sure that we do not
+    // retrieve the last saved values by mistake
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);    
+
+    // correct potentially faulty values
+    if (probably_invalid(RUR.state.world_url)) {
+        RUR.state.world_url = undefined;
+    }
+    if (probably_invalid(RUR.state.world_name)) {
+        RUR.state.world_name = undefined;
+    }
+
+    if (RUR.state.world_url !== undefined) {
+        if (RUR.state.world_name === undefined) {
+            RUR.state.world_name = RUR.state.world_url;
+        }
+        try {
+            RUR.load_world_file(RUR.state.world_url, RUR.state.world_name);
+        } catch (e) {
+            set_default_world();
+        }
+    } else if (RUR.state.world_name !== undefined) {
+        RUR.state.world_url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+        if (RUR.state.world_url === undefined) { // Name does not in the current menu
+            set_default_world();
+        }
+    } else {
+        set_default_world();
+    }
+}</pre>
+<p>set_initial_input_method</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_input_method(url_query) {
+    var last_mode;
+    RUR.state.input_method = decodeURIComponent(url_query.queryKey.mode); 
+    last_mode = localStorage.getItem("input_method");
+
+    if (probably_invalid(RUR.state.input_method)) {
+        if (!probably_invalid(last_mode)) {
+            RUR.state.input_method = last_mode;
+        } else {
+            RUR.state.input_method = RUR.initial_defaults.input_method;
+        }
+    }
+    document.getElementById("programming-mode").value = RUR.state.input_method;
+    $("#programming-mode").change(); // triggers the require UI changes
+
+    if (RUR.state.input_method === "blockly-py" || RUR.state.input_method === "blockly-js") {
+        restore_blockly();
+    }
+}</pre>
+<p>set_initial_language</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_language(url_query) {
+    var last_lang;
+    RUR.state.human_language = decodeURIComponent(url_query.queryKey.lang);
+    last_lang = localStorage.getItem("human_language");
+
+    if (probably_invalid(RUR.state.human_language)) {
+        if (!probably_invalid(last_lang)) {
+            RUR.state.human_language = last_lang;
+        } else {
+            RUR.state.human_language = RUR.initial_defaults.human_language;
+        }
+    }
+    document.getElementById('human-language').value = RUR.state.human_language;
+    $("#human-language").change(); // triggers the require UI changes
+}</pre>
+<p>set_initial_menu</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_menu(url_query) {
+    var last_menu;
+    var last_lang;
+
+    last_lang = localStorage.getItem("human_language");
+    if (last_lang !== RUR.state.human_language) {
+        RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+    } else {
+        RUR.state.current_menu = decodeURIComponent(url_query.queryKey.menu);
+        last_menu = localStorage.getItem("world_menu");
+
+        if (probably_invalid(RUR.state.current_menu)) {
+            if (!probably_invalid(last_menu)) {
+                RUR.state.current_menu = last_menu;
+            } else {
+                RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+            }
+        }
+    }
+
+    RUR.state.creating_menu = true;
+    RUR.load_world_file(RUR.state.current_menu);
+    if (RUR.file_io_status == "no link") {
+        RUR.make_default_menu(RUR.state.human_language);
+    }
+
+    RUR.state.creating_menu = false;
+
+}</pre>
+<p>為了讓呼叫 Reeborg 的 URL 連結可以納入原先程式並沒有的 editor 變數, 必須修改兩個地方:</p>
+<p>也就是 RUR.permalink.update_URI 函式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">RUR.permalink.update_URI = function() {
+    "use strict";
+    var url_query, permalink;
+
+    // Do not mess up with URI during initialization 
+    if (!RUR.state.session_initialized) {
+        return;
+    }
+    // Permalinks shared to collaborate using Mozilla's TogetherJS should also
+    // be left unchanged
+    if (window.location.href.indexOf("#&amp;togetherjs") != -1) {
+        return;
+    }
+
+    url_query = parseUri(window.location.href);
+    permalink = url_query.protocol + "://" + url_query.host;
+    if (url_query.port){
+        permalink += ":" + url_query.port;
+    }
+    permalink += url_query.path;
+    // Kmolab add RUR.state.world_editor starting from set_initial_state function
+    permalink += "?lang=" + encodeURIComponent(RUR.state.human_language) +
+                 "&amp;mode=" + encodeURIComponent(RUR.state.input_method) +
+                 "&amp;menu=" + encodeURIComponent(RUR.state.current_menu) +                 
+                 "&amp;name=" + encodeURIComponent(RUR.state.world_name) +
+                 "&amp;url=" + encodeURIComponent(RUR.state.world_url) +
+                 "&amp;editor=" + encodeURIComponent(RUR.state.world_editor);
+    window.history.pushState("dummy", "dummy", permalink);
+};
+</pre>
+<p>以及 set_initial_state 函式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    /* This function sets the initial state which includes
+        * The input method (python, py-repl, etc.)
+        * The human language
+        * The world menu to be used
+        * The world to be initially displayed
+            * its name
+            * its url
+
+       The priority is determined by:
+           1. information encoded in the URL;
+           2. any previously saved state;
+           3. site defaults.
+            
+    */
+    var url_query;
+
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {  // should be set but just in case...
+        url_query.queryKey = {};
+    }
+    
+    // Changing the input_method / programming mode does not affect anything else
+    // so do first. Note that, if using Blockly, we will retrieve the last
+    // state here. However, if a world (loaded below) has some Blockly
+    // content, it will replace the restored content, as desired.
+    set_initial_input_method(url_query);
+
+    // Changing the human language will trigger a restart of the Python repl
+    // if it is the mode selected, to ensure that the proper reeborg_xx module
+    // is used; so it has to be done after the programming mode has been set.
+    set_initial_language(url_query);
+
+    // Next, we create the appropriate world menu, using the default if needed
+    set_initial_menu(url_query);
+
+    // A hand-written url may not include all required parts;
+    // this does not matter for the previous three settings, but it
+    // may matter if there is some inconsistency with the indicated url and name
+    // parts. In this case, we have to make sure that we do not
+    // retrieve the last saved values by mistake
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);
+    // Kmolab add the editor variable
+    RUR.state.world_editor = decodeURIComponent(url_query.queryKey.editor);
+
+    // correct potentially faulty values
+    if (probably_invalid(RUR.state.world_url)) {
+        RUR.state.world_url = undefined;
+    }
+    if (probably_invalid(RUR.state.world_name)) {
+        RUR.state.world_name = undefined;
+    }
+
+    if (RUR.state.world_url !== undefined) {
+        if (RUR.state.world_name === undefined) {
+            RUR.state.world_name = RUR.state.world_url;
+        }
+        try {
+            RUR.load_world_file(RUR.state.world_url, RUR.state.world_name);
+        } catch (e) {
+            set_default_world();
+        }
+    } else if (RUR.state.world_name !== undefined) {
+        RUR.state.world_url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+        if (RUR.state.world_url === undefined) { // Name does not in the current menu
+            set_default_world();
+        }
+    } else {
+        set_default_world();
+    }
+}</pre>
+<p></p><br />rb << <a href='rb.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages</div>
         
     <!-- footer -->
       <div class="container">

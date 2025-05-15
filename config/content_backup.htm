@@ -799,7 +799,145 @@ RUR.control.turn_left = function(robot){
     }
     RUR.record_frame("turn_left", robot.__id);
 };</pre>
-<h2>Packages</h2>
+<h3>Program</h3>
+<p>set_initial_state</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    /* This function sets the initial state which includes
+        * The input method (python, py-repl, etc.)
+        * The human language
+        * The world menu to be used
+        * The world to be initially displayed
+            * its name
+            * its url
+
+       The priority is determined by:
+           1. information encoded in the URL;
+           2. any previously saved state;
+           3. site defaults.
+            
+    */
+    var url_query;
+
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {  // should be set but just in case...
+        url_query.queryKey = {};
+    }
+    
+    // Changing the input_method / programming mode does not affect anything else
+    // so do first. Note that, if using Blockly, we will retrieve the last
+    // state here. However, if a world (loaded below) has some Blockly
+    // content, it will replace the restored content, as desired.
+    set_initial_input_method(url_query);
+
+    // Changing the human language will trigger a restart of the Python repl
+    // if it is the mode selected, to ensure that the proper reeborg_xx module
+    // is used; so it has to be done after the programming mode has been set.
+    set_initial_language(url_query);
+
+    // Next, we create the appropriate world menu, using the default if needed
+    set_initial_menu(url_query);
+
+    // A hand-written url may not include all required parts;
+    // this does not matter for the previous three settings, but it
+    // may matter if there is some inconsistency with the indicated url and name
+    // parts. In this case, we have to make sure that we do not
+    // retrieve the last saved values by mistake
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);    
+
+    // correct potentially faulty values
+    if (probably_invalid(RUR.state.world_url)) {
+        RUR.state.world_url = undefined;
+    }
+    if (probably_invalid(RUR.state.world_name)) {
+        RUR.state.world_name = undefined;
+    }
+
+    if (RUR.state.world_url !== undefined) {
+        if (RUR.state.world_name === undefined) {
+            RUR.state.world_name = RUR.state.world_url;
+        }
+        try {
+            RUR.load_world_file(RUR.state.world_url, RUR.state.world_name);
+        } catch (e) {
+            set_default_world();
+        }
+    } else if (RUR.state.world_name !== undefined) {
+        RUR.state.world_url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+        if (RUR.state.world_url === undefined) { // Name does not in the current menu
+            set_default_world();
+        }
+    } else {
+        set_default_world();
+    }
+}</pre>
+<p>set_initial_input_method</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_input_method(url_query) {
+    var last_mode;
+    RUR.state.input_method = decodeURIComponent(url_query.queryKey.mode); 
+    last_mode = localStorage.getItem("input_method");
+
+    if (probably_invalid(RUR.state.input_method)) {
+        if (!probably_invalid(last_mode)) {
+            RUR.state.input_method = last_mode;
+        } else {
+            RUR.state.input_method = RUR.initial_defaults.input_method;
+        }
+    }
+    document.getElementById("programming-mode").value = RUR.state.input_method;
+    $("#programming-mode").change(); // triggers the require UI changes
+
+    if (RUR.state.input_method === "blockly-py" || RUR.state.input_method === "blockly-js") {
+        restore_blockly();
+    }
+}</pre>
+<p>set_initial_language</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_language(url_query) {
+    var last_lang;
+    RUR.state.human_language = decodeURIComponent(url_query.queryKey.lang);
+    last_lang = localStorage.getItem("human_language");
+
+    if (probably_invalid(RUR.state.human_language)) {
+        if (!probably_invalid(last_lang)) {
+            RUR.state.human_language = last_lang;
+        } else {
+            RUR.state.human_language = RUR.initial_defaults.human_language;
+        }
+    }
+    document.getElementById('human-language').value = RUR.state.human_language;
+    $("#human-language").change(); // triggers the require UI changes
+}</pre>
+<p>set_initial_menu</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_menu(url_query) {
+    var last_menu;
+    var last_lang;
+
+    last_lang = localStorage.getItem("human_language");
+    if (last_lang !== RUR.state.human_language) {
+        RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+    } else {
+        RUR.state.current_menu = decodeURIComponent(url_query.queryKey.menu);
+        last_menu = localStorage.getItem("world_menu");
+
+        if (probably_invalid(RUR.state.current_menu)) {
+            if (!probably_invalid(last_menu)) {
+                RUR.state.current_menu = last_menu;
+            } else {
+                RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+            }
+        }
+    }
+
+    RUR.state.creating_menu = true;
+    RUR.load_world_file(RUR.state.current_menu);
+    if (RUR.file_io_status == "no link") {
+        RUR.make_default_menu(RUR.state.human_language);
+    }
+
+    RUR.state.creating_menu = false;
+
+}</pre>
+<p></p><h2>Packages</h2>
 <p>Reeborg Javascript 程式碼的工具打包設定: package.json</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
   "scripts": {
@@ -1315,6 +1453,7 @@ function _restore_blockly () {
 <li><a href="http://229.cycu.org/certbot.7z">http://229.cycu.org/certbot.7z</a> 設定 https</li>
 <li>git clone <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 放入 nginx 系統中的 html 目錄</li>
 <li>利用 <a href="http://localhost/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py">http://localhost/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py</a> 進行測試.</li>
+<li>就機械設計的專業而言, 之後可以用來開發類似: <a href="https://github.com/youandvern/efficalc">https://github.com/youandvern/efficalc</a> </li>
 </ol>
 <p style="padding-left: 30px;"><span style="background-color: #ccffcc;">操作步驟 (Ubuntu)</span>:</p>
 <ol>
