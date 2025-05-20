@@ -2,7 +2,7 @@
         <head>
         <title>wcm-scrum-1</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -142,142 +142,257 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">IPv6 << <a href='IPv6.html'>Previous</a> <a href='mind-map.html'>Next</a> >> mind-map<br /><h1>task3</h1>
-<h4>使用 Nginx 建立全球資訊網伺服器</h4>
-<h4>HTML 中的 CSS 與 Javascript</h4>
-<h4>Windows 環境中的 WWW server</h4>
-<h4>Ubuntu 環境中的 WWW server</h4>
-<hr/>
-<p>Windows:</p>
-<p style="padding-left: 30px;"><a href="https://software.nfu.edu.tw/Windows/tw/Win_10_22H2.4_64BIT_Ch.ISO">https://software.nfu.edu.tw/Windows/tw/Win_10_22H2.4_64BIT_Ch.ISO</a></p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/win10.vdi">http://229.cycu.org/win10.vdi</a> </p>
-<p style="padding-left: 30px;">利用 nssm 將 nginx.exe 設為系統服務</p>
-<p style="padding-left: 30px;">必須使用管理者的 cmd, 然後執行 nssm install nginx, nssm edit nginx, nssm remove nginx</p>
-<p style="padding-left: 30px;">nginx.conf </p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">#user  nobody;
-worker_processes  1;
+    <div id="tipue_search_content">rb << <a href='rb.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages<br /><h1>Program</h1>
+<p>set_initial_state</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    /* This function sets the initial state which includes
+        * The input method (python, py-repl, etc.)
+        * The human language
+        * The world menu to be used
+        * The world to be initially displayed
+            * its name
+            * its url
 
-#error_log  logs/error.log;
-#error_log  logs/error.log  notice;
-#error_log  logs/error.log  info;
+       The priority is determined by:
+           1. information encoded in the URL;
+           2. any previously saved state;
+           3. site defaults.
+            
+    */
+    var url_query;
 
-#pid        logs/nginx.pid;
-
-
-events {
-    worker_connections  1024;
-}
-
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
-
-    sendfile        on;
-    keepalive_timeout  65;
-
-    server {
-        # a0xx 中的 xx 為上課時的學員序號
-        # https://mdewcm2025.github.io/hw-scrum-1/downloads/1a_stud.txt
-        listen [2001:288:6004:17:fff1:cc25::a0xx]:80;
-       # server_name  your-domain.com;
-
-        location / {
-            root   html;
-            index  index.html index.htm;
-        }
-
-        error_page 404 /404.html;
-        location = /40x.html {
-        }
-
-        error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
-        }
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {  // should be set but just in case...
+        url_query.queryKey = {};
     }
-}
-</pre>
-<p>Windows 利用 <a href="https://letsencrypt.org/">Letsencrypt</a> 設定 https WWW 伺服器的套件工具: <a href="http://229.cycu.org/certbot.7z">certbot.7z</a></p>
-<p>安裝 certbot 之後關閉 WWW 伺服器, 然後利用管理者啟動的 cmd 執行的:</p>
-<p><span>certbot certonly </span><span class="hljs-comment">--standalone</span></p>
-<p><span class="hljs-comment">就可以取得 privkey.pem 與 fullchain.pem 等兩個網站的 https 數位簽章.</span></p>
-<p><span class="hljs-comment">與 nginx 結合設定的 nginx.conf 如下:</span></p>
-<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">#user  nobody;
-worker_processes  1;
+    
+    // Changing the input_method / programming mode does not affect anything else
+    // so do first. Note that, if using Blockly, we will retrieve the last
+    // state here. However, if a world (loaded below) has some Blockly
+    // content, it will replace the restored content, as desired.
+    set_initial_input_method(url_query);
 
-#error_log  logs/error.log;
-#error_log  logs/error.log  notice;
-#error_log  logs/error.log  info;
+    // Changing the human language will trigger a restart of the Python repl
+    // if it is the mode selected, to ensure that the proper reeborg_xx module
+    // is used; so it has to be done after the programming mode has been set.
+    set_initial_language(url_query);
 
-#pid        logs/nginx.pid;
+    // Next, we create the appropriate world menu, using the default if needed
+    set_initial_menu(url_query);
 
-events {
-    worker_connections  1024;
-}
+    // A hand-written url may not include all required parts;
+    // this does not matter for the previous three settings, but it
+    // may matter if there is some inconsistency with the indicated url and name
+    // parts. In this case, we have to make sure that we do not
+    // retrieve the last saved values by mistake
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);    
 
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
-
-    sendfile        on;
-    keepalive_timeout  65;
-
-    # Redirect HTTP to HTTPS
-    server {
-        listen [2001:288:6004:17:fff1:cc25::a099]:80;
-        server_name  w99.mde.nfu.edu.tw;
-
-        return 301 https://$host$request_uri;
+    // correct potentially faulty values
+    if (probably_invalid(RUR.state.world_url)) {
+        RUR.state.world_url = undefined;
+    }
+    if (probably_invalid(RUR.state.world_name)) {
+        RUR.state.world_name = undefined;
     }
 
-    # HTTPS server
-    server {
-        listen [2001:288:6004:17:fff1:cc25::a099]:443 ssl;
-        server_name w99.mde.nfu.edu.tw;
-
-        ssl_certificate      C:/Certbot/live/w99.mde.nfu.edu.tw/fullchain.pem;
-        ssl_certificate_key  C:/Certbot/live/w99.mde.nfu.edu.tw/privkey.pem;
-
-        ssl_protocols        TLSv1.2 TLSv1.3;
-        ssl_ciphers          HIGH:!aNULL:!MD5;
-
-        location / {
-            root   html;
-            index  index.html index.htm;
+    if (RUR.state.world_url !== undefined) {
+        if (RUR.state.world_name === undefined) {
+            RUR.state.world_name = RUR.state.world_url;
         }
-
-        error_page 404 /404.html;
-        location = /40x.html {
+        try {
+            RUR.load_world_file(RUR.state.world_url, RUR.state.world_name);
+        } catch (e) {
+            set_default_world();
         }
-
-        error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
+    } else if (RUR.state.world_name !== undefined) {
+        RUR.state.world_url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+        if (RUR.state.world_url === undefined) { // Name does not in the current menu
+            set_default_world();
         }
+    } else {
+        set_default_world();
     }
 }</pre>
-<p>在 Windows 利用 nssm 將 nginx 的啟動設為系統服務:</p>
-<p>在管理者權限下執行 cmd (nssm 必須提供位於實體目錄下的 nssm.exe):</p>
-<p style="padding-left: 30px;">nssm install nginx</p>
-<p>編輯 nginx 服務:</p>
-<p style="padding-left: 30px;">nssm edit nginx</p>
-<p>檢視或管理系統服務:</p>
-<p style="padding-left: 30px;">以滑鼠右鍵點選"開始"後, 選擇"電腦管理", 即可開啟系統的"服務與應用程式".</p>
-<hr/>
-<p>將 <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 設為作業倉儲的 submodule (子模組) 的指令:</p>
-<p>cd wcmhw (確定執行目錄為作業倉儲)</p>
-<p>git submodule add <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> reeborg</p>
-<p>表示要將 <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 設為子模組, 且命名為 reeborg</p>
-<hr/>
-<p>Ubuntu:</p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu-24.04.2-live-server-amd64.iso">ubuntu-24.04.2-live-server-amd64.iso</a></p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/ubuntu.vdi">http://229.cycu.org/ubuntu.vdi</a> </p>
-<p>Virtualbox:</p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/VirtualBox-7.1.6-167084-Win.exe">VirtualBox-7.1.6-167084-Win.exe</a></p>
-<p style="padding-left: 30px;"><a href="http://229.cycu.org/Portable-Virtualbox.7z">Portable-Virtualbox.7z</a></p>
-<p>在同一個 Virtualbox 設定下, 使用同一個 .vdi, 必須要先修改其 UUID:</p>
-<p>"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid c:\users\yen\downloads\win10.vdi</p>
-<p style="padding-left: 30px;"></p>
-<p></p>
-<p></p><br />IPv6 << <a href='IPv6.html'>Previous</a> <a href='mind-map.html'>Next</a> >> mind-map</div>
+<p>set_initial_input_method, 例如: <span style="background-color: #ffff00;">mode=python</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_input_method(url_query) {
+    var last_mode;
+    RUR.state.input_method = decodeURIComponent(url_query.queryKey.mode); 
+    last_mode = localStorage.getItem("input_method");
+
+    if (probably_invalid(RUR.state.input_method)) {
+        if (!probably_invalid(last_mode)) {
+            RUR.state.input_method = last_mode;
+        } else {
+            RUR.state.input_method = RUR.initial_defaults.input_method;
+        }
+    }
+    document.getElementById("programming-mode").value = RUR.state.input_method;
+    $("#programming-mode").change(); // triggers the require UI changes
+
+    if (RUR.state.input_method === "blockly-py" || RUR.state.input_method === "blockly-js") {
+        restore_blockly();
+    }
+}</pre>
+<p>set_initial_language, 例如: <span style="background-color: #ffff00;">lang=en</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_language(url_query) {
+    var last_lang;
+    RUR.state.human_language = decodeURIComponent(url_query.queryKey.lang);
+    last_lang = localStorage.getItem("human_language");
+
+    if (probably_invalid(RUR.state.human_language)) {
+        if (!probably_invalid(last_lang)) {
+            RUR.state.human_language = last_lang;
+        } else {
+            RUR.state.human_language = RUR.initial_defaults.human_language;
+        }
+    }
+    document.getElementById('human-language').value = RUR.state.human_language;
+    $("#human-language").change(); // triggers the require UI changes
+}</pre>
+<p>set_initial_menu, 例如: <span style="background-color: #ffff00;">menu=/reeborg/worlds/menus/select_collection_en.json</span> (假設以 server_domain/reeborg/ 呼叫執行)</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_menu(url_query) {
+    var last_menu;
+    var last_lang;
+
+    last_lang = localStorage.getItem("human_language");
+    if (last_lang !== RUR.state.human_language) {
+        RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+    } else {
+        RUR.state.current_menu = decodeURIComponent(url_query.queryKey.menu);
+        last_menu = localStorage.getItem("world_menu");
+
+        if (probably_invalid(RUR.state.current_menu)) {
+            if (!probably_invalid(last_menu)) {
+                RUR.state.current_menu = last_menu;
+            } else {
+                RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+            }
+        }
+    }
+
+    RUR.state.creating_menu = true;
+    RUR.load_world_file(RUR.state.current_menu);
+    if (RUR.file_io_status == "no link") {
+        RUR.make_default_menu(RUR.state.human_language);
+    }
+
+    RUR.state.creating_menu = false;
+
+}</pre>
+<p>為了讓呼叫 Reeborg 的 URL 連結可以納入原先程式並沒有的 editor 變數, 必須修改兩個地方:</p>
+<p>也就是 RUR.permalink.update_URI 函式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">RUR.permalink.update_URI = function() {
+    "use strict";
+    var url_query, permalink;
+
+    // Do not mess up with URI during initialization 
+    if (!RUR.state.session_initialized) {
+        return;
+    }
+    // Permalinks shared to collaborate using Mozilla's TogetherJS should also
+    // be left unchanged
+    if (window.location.href.indexOf("#&amp;togetherjs") != -1) {
+        return;
+    }
+
+    url_query = parseUri(window.location.href);
+    permalink = url_query.protocol + "://" + url_query.host;
+    if (url_query.port){
+        permalink += ":" + url_query.port;
+    }
+    permalink += url_query.path;
+    // Kmolab add RUR.state.world_editor starting from set_initial_state function
+    permalink += "?lang=" + encodeURIComponent(RUR.state.human_language) +
+                 "&amp;mode=" + encodeURIComponent(RUR.state.input_method) +
+                 "&amp;menu=" + encodeURIComponent(RUR.state.current_menu) +                 
+                 "&amp;name=" + encodeURIComponent(RUR.state.world_name) +
+                 "&amp;url=" + encodeURIComponent(RUR.state.world_url) +
+                 "&amp;editor=" + encodeURIComponent(RUR.state.world_editor);
+    window.history.pushState("dummy", "dummy", permalink);
+};
+</pre>
+<p>以及 set_initial_state 函式: 除上列 URL 變數外還有 name, url 以及 editor, 例如: </p>
+<p><span style="background-color: #ffff00;">name=Alone</span></p>
+<p><span style="background-color: #ffff00;">url=/reeborg/worlds/tutorial_en/harvest1.json</span></p>
+<p><span style="background-color: #ffff00;">editor=/reeborg/python/harvest1.py</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    /* This function sets the initial state which includes
+        * The input method (python, py-repl, etc.)
+        * The human language
+        * The world menu to be used
+        * The world to be initially displayed
+            * its name
+            * its url
+
+       The priority is determined by:
+           1. information encoded in the URL;
+           2. any previously saved state;
+           3. site defaults.
+            
+    */
+    var url_query;
+
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {  // should be set but just in case...
+        url_query.queryKey = {};
+    }
+    
+    // Changing the input_method / programming mode does not affect anything else
+    // so do first. Note that, if using Blockly, we will retrieve the last
+    // state here. However, if a world (loaded below) has some Blockly
+    // content, it will replace the restored content, as desired.
+    set_initial_input_method(url_query);
+
+    // Changing the human language will trigger a restart of the Python repl
+    // if it is the mode selected, to ensure that the proper reeborg_xx module
+    // is used; so it has to be done after the programming mode has been set.
+    set_initial_language(url_query);
+
+    // Next, we create the appropriate world menu, using the default if needed
+    set_initial_menu(url_query);
+
+    // A hand-written url may not include all required parts;
+    // this does not matter for the previous three settings, but it
+    // may matter if there is some inconsistency with the indicated url and name
+    // parts. In this case, we have to make sure that we do not
+    // retrieve the last saved values by mistake
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);
+    // Kmolab add the editor variable
+    RUR.state.world_editor = decodeURIComponent(url_query.queryKey.editor);
+
+    // correct potentially faulty values
+    if (probably_invalid(RUR.state.world_url)) {
+        RUR.state.world_url = undefined;
+    }
+    if (probably_invalid(RUR.state.world_name)) {
+        RUR.state.world_name = undefined;
+    }
+
+    if (RUR.state.world_url !== undefined) {
+        if (RUR.state.world_name === undefined) {
+            RUR.state.world_name = RUR.state.world_url;
+        }
+        try {
+            RUR.load_world_file(RUR.state.world_url, RUR.state.world_name);
+        } catch (e) {
+            set_default_world();
+        }
+    } else if (RUR.state.world_name !== undefined) {
+        RUR.state.world_url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+        if (RUR.state.world_url === undefined) { // Name does not in the current menu
+            set_default_world();
+        }
+    } else {
+        set_default_world();
+    }
+}</pre>
+<p>之後, menu, url 與 editor 可以利用 URL 變數中的絕對路徑執行:</p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Fhw-scrum-1%2Freeborg%2Fpython%2Fharvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Fhw-scrum-1%2Freeborg%2Fpython%2Fharvest1.py</a></p>
+<p>且在網站目錄中自帶 url 變數的 .json 以及 editor 變數所需的 .py 檔案.</p>
+<p>之後看是否可以簡化路徑中的變數設定.</p>
+<p>其中也可以設法讓 url 變數與 editor 變數相同, 可以自 Gist 或 http 取值.</p><br />rb << <a href='rb.html'>Previous</a> <a href='Packages.html'>Next</a> >> Packages</div>
         
     <!-- footer -->
       <div class="container">

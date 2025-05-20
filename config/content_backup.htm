@@ -321,6 +321,16 @@ http {
 <h4>網際內容管理中的 Reeborg</h4>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/hw-scrum-1/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/python/harvest1.py</a> </p>
 <p></p><h1>Reeborg</h1>
+<p>假如利用相對路徑呼叫 URL 變數值:</p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=worlds/tutorial_en/harvest1.json&amp;editor=python/harvest1.py</a> </p>
+<p>表示:</p>
+<p style="padding-left: 30px;">lang=en</p>
+<p style="padding-left: 30px;">mode=python</p>
+<p style="padding-left: 30px;">menu=worlds/menus/select_collection_en.json</p>
+<p style="padding-left: 30px;">name=Alone</p>
+<p style="padding-left: 30px;">url=worlds/tutorial_en/harvest1.json</p>
+<p style="padding-left: 30px;">editor=python/harvest1.py</p>
+<hr/>
 <p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg">https://mdewcm2025.github.io/hw-scrum-1/reeborg</a></p>
 <p><a href="https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js">https://github.com/mdewcm2025/hw-scrum-1/blob/main/reeborg/rb/reeborg.js</a></p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">function set_editor() {
@@ -477,8 +487,7 @@ while True:
 <p><a href="https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/">https://aroberge.gitbooks.io/reeborg-s-world-advanced-world-creation/content/</a></p>
 <p><a href="https://github.com/b-tomi/100DaysOfCode/">https://github.com/b-tomi/100DaysOfCode/</a></p>
 <p><a href="https://www.youtube.com/watch?v=9YDyVwoYJ8k">https://www.youtube.com/watch?v=9YDyVwoYJ8k</a></p>
-</div>
-<h2>Challenge</h2>
+</div><h2>Challenge</h2>
 <p><a href="https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json">Step0</a></p>
 <p>https://reeborg.cs20.ca/?lang=en&amp;mode=python&amp;menu=/worlds/menus/sk_menu.json&amp;name=Step 0&amp;url=worlds/sk/step0.json</p>
 <p>lang=en</p>
@@ -597,6 +606,10 @@ function start_session () {
 </div>
 </div>
 <h2>Examples</h2>
+<p>針對 <a href="https://mde.tw/reeborg/">https://mde.tw/reeborg/</a> 伺服器 world 與 python 解題程式的對應呼叫, 必須從根目錄指向 /reeborg/ 之後再接 world 與 python 程式所在路徑, 如下所示:</p>
+<p><a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
+<p>接下來希望能選擇性操縱是否列出 menu 超文件頁面.</p>
+<hr/>
 <p>Alone with <a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/alone.json&amp;editor=https://gist.githubusercontent.com/mdecycu/71eea94e7cc0def9b3620fc8374d2e8b/raw/d583a7d37dc6b988c07675ad9139d91530c3d681/w10_reeborg1.py">the following programs</a>:</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># use turn_left() to define turn_right() function
 def turn_right():
@@ -622,7 +635,7 @@ move()</pre>
 <p>呼叫伺服器 python 目錄中的 harvest1.py:</p>
 <p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
 <p>呼叫外部伺服器中的 harvest1.py:</p>
-<p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py</a> </p>
+<p><a href="https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py">https://mde.tw/reeborg?lang=en&amp;mode=python&amp;menu=/reeborg/worlds/menus/select_collection_en.json&amp;name=Alone&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=https://mdewcm2025.github.io/hw-scrum-1/python/harvest1.py</a></p>
 <p>URL 網址中的變數設定:</p>
 <p style="padding-left: 30px;">lang=en</p>
 <p style="padding-left: 30px;">mode=python</p>
@@ -799,7 +812,257 @@ RUR.control.turn_left = function(robot){
     }
     RUR.record_frame("turn_left", robot.__id);
 };</pre>
-<h2>Packages</h2>
+<h3>Program</h3>
+<p>set_initial_state</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    /* This function sets the initial state which includes
+        * The input method (python, py-repl, etc.)
+        * The human language
+        * The world menu to be used
+        * The world to be initially displayed
+            * its name
+            * its url
+
+       The priority is determined by:
+           1. information encoded in the URL;
+           2. any previously saved state;
+           3. site defaults.
+            
+    */
+    var url_query;
+
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {  // should be set but just in case...
+        url_query.queryKey = {};
+    }
+    
+    // Changing the input_method / programming mode does not affect anything else
+    // so do first. Note that, if using Blockly, we will retrieve the last
+    // state here. However, if a world (loaded below) has some Blockly
+    // content, it will replace the restored content, as desired.
+    set_initial_input_method(url_query);
+
+    // Changing the human language will trigger a restart of the Python repl
+    // if it is the mode selected, to ensure that the proper reeborg_xx module
+    // is used; so it has to be done after the programming mode has been set.
+    set_initial_language(url_query);
+
+    // Next, we create the appropriate world menu, using the default if needed
+    set_initial_menu(url_query);
+
+    // A hand-written url may not include all required parts;
+    // this does not matter for the previous three settings, but it
+    // may matter if there is some inconsistency with the indicated url and name
+    // parts. In this case, we have to make sure that we do not
+    // retrieve the last saved values by mistake
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);    
+
+    // correct potentially faulty values
+    if (probably_invalid(RUR.state.world_url)) {
+        RUR.state.world_url = undefined;
+    }
+    if (probably_invalid(RUR.state.world_name)) {
+        RUR.state.world_name = undefined;
+    }
+
+    if (RUR.state.world_url !== undefined) {
+        if (RUR.state.world_name === undefined) {
+            RUR.state.world_name = RUR.state.world_url;
+        }
+        try {
+            RUR.load_world_file(RUR.state.world_url, RUR.state.world_name);
+        } catch (e) {
+            set_default_world();
+        }
+    } else if (RUR.state.world_name !== undefined) {
+        RUR.state.world_url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+        if (RUR.state.world_url === undefined) { // Name does not in the current menu
+            set_default_world();
+        }
+    } else {
+        set_default_world();
+    }
+}</pre>
+<p>set_initial_input_method, 例如: <span style="background-color: #ffff00;">mode=python</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_input_method(url_query) {
+    var last_mode;
+    RUR.state.input_method = decodeURIComponent(url_query.queryKey.mode); 
+    last_mode = localStorage.getItem("input_method");
+
+    if (probably_invalid(RUR.state.input_method)) {
+        if (!probably_invalid(last_mode)) {
+            RUR.state.input_method = last_mode;
+        } else {
+            RUR.state.input_method = RUR.initial_defaults.input_method;
+        }
+    }
+    document.getElementById("programming-mode").value = RUR.state.input_method;
+    $("#programming-mode").change(); // triggers the require UI changes
+
+    if (RUR.state.input_method === "blockly-py" || RUR.state.input_method === "blockly-js") {
+        restore_blockly();
+    }
+}</pre>
+<p>set_initial_language, 例如: <span style="background-color: #ffff00;">lang=en</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_language(url_query) {
+    var last_lang;
+    RUR.state.human_language = decodeURIComponent(url_query.queryKey.lang);
+    last_lang = localStorage.getItem("human_language");
+
+    if (probably_invalid(RUR.state.human_language)) {
+        if (!probably_invalid(last_lang)) {
+            RUR.state.human_language = last_lang;
+        } else {
+            RUR.state.human_language = RUR.initial_defaults.human_language;
+        }
+    }
+    document.getElementById('human-language').value = RUR.state.human_language;
+    $("#human-language").change(); // triggers the require UI changes
+}</pre>
+<p>set_initial_menu, 例如: <span style="background-color: #ffff00;">menu=/reeborg/worlds/menus/select_collection_en.json</span> (假設以 server_domain/reeborg/ 呼叫執行)</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_menu(url_query) {
+    var last_menu;
+    var last_lang;
+
+    last_lang = localStorage.getItem("human_language");
+    if (last_lang !== RUR.state.human_language) {
+        RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+    } else {
+        RUR.state.current_menu = decodeURIComponent(url_query.queryKey.menu);
+        last_menu = localStorage.getItem("world_menu");
+
+        if (probably_invalid(RUR.state.current_menu)) {
+            if (!probably_invalid(last_menu)) {
+                RUR.state.current_menu = last_menu;
+            } else {
+                RUR.state.current_menu = RUR.initial_defaults.initial_menu;
+            }
+        }
+    }
+
+    RUR.state.creating_menu = true;
+    RUR.load_world_file(RUR.state.current_menu);
+    if (RUR.file_io_status == "no link") {
+        RUR.make_default_menu(RUR.state.human_language);
+    }
+
+    RUR.state.creating_menu = false;
+
+}</pre>
+<p>為了讓呼叫 Reeborg 的 URL 連結可以納入原先程式並沒有的 editor 變數, 必須修改兩個地方:</p>
+<p>也就是 RUR.permalink.update_URI 函式:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">RUR.permalink.update_URI = function() {
+    "use strict";
+    var url_query, permalink;
+
+    // Do not mess up with URI during initialization 
+    if (!RUR.state.session_initialized) {
+        return;
+    }
+    // Permalinks shared to collaborate using Mozilla's TogetherJS should also
+    // be left unchanged
+    if (window.location.href.indexOf("#&amp;togetherjs") != -1) {
+        return;
+    }
+
+    url_query = parseUri(window.location.href);
+    permalink = url_query.protocol + "://" + url_query.host;
+    if (url_query.port){
+        permalink += ":" + url_query.port;
+    }
+    permalink += url_query.path;
+    // Kmolab add RUR.state.world_editor starting from set_initial_state function
+    permalink += "?lang=" + encodeURIComponent(RUR.state.human_language) +
+                 "&amp;mode=" + encodeURIComponent(RUR.state.input_method) +
+                 "&amp;menu=" + encodeURIComponent(RUR.state.current_menu) +                 
+                 "&amp;name=" + encodeURIComponent(RUR.state.world_name) +
+                 "&amp;url=" + encodeURIComponent(RUR.state.world_url) +
+                 "&amp;editor=" + encodeURIComponent(RUR.state.world_editor);
+    window.history.pushState("dummy", "dummy", permalink);
+};
+</pre>
+<p>以及 set_initial_state 函式: 除上列 URL 變數外還有 name, url 以及 editor, 例如: </p>
+<p><span style="background-color: #ffff00;">name=Alone</span></p>
+<p><span style="background-color: #ffff00;">url=/reeborg/worlds/tutorial_en/harvest1.json</span></p>
+<p><span style="background-color: #ffff00;">editor=/reeborg/python/harvest1.py</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">function set_initial_state() {
+    /* This function sets the initial state which includes
+        * The input method (python, py-repl, etc.)
+        * The human language
+        * The world menu to be used
+        * The world to be initially displayed
+            * its name
+            * its url
+
+       The priority is determined by:
+           1. information encoded in the URL;
+           2. any previously saved state;
+           3. site defaults.
+            
+    */
+    var url_query;
+
+    url_query = RUR.permalink.parseUri(window.location.href);
+    if (url_query.queryKey === undefined) {  // should be set but just in case...
+        url_query.queryKey = {};
+    }
+    
+    // Changing the input_method / programming mode does not affect anything else
+    // so do first. Note that, if using Blockly, we will retrieve the last
+    // state here. However, if a world (loaded below) has some Blockly
+    // content, it will replace the restored content, as desired.
+    set_initial_input_method(url_query);
+
+    // Changing the human language will trigger a restart of the Python repl
+    // if it is the mode selected, to ensure that the proper reeborg_xx module
+    // is used; so it has to be done after the programming mode has been set.
+    set_initial_language(url_query);
+
+    // Next, we create the appropriate world menu, using the default if needed
+    set_initial_menu(url_query);
+
+    // A hand-written url may not include all required parts;
+    // this does not matter for the previous three settings, but it
+    // may matter if there is some inconsistency with the indicated url and name
+    // parts. In this case, we have to make sure that we do not
+    // retrieve the last saved values by mistake
+    RUR.state.world_url = decodeURIComponent(url_query.queryKey.url);
+    RUR.state.world_name = decodeURIComponent(url_query.queryKey.name);
+    // Kmolab add the editor variable
+    RUR.state.world_editor = decodeURIComponent(url_query.queryKey.editor);
+
+    // correct potentially faulty values
+    if (probably_invalid(RUR.state.world_url)) {
+        RUR.state.world_url = undefined;
+    }
+    if (probably_invalid(RUR.state.world_name)) {
+        RUR.state.world_name = undefined;
+    }
+
+    if (RUR.state.world_url !== undefined) {
+        if (RUR.state.world_name === undefined) {
+            RUR.state.world_name = RUR.state.world_url;
+        }
+        try {
+            RUR.load_world_file(RUR.state.world_url, RUR.state.world_name);
+        } catch (e) {
+            set_default_world();
+        }
+    } else if (RUR.state.world_name !== undefined) {
+        RUR.state.world_url = RUR.world_selector.url_from_shortname(RUR.state.world_name);
+        if (RUR.state.world_url === undefined) { // Name does not in the current menu
+            set_default_world();
+        }
+    } else {
+        set_default_world();
+    }
+}</pre>
+<p>之後, menu, url 與 editor 可以利用 URL 變數中的絕對路徑執行:</p>
+<p><a href="https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Fhw-scrum-1%2Freeborg%2Fpython%2Fharvest1.py">https://mdewcm2025.github.io/hw-scrum-1/reeborg/?lang=en&amp;mode=python&amp;menu=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=%2Fhw-scrum-1%2Freeborg%2Fworlds%2Ftutorial_en%2Fharvest1.json&amp;editor=%2Fhw-scrum-1%2Freeborg%2Fpython%2Fharvest1.py</a></p>
+<p>且在網站目錄中自帶 url 變數的 .json 以及 editor 變數所需的 .py 檔案.</p>
+<p>之後看是否可以簡化路徑中的變數設定.</p>
+<p>其中也可以設法讓 url 變數與 editor 變數相同, 可以自 Gist 或 http 取值.</p><h2>Packages</h2>
 <p>Reeborg Javascript 程式碼的工具打包設定: package.json</p>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">{
   "scripts": {
