@@ -1,0 +1,54 @@
+# nginx.conf for Windows, IPv6 only, with specific SSL certs, HTML on :80, proxy to waitress on :8080 for :443
+
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    # IPv6 server for HTTP (serves static files from html/)
+    server {
+        listen [::]:80 ipv6only=on;
+        server_name server.mde.nfu.edu.tw;
+
+        root   html;
+        index  index.html index.htm;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+    }
+
+    # IPv6 server for HTTPS (proxies to localhost:8080 via waitress)
+    server {
+        listen [::]:443 ssl ipv6only=on;
+        server_name server.mde.nfu.edu.tw;
+
+        ssl_certificate      conf/fullchain.pem;
+        ssl_certificate_key  conf/privkey.pem;
+
+        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_ciphers HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers on;
+
+        # Optionally force HTTPS (uncomment if you want HTTP to redirect)
+        # if ($scheme = http) {
+        #     return 301 https://$host$request_uri;
+        # }
+
+        location / {
+            proxy_pass         http://[::1]:8080;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+        }
+    }
+}
