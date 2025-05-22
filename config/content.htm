@@ -1562,6 +1562,16 @@ function _restore_blockly () {
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p>
 <p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
 <h2>HW1</h2>
+<p>啟動 Nginx: 執行 nginx.exe, 會按照 conf/nginx.conf 中的設定內容啟動</p>
+<p>關閉 Nginx: 在命令列視窗中執行 taskkill /IM nginx.exe /F</p>
+<p>設定 nginx 服務: nssm install nginx</p>
+<p>編輯 nginx 服務: nssm edit nginx</p>
+<p>certbot.7z 指令: certbot certonly --standalone</p>
+<p>對 AI 提問與 Windows 環境下 nginx.conf 設定檔案的內容:</p>
+<p>在 Windows 已知僅支援 IPv6 網路協定, 且伺服器名稱為 server.mde.nfu.edu.tw, https 簽章檔案位於 nginx 的 conf 目錄中, 名稱分別為 fullchain.pem 與 privkey.pem, 其中希望 port 80 單獨伺服 html 目錄, 但是 https port 443 則其內容是從 port 8080 的 localhost 由 waitress 所提供, 請提供 nginx conf 目錄中的 nginx.conf 完整設定檔案內容.</p>
+<p>上述問句取得的 <a href="/downloads/nginx.conf_for_hw1.txt">nginx.conf</a></p>
+<p>用來啟動動態網站編輯的 waitress 伺服器檔案 start_waitress.py 內容: <a href="/downloads/start_waitress.py_for_hw1.txt">start_waitress.py</a></p>
+<hr/>
 <p>作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 30px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
 <p style="padding-left: 30px;">在 Ubuntu 操作系統建立一台 WWW 伺服器</p>
@@ -1610,9 +1620,26 @@ function _restore_blockly () {
 <p style="padding-left: 30px;">專案題目: 利用 Copilot 解析 <a href="https://mde.tw/reeborg">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><h1>Final</h1>
 <p>3. 期末協同專案執行、簡報與報告 (三人一組) (30%)</p>
 <p style="padding-left: 30px;"><span>專案題目: 網際內容管理架構下的 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)<br/></span></p>
-<p style="padding-left: 60px;">利用 uwsgi 配置分組學員執行 cmsimde 動態內容管理系統編輯</p>
+<p style="padding-left: 60px;">利用 uwsgi (for Linux only) 或 Nginx + waitress (for Windows and Linux) 配置分組學員執行 cmsimde 動態內容管理系統編輯</p>
 <p style="padding-left: 60px;">設法將 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>) 與 cmsimde 網際內容管理系統整合</p>
-<h1>Brython</h1>
+<p>利用 Nginx 單獨賜福 Reeborg 執行步驟:</p>
+<ol>
+<li>在 Windows 操作系統設定各組組長所分配到的 IPv6 網路位址</li>
+<li>利用 Let's Encrypt 取得 IPv6 位址綁定與 mde.nfu.edu.tw 網域名稱對應的 fullchain.pem 與 privkey.pem 簽證檔案</li>
+<li>下載 Nginx 後, 利用 IPv6 對應的網域名稱設定 https 連線, 執行 nginx.exe 啟動伺服器</li>
+<li>在 Nginx html 目錄 clone <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 後, 測試能否正常運作</li>
+</ol>
+<p>在 Windows 操作系統以 Nginx + waitress 配置分組倉儲的動態編輯系統與靜態內容檢視系統:</p>
+<ol>
+<li>承接上一步驟所設定的 Nginx 伺服器, 將用來 Proxy 代理由 waitress 所啟動的 http 動態編輯系統</li>
+<li>啟動可攜 Python 程式系統, 確定能在 localhost 啟動分組動態編輯網站, 同時也能透過 init.py 的設定, 以組長的網域啟動</li>
+<li>在可攜系統中安裝 waitress 模組: pip install waitress</li>
+<li>修改 nginx.conf, 設法利用組長的 IPv6 網路位址對應的符號名稱, 以及 fullchain.pem + privkey.pem 啟動伺服器, 並從 waitress 啟動的 port 8080 代理至 IPv6 為主的 https port 443</li>
+<li>先以 waitress 在 localhost port 8080 啟動分組動態編輯網站後, 啟動 Nginx</li>
+<li>測試是否可利用 https, 以 mde.nfu.edu.tw 網域對應的伺服器名稱進行連線</li>
+</ol>
+<p></p>
+<p></p><h1>Brython</h1>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->
 <p>
