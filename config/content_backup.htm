@@ -1551,6 +1551,12 @@ function _restore_blockly () {
 <p>將程式在 <a href="https://github.com/mdecycu/reeborg">https://github.com/mdecycu/reeborg</a> 倉儲進行修改後, 可以利用下列 URL 進行驗證:</p>
 <p><a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Other%20worlds&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Other%20worlds&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
 <p></p><h1>Homework</h1>
+<p>是否會將電腦輔助設計室的網路設定綁進自己所分配的 IPv6 網址, 並設定 proxy, 使能在純 IPv6 網路環境下, 連線到 IPv4 與 IPv6 的網站？</p>
+<p>是否會下載 nginx 並令其在 <a href="http://localhost">http://localhost</a> 進行伺服?</p>
+<p>是否會利用 git clone 取得 reeborg, 令其位於 nginx html 目錄下, 並以 <a href="http://localhost/reeborg">http://localhost/reeborg</a> 進行機器人程式的連結執行?</p>
+<p>是否會利用 certbot, 根據自己所配發的 IPv6 位址, 取得 fullchain.pem 與 privkey.pem 等網域的數位簽章檔案?</p>
+<p>是否會利用數位簽章與 IPv6 位址所對應的 mde.nfu.edu.tw 網域名稱啟動 nginx?</p>
+<p></p>
 <p>電腦輔助設計室網路設定:</p>
 <p style="padding-left: 30px;"><a href="/downloads/account_network_setup.7z">account_network_setup.7z</a></p>
 <p>在 Windows 使用 <a href="https://nginx.org/download/nginx-1.28.0.zip">nginx</a> 啟動 WWW 伺服器, 解開壓縮檔案後, 可以直接雙點擊 nginx.exe 就可以允許其通過防火牆, 並在瀏覽器以 <a href="http://localhost">http://localhost</a> 進行連結</p>
@@ -1558,6 +1564,7 @@ function _restore_blockly () {
 <p>利用可攜程式環境中的 git clone reeborg, 就可以在 localhost 中 serve 這一個 Javascript 編寫的機器人程式: git clone <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a></p>
 <p>利用 <a href="http://229.cycu.org/certbot.7z">certbot.7z</a> 安裝後, 以 certbot certonly --standalone</p>
 <p>取得 fullchain.pem 與 privkey.pem 後, 可以修改 nginx.conf, 將符號名稱綁入. 例如:綁定 w99.mde.nfu.edu.tw 的 <a href="/downloads/nginx.conf.txt">nginx.conf</a>. (與 AI 對話為 <a href="/downloads/question.txt">question.txt</a>)</p>
+<p>若利用 pip install waitree 安裝 wsgi 特定模組後, 可以利用 <a href="/downloads/start_waitress.py.txt">start_waitree.py</a> 從 localhost:8080 提供動態網頁編輯的資料, 由 nginx 的 https 提供伺服. 之後就可以利用 <a href="https://w99.mde.nfu.edu.tw">https://w99.mde.nfu.edu.tw</a> 連結到個人或分組的動態網站編輯區.</p>
 <hr/>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
