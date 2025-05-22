@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li class='has-children'><a href='About.html'>About</a><ul class='dropdown'><li><a href='list.html'>list</a><li><a href='Fossil.html'>Fossil</a></li></ul><li class='has-children'><a href='Tasks.html'>Tasks</a><ul class='dropdown'><li><a href='task1.html'>task1</a><li><a href='task2.html'>task2</a><li class='has-children'><a href='task2.5.html'>task2.5</a><ul class='dropdown'><li><a href='IPv6.html'>IPv6</a></li></ul><li class='has-children'><a href='task3.html'>task3</a><ul class='dropdown'><li><a href='mind-map.html'>mind-map</a></li></ul><li><a href='task4.html'>task4</a></li></ul><li class='has-children'><a href='Reeborg.html'>Reeborg</a><ul class='dropdown'><li><a href='Challenge.html'>Challenge</a><li><a href='Tutorial.html'>Tutorial</a><li><a href='Examples.html'>Examples</a><li class='has-children'><a href='rb.html'>rb</a><ul class='dropdown'><li><a href='Program.html'>Program</a></li></ul><li><a href='Packages.html'>Packages</a><li class='has-children'><a href='URL.html'>URL</a><ul class='dropdown'><li><a href='Parameters.html'>Parameters</a></li></li></ul></ul><li class='has-children'><a href='Homework.html'>Homework</a><ul class='dropdown'><li><a href='HW1.html'>HW1</a><li><a href='HW2.html'>HW2</a></li></ul><li><a href='Midterm.html'>Midterm</a><li><a href='Final.html'>Final</a><li><a href='Brython.html'>Brython</a></li>
+                     <li class='has-children'><a href='About.html'>About</a><ul class='dropdown'><li><a href='list.html'>list</a><li><a href='Fossil.html'>Fossil</a></li></ul><li class='has-children'><a href='Tasks.html'>Tasks</a><ul class='dropdown'><li><a href='task1.html'>task1</a><li><a href='task2.html'>task2</a><li class='has-children'><a href='task2.5.html'>task2.5</a><ul class='dropdown'><li><a href='IPv6.html'>IPv6</a></li></ul><li class='has-children'><a href='task3.html'>task3</a><ul class='dropdown'><li><a href='mind-map.html'>mind-map</a></li></ul><li><a href='task4.html'>task4</a></li></ul><li class='has-children'><a href='Reeborg.html'>Reeborg</a><ul class='dropdown'><li><a href='Challenge.html'>Challenge</a><li><a href='Tutorial.html'>Tutorial</a><li><a href='Examples.html'>Examples</a><li class='has-children'><a href='rb.html'>rb</a><ul class='dropdown'><li><a href='Program.html'>Program</a></li></ul><li><a href='Packages.html'>Packages</a><li class='has-children'><a href='URL.html'>URL</a><ul class='dropdown'><li><a href='Parameters.html'>Parameters</a></li></li></ul></ul><li class='has-children'><a href='Homework.html'>Homework</a><ul class='dropdown'><li class='has-children'><a href='HW1.html'>HW1</a><ul class='dropdown'><li><a href='Commands.html'>Commands</a></li></ul><li><a href='HW2.html'>HW2</a></li></ul><li><a href='Midterm.html'>Midterm</a><li><a href='Final.html'>Final</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -143,6 +143,15 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">Parameters << <a href='Parameters.html'>Previous</a> <a href='HW1.html'>Next</a> >> HW1<br /><h1>Homework</h1>
+<p>電腦輔助設計室網路設定:</p>
+<p style="padding-left: 30px;"><a href="./../downloads/account_network_setup.7z">account_network_setup.7z</a></p>
+<p>在 Windows 使用 <a href="https://nginx.org/download/nginx-1.28.0.zip">nginx</a> 啟動 WWW 伺服器, 解開壓縮檔案後, 可以直接雙點擊 nginx.exe 就可以允許其通過防火牆, 並在瀏覽器以 <a href="http://localhost">http://localhost</a> 進行連結</p>
+<p>關閉 nginx.exe: taskkill /IM nginx.exe /F</p>
+<p>利用可攜程式環境中的 git clone reeborg, 就可以在 localhost 中 serve 這一個 Javascript 編寫的機器人程式: git clone <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a></p>
+<p>利用 <a href="http://229.cycu.org/certbot.7z">certbot.7z</a> 安裝後, 以 certbot certonly --standalone</p>
+<p>取得 fullchain.pem 與 privkey.pem 後, 可以修改 nginx.conf, 將符號名稱綁入. 例如:綁定 w99.mde.nfu.edu.tw 的 <a href="./../downloads/nginx.conf.txt">nginx.conf</a>. (與 AI 對話為 <a href="./../downloads/question.txt">question.txt</a>)</p>
+<p>若利用 pip install waitree 安裝 wsgi 特定模組後, 可以利用 <a href="./../downloads/start_waitress.py.txt">start_waitree.py</a> 從 localhost:8080 提供動態網頁編輯的資料, 由 nginx 的 https 提供伺服. 之後就可以利用 <a href="https://w99.mde.nfu.edu.tw">https://w99.mde.nfu.edu.tw</a> 連結到個人或分組的動態網站編輯區.</p>
+<hr/>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
@@ -152,8 +161,7 @@ img.add_border {
 <p style="padding-left: 90px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p>
-<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
-<br />Parameters << <a href='Parameters.html'>Previous</a> <a href='HW1.html'>Next</a> >> HW1</div>
+<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><br />Parameters << <a href='Parameters.html'>Previous</a> <a href='HW1.html'>Next</a> >> HW1</div>
         
     <!-- footer -->
       <div class="container">

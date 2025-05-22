@@ -1,0 +1,1 @@
+在 Windows 已知僅支援 IPv6 網路協定, 且伺服器名稱為 w99.mde.nfu.edu.tw, https 簽章檔案位於 nginx 的 conf 目錄中, 名稱分別為 fullchain.pem 與 privkey.pem, 其中希望 port 80 單獨伺服 html 目錄, 但是 https port 443 則其內容是從 port 8080 的 localhost 由 waitress 所提供, 請提供 nginx conf 目錄中的 nginx.conf 完整設定檔案內容.

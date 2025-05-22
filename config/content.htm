@@ -1551,6 +1551,15 @@ function _restore_blockly () {
 <p>將程式在 <a href="https://github.com/mdecycu/reeborg">https://github.com/mdecycu/reeborg</a> 倉儲進行修改後, 可以利用下列 URL 進行驗證:</p>
 <p><a href="https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Other%20worlds&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py">https://mde.tw/reeborg/?lang=en&amp;mode=python&amp;menu=/worlds/menus/select_collection_en.json&amp;name=Other%20worlds&amp;url=/reeborg/worlds/tutorial_en/harvest1.json&amp;editor=/reeborg/python/harvest1.py</a></p>
 <p></p><h1>Homework</h1>
+<p>電腦輔助設計室網路設定:</p>
+<p style="padding-left: 30px;"><a href="/downloads/account_network_setup.7z">account_network_setup.7z</a></p>
+<p>在 Windows 使用 <a href="https://nginx.org/download/nginx-1.28.0.zip">nginx</a> 啟動 WWW 伺服器, 解開壓縮檔案後, 可以直接雙點擊 nginx.exe 就可以允許其通過防火牆, 並在瀏覽器以 <a href="http://localhost">http://localhost</a> 進行連結</p>
+<p>關閉 nginx.exe: taskkill /IM nginx.exe /F</p>
+<p>利用可攜程式環境中的 git clone reeborg, 就可以在 localhost 中 serve 這一個 Javascript 編寫的機器人程式: git clone <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a></p>
+<p>利用 <a href="http://229.cycu.org/certbot.7z">certbot.7z</a> 安裝後, 以 certbot certonly --standalone</p>
+<p>取得 fullchain.pem 與 privkey.pem 後, 可以修改 nginx.conf, 將符號名稱綁入. 例如:綁定 w99.mde.nfu.edu.tw 的 <a href="/downloads/nginx.conf.txt">nginx.conf</a>. (與 AI 對話為 <a href="/downloads/question.txt">question.txt</a>)</p>
+<p>若利用 pip install waitree 安裝 wsgi 特定模組後, 可以利用 <a href="/downloads/start_waitress.py.txt">start_waitree.py</a> 從 localhost:8080 提供動態網頁編輯的資料, 由 nginx 的 https 提供伺服. 之後就可以利用 <a href="https://w99.mde.nfu.edu.tw">https://w99.mde.nfu.edu.tw</a> 連結到個人或分組的動態網站編輯區.</p>
+<hr/>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
 <p style="padding-left: 60px;">在 Windows 操作系統中建立一台 WWW 伺服器</p>
@@ -1560,8 +1569,7 @@ function _restore_blockly () {
 <p style="padding-left: 90px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
 <p style="padding-left: 90px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p>
-<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
-<h2>HW1</h2>
+<p style="padding-left: 30px;">作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><h2>HW1</h2>
 <p>啟動 Nginx: 執行 nginx.exe, 會按照 conf/nginx.conf 中的設定內容啟動</p>
 <p>關閉 Nginx: 在命令列視窗中執行 taskkill /IM nginx.exe /F</p>
 <p>設定 nginx 服務: nssm install nginx</p>
@@ -1613,7 +1621,11 @@ function _restore_blockly () {
 <hr/>
 <p style="padding-left: 60px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
-<p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><h2>HW2</h2>
+<p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><h3>Commands</h3>
+<p>在 Windows 終止特定應用程式, 可以利用 taskkill 在命令列中執行, 例如要終止雙點擊 nginx.exe 指令為:</p>
+<p>taskkill /IM nginx.exe /F 這個指令在 Windows 作業系統中的意思如下：</p>
+<p>taskkill 是一個用來終止正在執行中的程式的命令。 <br/>/IM nginx.exe 表示要終止所有檔名為 nginx.exe 的程式。 (/IM 為 IMAGE)<br/>/F 表示強制終止（即使該程式沒有回應，也會強制關閉）。 (/F 為 FORCE)</p>
+<p>綜合起來，taskkill /IM nginx.exe /F 就是「強制關閉所有 nginx.exe 程式」。</p><h2>HW2</h2>
 <p>作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
 <p>在 HW1 所建立的各種 nginx 伺服器與個人網站中配置 Reeborg 機器人程式, 並將所練習的 Python 程式放入網站的 downloads 目錄中, 逐步強化練習個人的 Python 程式語法. 並隨著各式課程的學習, 嘗試利用網際程式方法解題.</p><h1>Midterm</h1>
 <p>2. 期中協同專案執行、簡報與報告 (三人一組) (30%)</p>
