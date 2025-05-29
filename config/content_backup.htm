@@ -1633,7 +1633,12 @@ function _restore_blockly () {
 <p style="padding-left: 60px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
 <p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><h3>Steps</h3>
-<p>採<a href="/downloads/1_ipv6_network_setup.bat_.txt">批次檔案</a>、<a href="/downloads/1_2022_cadlab_network_setup.reg_.txt">登錄檔案</a>與 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a>, 結合所<a href="https://mde.tw/wcm2025/content/IPv6.html">分配的 IPV6 網路位址</a>設定電腦, 設定完成後以 ipconfig /all 檢查是否已經設定完成</p>
+<p>純 IPv6 位址設定</p>
+<p>採<a href="/downloads/1_ipv6_network_setup.bat_.txt">批次檔案</a>、<a href="/downloads/1_2022_cadlab_network_setup.reg_.txt">登錄檔案</a>與 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a>, 結合所<a href="https://mde.tw/wcm2025/content/IPv6.html">分配的 IPV6 網路位址</a>設定電腦, 以管理者身分執行 1_ipv6_network_setup.bat 後, 即可關閉 IPv4, 設定各自的 IPv6 位址, 並且讓瀏覽器可以利用代理主機連線到 IPv4 網站. (必須修改 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a> 中的  $ipv6Address = "2001:288:6004:17:fff1:cc25:0000:a0xx" 資料, 將 xx 改為自己的序號.</p>
+<p>設定完成後以 ipconfig /all 檢查 IPv6 網址是否已經綁定</p>
+<p>取得 IPv6 位置與符號名稱的認證對應</p>
+<p>若希望透過 <a href="https://letsencrypt.org/">LetsEncrypt</a> 進行符號名稱認證, 必須下載 <a href="http://229.cycu.org/certbot.7z">certbot.7z</a>, 然後在命令列視窗, 以管理者身分執行 certbot certonly --standalone</p>
+<p></p>
 <p></p><h3>Commands</h3>
 <p>在 Windows 終止特定應用程式, 可以利用 taskkill 在命令列中執行, 例如要終止雙點擊 nginx.exe 指令為:</p>
 <p>taskkill /IM nginx.exe /F 這個指令在 Windows 作業系統中的意思如下：</p>
