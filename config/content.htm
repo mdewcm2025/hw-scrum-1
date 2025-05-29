@@ -1632,7 +1632,9 @@ function _restore_blockly () {
 <hr/>
 <p style="padding-left: 60px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
-<p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><h3>Commands</h3>
+<p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><h3>Steps</h3>
+<p>採<a href="/downloads/1_ipv6_network_setup.bat_.txt">批次檔案</a>、<a href="/downloads/1_2022_cadlab_network_setup.reg_.txt">登錄檔案</a>與 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a>, 結合所<a href="https://mde.tw/wcm2025/content/IPv6.html">分配的 IPV6 網路位址</a>設定電腦, 設定完成後以 ipconfig /all 檢查是否已經設定完成</p>
+<p></p><h3>Commands</h3>
 <p>在 Windows 終止特定應用程式, 可以利用 taskkill 在命令列中執行, 例如要終止雙點擊 nginx.exe 指令為:</p>
 <p>taskkill /IM nginx.exe /F 這個指令在 Windows 作業系統中的意思如下：</p>
 <p>taskkill 是一個用來終止正在執行中的程式的命令。 <br/>/IM nginx.exe 表示要終止所有檔名為 nginx.exe 的程式。 (/IM 為 IMAGE)<br/>/F 表示強制終止（即使該程式沒有回應，也會強制關閉）。 (/F 為 FORCE)</p>

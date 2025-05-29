@@ -1588,7 +1588,7 @@ function _restore_blockly () {
 <p>certbot.7z 指令: certbot certonly --standalone</p>
 <p>對 AI 提問與 Windows 環境下 nginx.conf 設定檔案的內容:</p>
 <p>在 Windows 已知僅支援 IPv6 網路協定, 且伺服器名稱為 server.mde.nfu.edu.tw, https 簽章檔案位於 nginx 的 conf 目錄中, 名稱分別為 fullchain.pem 與 privkey.pem, 其中希望 port 80 單獨伺服 html 目錄, 但是 https port 443 則其內容是從 port 8080 的 localhost 由 waitress 所提供, 請提供 nginx conf 目錄中的 nginx.conf 完整設定檔案內容.</p>
-<p>上述問句取得的 <a href="/downloads/nginx.conf_for_hw1.txt">nginx.conf</a></p>
+<p>上述問句取得的 <a href="/downloads/nginx.conf_for_hw1.txt">nginx.conf</a>, 經過修改, 將 w99.mde.nfu.edu.tw 對應的 IPV6 網址進行設定後的 <a href="/downloads/w99_nginx.conf.txt">nginx.conf</a>.</p>
 <p>用來啟動動態網站編輯的 waitress 伺服器檔案 start_waitress.py 內容: <a href="/downloads/start_waitress.py_for_hw1.txt">start_waitress.py</a></p>
 <hr/>
 <p>作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
@@ -1632,7 +1632,9 @@ function _restore_blockly () {
 <hr/>
 <p style="padding-left: 60px;">Vmware <a href="https://blogs.vmware.com/cloud-foundation/2024/11/11/vmware-fusion-and-workstation-are-now-free-for-all-users/">最近宣布</a>適用於 Windows 及 Linux 的 Vmware Workstation Pro (<a href="https://docs.vmware.com/en/VMware-Workstation-Pro/17.6/rn/vmware-workstation-176-pro-release-notes/index.html">17.6</a>), 與適用於 MacOS 的 Vmware Fusion Pro 全面免費.</p>
 <p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
-<p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><h3>Commands</h3>
+<p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><h3>Steps</h3>
+<p>採<a href="/downloads/1_ipv6_network_setup.bat_.txt">批次檔案</a>、<a href="/downloads/1_2022_cadlab_network_setup.reg_.txt">登錄檔案</a>與 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a>, 結合所<a href="https://mde.tw/wcm2025/content/IPv6.html">分配的 IPV6 網路位址</a>設定電腦</p>
+<p></p><h3>Commands</h3>
 <p>在 Windows 終止特定應用程式, 可以利用 taskkill 在命令列中執行, 例如要終止雙點擊 nginx.exe 指令為:</p>
 <p>taskkill /IM nginx.exe /F 這個指令在 Windows 作業系統中的意思如下：</p>
 <p>taskkill 是一個用來終止正在執行中的程式的命令。 <br/>/IM nginx.exe 表示要終止所有檔名為 nginx.exe 的程式。 (/IM 為 IMAGE)<br/>/F 表示強制終止（即使該程式沒有回應，也會強制關閉）。 (/F 為 FORCE)</p>
