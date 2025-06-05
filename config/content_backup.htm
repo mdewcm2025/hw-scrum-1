@@ -1634,10 +1634,10 @@ function _restore_blockly () {
 <p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro">下載 Vmware Workstation Pro</a> (For Windows and Linux) - 註冊帳號後下載 VMware-workstation-full-17.6.2.exe</p>
 <p style="padding-left: 60px;"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Fusion">下載 Vmware Fusion Pro</a> (For Mac) - 註冊帳號後下載</p><h3>Steps</h3>
 <p>純 IPv6 位址設定</p>
-<p>採<a href="/downloads/1_ipv6_network_setup.bat_.txt">批次檔案</a>、<a href="/downloads/1_2022_cadlab_network_setup.reg_.txt">登錄檔案</a>與 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a>, 結合所<a href="https://mde.tw/wcm2025/content/IPv6.html">分配的 IPV6 網路位址</a>設定電腦, 以管理者身分執行 1_ipv6_network_setup.bat 後, 即可關閉 IPv4, 設定各自的 IPv6 位址, 並且讓瀏覽器可以利用代理主機連線到 IPv4 網站. (必須修改 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a> 中的  $ipv6Address = "2001:288:6004:17:fff1:cc25:0000:a0xx" 資料, 將 xx 改為自己的序號.</p>
-<p>設定完成後以 ipconfig /all 檢查 IPv6 網址是否已經綁定</p>
+<p style="padding-left: 30px;">採<a href="/downloads/1_ipv6_network_setup.bat_.txt">批次檔案</a>、<a href="/downloads/1_2022_cadlab_network_setup.reg_.txt">登錄檔案</a>與 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a>, 結合所<a href="https://mde.tw/wcm2025/content/IPv6.html">分配的 IPV6 網路位址</a>設定電腦, 以管理者身分執行 1_ipv6_network_setup.bat 後, 即可關閉 IPv4, 設定各自的 IPv6 位址, 並且讓瀏覽器可以利用代理主機連線到 IPv4 網站. (必須修改 <a href="/downloads/1_disable_ipv4.ps1_.txt">powershell 指令檔案</a> 中的  $ipv6Address = "2001:288:6004:17:fff1:cc25:0000:a0xx" 資料, 將 xx 改為自己的序號.</p>
+<p style="padding-left: 30px;">設定完成後以 ipconfig /all 檢查 IPv6 網址是否已經綁定</p>
 <p>取得 IPv6 位置與符號名稱的認證對應</p>
-<p>若希望透過 <a href="https://letsencrypt.org/">LetsEncrypt</a> 進行符號名稱認證, 必須下載 <a href="http://229.cycu.org/certbot.7z">certbot.7z</a>, 然後在命令列視窗, 以管理者身分執行 certbot certonly --standalone</p>
+<p style="padding-left: 30px;">若希望透過 <a href="https://letsencrypt.org/">LetsEncrypt</a> 進行符號名稱認證, 必須下載 <a href="http://229.cycu.org/certbot.7z">certbot.7z</a>, 然後在命令列視窗, 以管理者身分執行 certbot certonly --standalone</p>
 <p></p>
 <p></p><h3>Commands</h3>
 <p>在 Windows 終止特定應用程式, 可以利用 taskkill 在命令列中執行, 例如要終止雙點擊 nginx.exe 指令為:</p>
@@ -1645,7 +1645,25 @@ function _restore_blockly () {
 <p>taskkill 是一個用來終止正在執行中的程式的命令。 <br/>/IM nginx.exe 表示要終止所有檔名為 nginx.exe 的程式。 (/IM 為 IMAGE)<br/>/F 表示強制終止（即使該程式沒有回應，也會強制關閉）。 (/F 為 FORCE)</p>
 <p>綜合起來，taskkill /IM nginx.exe /F 就是「強制關閉所有 nginx.exe 程式」。</p><h2>HW2</h2>
 <p>作業二 (20%): 在各種不同環境下的操作系統中配置 <a href="https://mde.tw/reeborg/world.html">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p>
-<p>在 HW1 所建立的各種 nginx 伺服器與個人網站中配置 Reeborg 機器人程式, 並將所練習的 Python 程式放入網站的 downloads 目錄中, 逐步強化練習個人的 Python 程式語法. 並隨著各式課程的學習, 嘗試利用網際程式方法解題.</p><h1>Midterm</h1>
+<p>在 HW1 所建立的各種 nginx 伺服器與個人網站中配置 Reeborg 機器人程式, 並將所練習的 Python 程式放入網站的 downloads 目錄中, 逐步強化練習個人的 Python 程式語法. 並隨著各式課程的學習, 嘗試利用網際程式方法解題.</p>
+<hr/>
+<p>在 Windows 利用 Virtualbox 建立 wXX.mde.nfu.edu.tw 虛擬主機伺服器:</p>
+<ol>
+<li>下載 <a href="http://229.cycu.org/win10.vdi">win10.vdi</a></li>
+<li>在 <a href="https://www.virtualbox.org/wiki/Download_Old_Builds_7_1">Virtualbox 7.1</a> 之前的版本配置既有的虛擬主機檔案, 記憶體配置 8GB 以上, 將虛擬主機名稱設為 wXX, network 設為橋接至電腦的實體網卡</li>
+<li>首次啟動 wXX 虛擬主機, 修改管理者密碼, 利用 IPv6 說明設定所分配到的 IPv6 網路位址</li>
+<li>確定網路連線正常, 並可透過 proxy 設定讓瀏覽器連線至任何網站, 允許遠端桌面連線後關閉虛擬主機</li>
+<li>透過 <a href="https://nssm.cc/download">nssm</a> 與 C:\Program Files\Oracle\VirtualBox\VBoxHeadless.exe 讓所建立的虛擬主機成為實體主機的服務</li>
+<li>以管理者身分啟動 cmd 後, 執行實體目錄位置下的 nssm.exe, 例如: E:\portable_wcm2025\data\nssm install wXX</li>
+<li>利用 C:\Program Files\Oracle\VirtualBox\VBoxHeadless.exe -startvm wXX 指令, 以 wXX 服務啟動</li>
+<li>以滑鼠右鍵點擊"開始", 選擇"電腦管理", 將 wXX 服務設為"延遲自動啟動"後, 啟動 wXX 虛擬主機 </li>
+<li>遠端登入 wXX 虛擬主機後, <a href="https://nginx.org/download/nginx-1.28.0.zip">下載 nginx</a> 並完成設定 , 讓 wXX.mde.nfu.edu.tw 可以透過 http 與 https 啟動</li>
+</ol>
+<p>在 wXX.mde.nfu.edu.tw 主機設定 <a href="http://229.cycu.org/certbot.7z">certbot</a>, 以 <a href="https://wXX.mde.nfu.edu.tw">https://wXX.mde.nfu.edu.tw</a> 啟動:</p>
+<ol>
+<li>可以直接讓 <a href="https://wXX.mde.nfu.edu.tw">https://wXX.mde.nfu.edu.tw</a> 伺服 Reeborg: <a href="https://mde.tw/reeborg/">https://mde.tw/reeborg/</a> </li>
+<li>或者結合 waitress 以 <a href="https://wXX.mde.nfu.edu.tw">https://wXX.mde.nfu.edu.tw</a> 編輯作業倉儲的動態網站內容, 並讓靜態網站透過 <a href="http://wXX.mde.nfu.edu.tw">http://wXX.mde.nfu.edu.tw</a> 連線</li>
+</ol><h1>Midterm</h1>
 <p>2. 期中協同專案執行、簡報與報告 (三人一組) (30%)</p>
 <p style="padding-left: 30px;">專案題目: 利用 Copilot 解析 <a href="https://mde.tw/reeborg">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><h1>Final</h1>
 <p>3. 期末協同專案執行、簡報與報告 (三人一組) (30%)</p>
