@@ -162,7 +162,64 @@ img.add_border {
 <ol>
 <li>可以直接讓 <a href="https://wXX.mde.nfu.edu.tw">https://wXX.mde.nfu.edu.tw</a> 伺服 Reeborg: <a href="https://mde.tw/reeborg/">https://mde.tw/reeborg/</a> </li>
 <li>或者結合 waitress 以 <a href="https://wXX.mde.nfu.edu.tw">https://wXX.mde.nfu.edu.tw</a> 編輯作業倉儲的動態網站內容, 並讓靜態網站透過 <a href="http://wXX.mde.nfu.edu.tw">http://wXX.mde.nfu.edu.tw</a> 連線</li>
-</ol><br />Commands << <a href='Commands.html'>Previous</a> <a href='Midterm.html'>Next</a> >> Midterm</div>
+</ol>
+<p>基本設定檔案: <span> </span><a href="./../downloads/nginx.conf.txt">nginx.conf</a>, <a href="./../downloads/start_waitress.py.txt">start_waitress.py</a><span><span> </span></span></p>
+<p><span><span>若要將 nginx port 80 轉為倉儲的靜態內容, 則可以採用以下設定:</span></span></p>
+<p><span><span>nginx.conf</span></span></p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen       [::]:80 ipv6only=on;
+        server_name  wXX.mde.nfu.edu.tw;
+
+        #root   html;
+        # 將 port 80 http 連結到倉儲的靜態網站
+        # 將 root 指向靜態倉儲目錄, 特別注意不要使用反斜線
+        root C:/Users/wcm/Downloads/portable_wcm2025_w10/data/tmp/wcm2025_hw;
+        index  index.html;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+    }
+
+    server {
+        listen       [::]:443 ssl ipv6only=on;
+        http2        on;
+        server_name  wXX.mde.nfu.edu.tw;
+
+        ssl_certificate      fullchain.pem;
+        ssl_certificate_key  privkey.pem;
+        ssl_protocols        TLSv1.2 TLSv1.3;
+        ssl_ciphers          HIGH:!aNULL:!MD5;
+
+        location / {
+            # https port 443 的連結資料是由近端 IPv6 port 8080 所提供
+            # port 8080 的資料是有 python start_waitress.py 提供
+            proxy_pass         http://[::1]:8080;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+        }
+    }
+}</pre>
+<p>start_waitress.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from waitress import serve
+from cmsimde import flaskapp
+serve(flaskapp.app, listen='localhost:8080', threads=8)</pre>
+<p>之後, 若已經將 http 指向倉儲的靜態網站, 就可以利用 git clone <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a> 將機器人程式放入 reeborg 目錄中, 並且以下列連結開啟:</p>
+<p><a href="http://w99.mde.nfu.edu.tw/reeborg/?lang=en&amp;mode=python&amp;menu=worlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=worlds%2Ftutorial_en%2Fharvest1.json&amp;editor=python%2Fharvest1.py">http://w99.mde.nfu.edu.tw/reeborg/?lang=en&amp;mode=python&amp;menu=worlds%2Fmenus%2Fselect_collection_en.json&amp;name=Alone&amp;url=worlds%2Ftutorial_en%2Fharvest1.json&amp;editor=python%2Fharvest1.py</a> </p><br />Commands << <a href='Commands.html'>Previous</a> <a href='Midterm.html'>Next</a> >> Midterm</div>
         
     <!-- footer -->
       <div class="container">

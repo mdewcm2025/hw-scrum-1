@@ -1569,7 +1569,7 @@ function _restore_blockly () {
 <p>利用可攜程式環境中的 git clone reeborg, 就可以在 localhost 中 serve 這一個 Javascript 編寫的機器人程式: git clone <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a></p>
 <p>利用 <a href="http://229.cycu.org/certbot.7z">certbot.7z</a> 安裝後, 以 certbot certonly --standalone</p>
 <p>取得 fullchain.pem 與 privkey.pem 後, 可以修改 nginx.conf, 將符號名稱綁入. 例如:綁定 w99.mde.nfu.edu.tw 的 <a href="/downloads/nginx.conf.txt">nginx.conf</a>. (與 AI 對話為 <a href="/downloads/question.txt">question.txt</a>)</p>
-<p>若利用 pip install waitree 安裝 wsgi 特定模組後, 可以利用 <a href="/downloads/start_waitress.py.txt">start_waitree.py</a> 從 localhost:8080 提供動態網頁編輯的資料, 由 nginx 的 https 提供伺服. 之後就可以利用 <a href="https://w99.mde.nfu.edu.tw">https://w99.mde.nfu.edu.tw</a> 連結到個人或分組的動態網站編輯區.</p>
+<p>若利用 pip install waitress 安裝 wsgi 特定模組後, 可以利用 <a href="/downloads/start_waitress.py.txt">start_waitress.py</a> 從 localhost:8080 提供動態網頁編輯的資料, 由 nginx 的 https 提供伺服. 之後就可以利用 <a href="https://w99.mde.nfu.edu.tw">https://w99.mde.nfu.edu.tw</a> 連結到個人或分組的動態網站編輯區.</p>
 <hr/>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
@@ -1663,7 +1663,63 @@ function _restore_blockly () {
 <ol>
 <li>可以直接讓 <a href="https://wXX.mde.nfu.edu.tw">https://wXX.mde.nfu.edu.tw</a> 伺服 Reeborg: <a href="https://mde.tw/reeborg/">https://mde.tw/reeborg/</a> </li>
 <li>或者結合 waitress 以 <a href="https://wXX.mde.nfu.edu.tw">https://wXX.mde.nfu.edu.tw</a> 編輯作業倉儲的動態網站內容, 並讓靜態網站透過 <a href="http://wXX.mde.nfu.edu.tw">http://wXX.mde.nfu.edu.tw</a> 連線</li>
-</ol><h1>Midterm</h1>
+</ol>
+<p>基本設定檔案: <span> </span><a href="/downloads/nginx.conf.txt">nginx.conf</a>, <a href="/downloads/start_waitress.py.txt">start_waitress.py</a><span><span> </span></span></p>
+<p><span><span>若要將 nginx port 80 轉為倉儲的靜態內容, 則可以採用以下設定:</span></span></p>
+<p><span><span>nginx.conf</span></span></p>
+<pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen       [::]:80 ipv6only=on;
+        server_name  wXX.mde.nfu.edu.tw;
+
+        #root   html;
+        # 將 port 80 http 連結到倉儲的靜態網站
+        # 將 root 指向靜態倉儲目錄, 特別注意不要使用反斜線
+        root C:/Users/wcm/Downloads/portable_wcm2025_w10/data/tmp/wcm2025_hw;
+        index  index.html;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+    }
+
+    server {
+        listen       [::]:443 ssl ipv6only=on;
+        http2        on;
+        server_name  wXX.mde.nfu.edu.tw;
+
+        ssl_certificate      fullchain.pem;
+        ssl_certificate_key  privkey.pem;
+        ssl_protocols        TLSv1.2 TLSv1.3;
+        ssl_ciphers          HIGH:!aNULL:!MD5;
+
+        location / {
+            # https port 443 的連結資料是由近端 IPv6 port 8080 所提供
+            # port 8080 的資料是有 python start_waitress.py 提供
+            proxy_pass         http://[::1]:8080;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+        }
+    }
+}</pre>
+<p>start_waitress.py</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from waitress import serve
+from cmsimde import flaskapp
+serve(flaskapp.app, listen='localhost:8080', threads=8)</pre>
+<p></p><h1>Midterm</h1>
 <p>2. 期中協同專案執行、簡報與報告 (三人一組) (30%)</p>
 <p style="padding-left: 30px;">專案題目: 利用 Copilot 解析 <a href="https://mde.tw/reeborg">Reeborg's world</a> (<a href="https://github.com/mdecycu/reeborg">原始碼</a>)</p><h1>Final</h1>
 <p>3. 期末協同專案執行、簡報與報告 (三人一組) (30%)</p>

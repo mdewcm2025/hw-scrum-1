@@ -161,7 +161,7 @@ img.add_border {
 <p>利用可攜程式環境中的 git clone reeborg, 就可以在 localhost 中 serve 這一個 Javascript 編寫的機器人程式: git clone <a href="https://github.com/mdecycu/reeborg.git">https://github.com/mdecycu/reeborg.git</a></p>
 <p>利用 <a href="http://229.cycu.org/certbot.7z">certbot.7z</a> 安裝後, 以 certbot certonly --standalone</p>
 <p>取得 fullchain.pem 與 privkey.pem 後, 可以修改 nginx.conf, 將符號名稱綁入. 例如:綁定 w99.mde.nfu.edu.tw 的 <a href="./../downloads/nginx.conf.txt">nginx.conf</a>. (與 AI 對話為 <a href="./../downloads/question.txt">question.txt</a>)</p>
-<p>若利用 pip install waitree 安裝 wsgi 特定模組後, 可以利用 <a href="./../downloads/start_waitress.py.txt">start_waitree.py</a> 從 localhost:8080 提供動態網頁編輯的資料, 由 nginx 的 https 提供伺服. 之後就可以利用 <a href="https://w99.mde.nfu.edu.tw">https://w99.mde.nfu.edu.tw</a> 連結到個人或分組的動態網站編輯區.</p>
+<p>若利用 pip install waitress 安裝 wsgi 特定模組後, 可以利用 <a href="./../downloads/start_waitress.py.txt">start_waitress.py</a> 從 localhost:8080 提供動態網頁編輯的資料, 由 nginx 的 https 提供伺服. 之後就可以利用 <a href="https://w99.mde.nfu.edu.tw">https://w99.mde.nfu.edu.tw</a> 連結到個人或分組的動態網站編輯區.</p>
 <hr/>
 <p>1. 作業 (40%): 從 Github Classroom 取得的個人倉儲與網站, 每週必須至少提交 2 次與課程進度有關的內容.</p>
 <p style="padding-left: 30px;">作業一 (20%): 採用 <a href="https://nginx.org/">nginx</a> 建立全球資訊網伺服器</p>
